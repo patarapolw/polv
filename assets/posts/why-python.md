@@ -1,11 +1,9 @@
 ---
 title: 'What is the true merit of Python, and why C/C++ plugins were made for it?'
-slug: why-python
 date: '2020-05-30 00:00 +07:00'
 tag:
   - python
   - quora
-category: blog
 ---
 
 Of course, I did start much of my journey with Python, but now I started to prefer TypeScript and Kotlin to Python. Also, I am very critical with Python, so I asked on Quora. (Please read the chat in comment sections of the answer as well.)

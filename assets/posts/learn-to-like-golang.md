@@ -1,11 +1,9 @@
 ---
 title: How can I learn to like Golang? (and use it a lot)
-category: blog
 tag:
   - dev.to
   - golang
 date: '2020-05-30 00:00 +07:00'
-slug: learn-to-like-golang
 ---
 
 Well, I did complain, in order to change my point-of-view,

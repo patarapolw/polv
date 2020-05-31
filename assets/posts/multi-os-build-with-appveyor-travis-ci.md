@@ -4,7 +4,7 @@ category: blog
 date: '2020-05-13 00:00 +07:00'
 tag:
   - appveyor
-  - CI
+  - ci
   - desktop
   - dev.to
   - electron
@@ -12,7 +12,6 @@ tag:
   - os
   - python
   - travis
-slug: multi-os-build-with-appveyor-travis-ci
 ---
 
 And it also allows C compiling to binary, as long as you can get the right setup.

@@ -6,8 +6,6 @@ tag:
   - dev.to
   - node.js
   - terminal
-category: blog
-slug: multiline-pretty-print-colors-nodejs
 ---
 
 If you have use JavaScript for some time, you should notice that pretty printing JSON in Node.js is as simple as `JSON.stringify(obj, null, 2)`.

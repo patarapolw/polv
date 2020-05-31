@@ -5,10 +5,7 @@ image: >-
   https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcQFKi5a1hzYykg3TJiYcMvOJa2mjhRwSXxX2LCRPC-TfoUIc5TB
 tag:
   - gh-pages
-  - GitHub Pages
   - heroku
-slug: gh-pages
-category: blog
 ---
 
 This is as simple as `npm run build && gh-pages -d dist`, and there will be no pollution from build remnants. You can safely as `/dist/` to `.gitignore`.

@@ -1,13 +1,11 @@
 ---
 title: Firebase auth with both frontend (SPA) and backend
 date: '2020-03-28 00:00 +07:00'
-category: blog
 tag:
   - auth
   - dev.to
   - firebase
   - fullstack
-slug: firebase-auth-full-stack
 ---
 
 auth0-spa-js with express-jwt is not the only way.

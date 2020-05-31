@@ -1,11 +1,9 @@
 ---
 title: Some TypeScript tricks
 date: '2020-04-23 00:00 +07:00'
-category: blog
 tag:
   - dev.to
   - typescript
-slug: some-typescript-tricks
 ---
 
 This might not be something so special, but I bet not everyone knows.

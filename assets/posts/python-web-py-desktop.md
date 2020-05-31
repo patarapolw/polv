@@ -1,15 +1,13 @@
 ---
 title: '[Python-web.py] Turning website into a desktop app'
-slug: python-web-py-desktop
 date: '2018-02-14 03:07 +07:00'
 tag:
   - desktop
-  - PyQt5
+  - pyqt5
   - python
   - web.py
 image: >-
   https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcTHKVrds2fU5fqVnsmUwdOgNyOUIssq0aXpgit1vx8L6dK3B2_j
-category: blog
 ---
 
 This is what I have got:

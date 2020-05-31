@@ -1,13 +1,11 @@
 ---
 title: 'A guide to using TypeScript in Vue, with maximal VSCode IntelliSense'
-category: blog
 date: '2020-01-14 00:00 +07:00'
 tag:
   - dev.to
   - typescript
   - vscode
   - vue
-slug: typescript-vue-vscode-intellisense
 ---
 
 As a lover of TypeScript InteliSense and Vue, I have always tried to use TypeScript in Vue, but [Vetur](https://github.com/vuejs/vetur) isn't as smart as it should...

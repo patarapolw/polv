@@ -4,11 +4,9 @@ date: '2019-07-08 00:00 +07:00'
 image: >-
   https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcT-OMfTIWpQi63ocxmaCRVYOc0QIzgejLDHdFJtJuTYOmJgDqr_
 tag:
-  - bolt CMS
+  - bolt-cms
   - php
   - pinned
-slug: learn-php-from-previous
-category: blog
 ---
 
 PHP is a bit different from other languages, like Python or Dart, in that, it is a mainly a web programming language, running on a server. Furthermore, it is actually pre-installed in macOS.

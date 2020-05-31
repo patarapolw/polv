@@ -1,13 +1,11 @@
 ---
 title: TypeScript with worker_threads and hot reload
 date: '2020-05-13 00:00 +07:00'
-category: blog
 tag:
   - dev.to
   - node.js
   - typescript
   - worker_threads
-slug: typescript-worker_threads-hot-reload
 ---
 
 One of the way is indeed using [threads.js](https://threads.js.org/) (and [observable-fns](https://github.com/andywer/observable-fns)), but I came with a Native way (for Node 10+ latest with CLI --experimental option and Node 12+).

@@ -4,9 +4,7 @@ date: '2019-07-02 00:00 +07:00'
 image: 'https://i.imgur.com/53Ngcgc.png'
 tag:
   - cogear
-  - GitHub Pages
-slug: cogear-gh-pages
-category: blog
+  - gh-pages
 ---
 
 You can try to follow this post (<https://itnext.io/how-to-build-a-blog-with-cogear-js-fd45a6cfbde1>), but it isn't enough to make it a customized blog.

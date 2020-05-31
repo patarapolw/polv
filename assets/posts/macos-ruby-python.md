@@ -5,12 +5,10 @@ image: >-
   https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcRzRPgFnsH3URbSEs5o9rM9BxY-JcGggifXVXEx7bsUVk3KW9QA
 tag:
   - javascript
-  - macOS
+  - macos
   - node.js
   - python
   - ruby
-slug: macos-ruby-python
-category: blog
 ---
 
 Just don't install anything into System's programming languages, unless you have a virtual environment. Also, you can manage Python and Ruby's versions.

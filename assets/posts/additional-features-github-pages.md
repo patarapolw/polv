@@ -4,12 +4,10 @@ date: '2019-07-05 00:00 +07:00'
 image: >-
   https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcT9gKwkPcrFDuSH7LcaAnhMkpK1AVSVk6a9wDWauOY_J6CvKl2r
 tag:
-  - Disqus
-  - GitHub Pages
-  - Jekyll
-  - Travis CI
-slug: additional-features-github-pages
-category: blog
+  - disqus
+  - gh-pages
+  - jekyll
+  - travis
 ---
 
 GitHub Pages, powered by Jekyll is great, but it lacks some useful features, mostly features that require a real database. Solutions? -- link to outside servers.

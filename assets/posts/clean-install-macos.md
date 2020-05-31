@@ -7,10 +7,7 @@ tag:
   - chinese
   - japanese
   - macOS
-  - macOS reformat
   - mandarin
-slug: clean-install-macos
-category: blog
 ---
 
 [Reformatting macOS](https://www.imore.com/how-to-prepare-mac-for-sale#reformat-your-hard-drive) is quite easy, but let's see what I do next, for my

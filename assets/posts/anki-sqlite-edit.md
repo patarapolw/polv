@@ -8,8 +8,6 @@ tag:
   - peewee
   - pinned
   - sqlite
-slug: anki-sqlite-edit
-category: blog
 ---
 
 \*.apkg and \*.anki2 file structure is very simple, but with some quirks of incompleteness.

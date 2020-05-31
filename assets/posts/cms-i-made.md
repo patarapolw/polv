@@ -1,12 +1,10 @@
 ---
 title: CMS I made to feed Nuxt
 date: '2020-04-21 00:00 +07:00'
-category: blog
 tag:
   - cms
   - dev.to
   - nuxt
-slug: cms-i-made
 ---
 
 I wonder what you are using to feed JAMstacks, such as Gatsby, Gridsome, Nuxt? Perhaps Wordpress or Strapi?

@@ -1,11 +1,9 @@
 ---
 title: Avoiding having both `yarn.lock` and `package-lock.json`
 date: '2020-04-16 00:00 +07:00'
-category: blog
 tag:
   - dev.to
   - node.js
-slug: avoiding-both-yarn-npm
 ---
 
 This is possible with pre-install script to check for `yarn.lock` and `package.json`.

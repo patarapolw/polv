@@ -1,12 +1,10 @@
 ---
 title: Create reusable codes across Projects and potentially ShareIt!
-slug: reuseable-python
 date: '2018-02-07 03:10 +07:00'
 tag:
   - python
 image: >-
   https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcRiJmcz8lmfxBjO1Svz-urf6yKiZ3RSnYpx2m2F-dnjp_SO204V
-category: blog
 ---
 
 I am programming in modules, and it is easy to share `*.py` within a project. How?

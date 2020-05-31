@@ -1,11 +1,8 @@
 ---
 title: My common.py
-slug: my-common-py
 date: '2018-02-03 02:51 +07:00'
 tag:
   - python
-  - utils
-category: blog
 image: 'https://upload.wikimedia.org/wikipedia/commons/a/ad/Lozingle_10032014.jpg'
 ---
 

@@ -4,13 +4,11 @@ date: '2019-07-25 00:00 +07:00'
 image: >-
   https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcRI0rk1ieVKhHnaRc3h1vDHHeRJf7Lb8nycLGq_l3FFVXWRyuqa
 tag:
-  - dynamic typing
+  - dynamic-typing
   - gson
   - kotlin
   - kotson
   - pinned
-slug: kotlin-dynamic-typing-kotson
-category: blog
 ---
 
 Apparently, it is possible to make Kotlin have a very simple dynamic typing, like JavaScript, with a JSON library -- [Kotson](https://github.com/SalomonBrys/Kotson), with some [tweaks](https://github.com/patarapolw/rep2recall-kt/blob/master/src/main/kotlin/rep2recall/json/JsonUtil.kt).

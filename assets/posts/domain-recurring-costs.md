@@ -5,10 +5,8 @@ image: >-
   https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcQUBcM_Oc07DTj_67JLDTwBi2luXbZCULc4-SHcRRNZ_OC3Ca0L
 tag:
   - cost
-  - domain name
+  - domain-name
   - namecheap
-slug: domain-recurring-costs
-category: blog
 ---
 
 I have just registered a domain with [Namecheap](https://www.namecheap.com/). Although with some costs ([$10-35 USD annually](https://resources.banknovo.com/how-to-register-a-domain-name-for-your-business/)), and some difficulties, I am quite glad I chose this one.

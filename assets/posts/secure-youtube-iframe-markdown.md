@@ -1,12 +1,10 @@
 ---
 title: Securely embed YouTube and other iframe elements in Markdown
 date: '2020-04-30 00:00 +07:00'
-category: blog
 tag:
   - dev.to
   - markdown
   - security
-slug: secure-youtube-iframe-markdown
 ---
 
 You can use any markdown implementation, including MarkdownIt, but first you have to make it insecure first, by allowing HTML.

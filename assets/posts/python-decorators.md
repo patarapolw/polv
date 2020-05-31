@@ -1,14 +1,11 @@
 ---
 title: Some useful python decorators I have made recently
-slug: python-decorators
 date: '2018-02-03 03:01 +07:00'
 tag:
   - decorator
   - python
-  - utils
 image: >-
   https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcTUt_AjZKjRhRVQ3S3vaqXj2MCzImgWogbC6asInALTSP0NSWqT
-category: blog
 ---
 
 I wonder how could I make it available across projects???

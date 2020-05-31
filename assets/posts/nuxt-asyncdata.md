@@ -6,8 +6,6 @@ image: >-
 tag:
   - node.js
   - nuxt
-category: blog
-slug: nuxt-asyncdata
 ---
 
 Nuxt.js is a framework for making JavaScript apps a more static site, that is, pushing more to Server-Side Rendering, making it easier to web crawlers.

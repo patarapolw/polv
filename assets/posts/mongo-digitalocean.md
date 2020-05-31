@@ -6,8 +6,6 @@ image: >-
 tag:
   - digitalocean
   - mongodb
-slug: mongo-digitalocean
-category: blog
 ---
 
 My gripe comes from the limitation with free tier and lower tiers of MongoDB Atlas. ([Where can I host MongoDB with allowDiskUse=true?](https://www.quora.com/unanswered/Where-can-I-host-MongoDB-with-allowDiskUse-true)) So, I have decided to host my own MongoDB on DigitalOcean.

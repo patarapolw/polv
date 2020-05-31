@@ -6,10 +6,7 @@ date: '2019-10-27 00:00 +07:00'
 image: >-
   https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcTzrjWCZNR3zkBb4XyLO-jLQZiV9SI7tV0cV6HxKHXEYyoVDU5p
 tag:
-  - '@types'
   - typescript
-category: blog
-slug: extend-types-typescript
 ---
 
 If you have used TypeScript long enough, you should realize that you can create `declaration.d.ts` with `declare module 'javascript-module'` for untyped JavaScript modules.

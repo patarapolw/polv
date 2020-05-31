@@ -1,12 +1,10 @@
 ---
 title: How to deploy STATEFUL container on DigitalOcean
 date: '2020-05-25 00:00 +07:00'
-category: blog
 tag:
   - dev.to
-  - DigitalOcean
-  - Docker
-slug: deploy-stateful-container-digitalocean
+  - digitalocean
+  - docker
 ---
 
 The examples of usage includes,

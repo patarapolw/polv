@@ -1,6 +1,5 @@
 ---
 title: 'Pug with Markdown is Magic, yet underrated'
-category: blog
 date: '2020-01-04 00:00 +07:00'
 tag:
   - dev.to
@@ -9,8 +8,6 @@ tag:
   - markdown
   - pug
   - vue
-  - webdev
-slug: pug-with-markdown-magic-yet-underrated
 ---
 
 ## What is Pug

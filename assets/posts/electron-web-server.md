@@ -6,9 +6,7 @@ image: >-
 tag:
   - electron
   - pinned
-  - web server
-slug: electron-web-server
-category: blog
+  - server
 ---
 
 As Electron is actually an containerized extended Chromium web engine, I reckon that this must be possible somehow. However, by default, Electron uses `ipcMain`/`ipcRenderer` rather than `http` or `websocket`...

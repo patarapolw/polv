@@ -4,12 +4,10 @@ date: '2019-07-18 00:00 +07:00'
 image: >-
   https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcQSCmge9Ldedr9lg6MVCwYCa-suHasjdnQ59YSn6_yiK-hXT6IR
 tag:
-  - Elementary OS
+  - elementary-os
   - linux
   - ubuntu
   - wifi
-slug: linux-wifi
-category: blog
 ---
 
 I have tried to install Linux ([Elementary OS](https://elementary.io/)) on both macOS and Windows; and number one impediment? -- the lack of WiFi.

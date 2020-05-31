@@ -1,6 +1,5 @@
 ---
 title: 'Share your .eslintrc, auto-fix on save, and related config files'
-category: blog
 date: '2020-01-07 00:00 +07:00'
 tag:
   - dev.to
@@ -8,7 +7,6 @@ tag:
   - linting
   - typescript
   - vscode
-slug: eslintrc-auto-fix
 ---
 
 Do you know that Visual Studio Code itself can auto-fix your code on save, to be compatible with linting rules.

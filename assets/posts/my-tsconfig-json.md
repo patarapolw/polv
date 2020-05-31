@@ -7,8 +7,6 @@ tag:
   - pinned
   - tsconfig.json
   - typescript
-slug: my-tsconfig-json
-category: blog
 ---
 
 I tried to make it work best for both Node.js runtime and web browser.

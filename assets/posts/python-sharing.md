@@ -1,13 +1,11 @@
 ---
 title: Sharing Python project that works in another computer!
-slug: python-sharing
 date: '2018-02-27 03:04 +07:00'
 tag:
   - packaging
   - python
 image: >-
   https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcSW4Ywh9fnwlOBcxAG8Mgg94zC55j3dYh1Y88YcB83wCjaBZVmA
-category: blog
 ---
 
 I find that the issue may includes:-

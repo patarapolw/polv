@@ -1,13 +1,10 @@
 ---
 title: 'Gatsby blog in a Monorepo, created from scratch, with some requirements'
-category: blog
 date: '2020-01-15 00:00 +07:00'
 tag:
   - dev.to
   - gatsby
   - monorepo
-  - webdev
-slug: gatsby-monorepo-from-scratch
 ---
 
 I am trying to create a [Gatsby](https://www.gatsbyjs.org/) blog as a part of Monorepo, with `/data` and `/dist` (output-dir) directories sticking out, instead of being inside the Gatsby repo.

@@ -7,8 +7,6 @@ tag:
   - cordova
   - typescript
   - vue
-slug: cordova-typescript-vue
-category: blog
 ---
 
 An easy way to set a layout for mobile apps, easier than [Flutter](https://flutter.dev/), [React Native](https://facebook.github.io/react-native/) or [NativeScript](https://www.nativescript.org/), for instance, is to use [Apache Cordova](https://cordova.apache.org/) or [PhoneGap](https://phonegap.com/). This is probably due to CSS/SCSS/HTML (rather than partial CSS support in NativeScript).

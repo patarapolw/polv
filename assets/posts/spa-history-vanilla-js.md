@@ -6,8 +6,6 @@ tag:
   - javascript
   - spa
   - vanilla-js
-category: blog
-slug: spa-history-vanilla-js
 ---
 
 I don't know non-JavaScript-based Static Site Generators do it, but JS-based, like Gatsby, Nuxt, or Gridsome can prevent reloading and show transition between pages on `location.pathname` changes.

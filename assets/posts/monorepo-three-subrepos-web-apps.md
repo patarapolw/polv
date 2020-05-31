@@ -6,7 +6,6 @@ tag:
   - dev.to
   - typescript
   - webdev
-slug: monorepo-three-subrepos-web-apps
 ---
 
 I wonder how you usually set frontend repo and web server repo? Separate repo? Single repo with web server as parent?

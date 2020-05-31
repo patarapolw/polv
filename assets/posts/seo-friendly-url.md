@@ -1,13 +1,11 @@
 ---
 title: How do I create an SEO-friendly URL?
-category: blog
 date: '2020-01-27 00:00 +07:00'
 tag:
   - dev.to
   - discuss
   - javascript
-  - SEO
-slug: seo-friendly-url
+  - seo
 ---
 
 In my understanding,

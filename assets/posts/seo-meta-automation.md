@@ -4,12 +4,9 @@ image: >-
   https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcRB_w1OLUgyb1u3o2WoyZuDVZHMnVpIGxYqw_awuhbxl-WenPIr
 date: '2019-11-20 00:00 +07:00'
 tag:
-  - blog.nuxt
   - nuxt
-  - SEO
-  - SSR
-category: blog
-slug: seo-meta-automation
+  - seo
+  - ssr
 ---
 
 I write this topic, because I think SEO should be more about SSR automation, than about manual writing / or SEO training.

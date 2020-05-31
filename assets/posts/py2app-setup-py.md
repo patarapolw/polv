@@ -1,12 +1,10 @@
 ---
 title: A successful py2app setup.py code
-slug: py2app-setup-py
 date: '2018-01-27 01:44 +07:00'
 tag:
   - py2app
   - python
   - setup.py
-category: blog
 image: >-
   https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcTWTqh2q4wZ4ZT52Vfr_yoed2HUhOdAUOq3CANT8UBkNGiu_L_E
 ---

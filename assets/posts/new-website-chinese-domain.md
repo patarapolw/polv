@@ -1,13 +1,10 @@
 ---
 title: Made a website for Chinese learners. Registered a domain name. But?
 date: '2020-04-27 00:00 +07:00'
-category: blog
 tag:
   - chinese
   - dev.to
   - domain
-  - help
-slug: new-website-chinese-domain
 ---
 
 The website is <https://zhquiz.cc>.

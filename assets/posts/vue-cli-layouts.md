@@ -1,12 +1,10 @@
 ---
 title: Layouts in Vue CLI (not Nuxt)
 date: '2020-05-20 00:00 +07:00'
-category: blog
 tag:
   - dev.to
   - vue
   - vue-cli
-slug: vue-cli-layouts
 ---
 
 This can easily be done with Slots and Component `:is`.

@@ -1,13 +1,11 @@
 ---
 title: I wrote an ORM for SQLite
-category: blog
 date: '2020-02-16 00:00 +07:00'
 tag:
   - dev.to
   - javascript
   - sql
   - typescript
-slug: sqlite-orm-liteorm
 ---
 
 It starts with inter-op with [mongoose](https://mongoosejs.com/), and inspired from [Typegoose](https://github.com/typegoose/typegoose).

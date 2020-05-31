@@ -1,13 +1,11 @@
 ---
 title: Observables are promises on steroids
 date: '2020-05-15 00:00 +07:00'
-category: blog
 tag:
   - dev.to
   - javascript
   - observable
   - rxjs
-slug: observable-promises-on-steroids
 ---
 
 I am using [observable-fns](https://github.com/andywer/observable-fns) (which can also work with [threads.js](https://threads.js.org/)). Not sure how powerful [RxJS](https://github.com/ReactiveX/rxjs) and [RxJava](https://github.com/ReactiveX/RxJava) can be...
