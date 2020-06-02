@@ -19,7 +19,7 @@ description: >-
   Rollup + TypeScript + Pug + SASS template with no plan for JavaScript
   frameworks, whatsoever - patarapolw/minimal-rollup-ts-pug-sass-template
 icon: 'https://github.githubassets.com/favicons/favicon.svg'
-image: 'https://avatars3.githubusercontent.com/u/21255931?s=400&v=4'
+image: 'https://avatars3.githubusercontent.com/u/21255931?s=100&v=4'
 title: patarapolw/minimal-rollup-ts-pug-sass-template
 language: en
 type: object
@@ -110,7 +110,7 @@ description: >-
   Rollup + TypeScript + Pug + SASS template with no plan for JavaScript
   frameworks, whatsoever - patarapolw/minimal-rollup-ts-pug-sass-template
 icon: 'https://github.githubassets.com/favicons/favicon.svg'
-image: 'https://avatars3.githubusercontent.com/u/21255931?s=400&v=4'
+image: 'https://avatars3.githubusercontent.com/u/21255931?s=100&v=4'
 title: patarapolw/minimal-rollup-ts-pug-sass-template
 language: en
 type: object

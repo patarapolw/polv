@@ -124,7 +124,7 @@ description: >-
   (output-dir) directories sticking out, instead of being inside the Gatsby
   repo. - patarapolw/non-root-gatsby-blog
 icon: 'https://github.githubassets.com/favicons/favicon.svg'
-image: 'https://avatars3.githubusercontent.com/u/21255931?s=400&v=4'
+image: 'https://avatars3.githubusercontent.com/u/21255931?s=100&v=4'
 title: patarapolw/non-root-gatsby-blog
 language: en
 type: object

@@ -13,7 +13,7 @@ The closest I can find for this is,
 ```yaml link
 description: Check if your code is running as an npm or yarn script - sindresorhus/is-npm
 icon: 'https://github.githubassets.com/favicons/favicon.svg'
-image: 'https://avatars3.githubusercontent.com/u/170270?s=400&v=4'
+image: 'https://avatars3.githubusercontent.com/u/170270?s=100&v=4'
 title: sindresorhus/is-npm
 language: en
 type: object
@@ -28,7 +28,7 @@ description: >-
   CLI to check NPM or Yarn if specified, or look for package-lock.json or
   yarn.lock - patarapolw/check-npm-yarn
 icon: 'https://github.githubassets.com/favicons/favicon.svg'
-image: 'https://avatars3.githubusercontent.com/u/21255931?s=400&v=4'
+image: 'https://avatars3.githubusercontent.com/u/21255931?s=100&v=4'
 title: patarapolw/check-npm-yarn
 language: en
 type: object

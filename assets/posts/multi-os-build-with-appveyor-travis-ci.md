@@ -23,7 +23,7 @@ description: >-
   Repeat until recall. Aims to be more powerful Anki alternative. -
   patarapolw/rep2recall
 icon: 'https://github.githubassets.com/favicons/favicon.svg'
-image: 'https://avatars3.githubusercontent.com/u/21255931?s=400&v=4'
+image: 'https://avatars3.githubusercontent.com/u/21255931?s=100&v=4'
 title: patarapolw/rep2recall - .travis.yml
 language: en
 type: object
@@ -38,7 +38,7 @@ description: >-
   Repeat until recall. Aims to be more powerful Anki alternative. -
   patarapolw/rep2recall
 icon: 'https://github.githubassets.com/favicons/favicon.svg'
-image: 'https://avatars3.githubusercontent.com/u/21255931?s=400&v=4'
+image: 'https://avatars3.githubusercontent.com/u/21255931?s=100&v=4'
 title: patarapolw/rep2recall - appveyor.yml
 language: en
 type: object

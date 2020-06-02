@@ -100,7 +100,7 @@ description: >-
   prettyprint beyond `JSON.stringify(obj, null, 2)` -- Multiline strings and
   colors - patarapolw/prettyprint
 icon: 'https://github.githubassets.com/favicons/favicon.svg'
-image: 'https://avatars3.githubusercontent.com/u/21255931?s=400&v=4'
+image: 'https://avatars3.githubusercontent.com/u/21255931?s=100&v=4'
 title: patarapolw/prettyprint
 language: en
 type: object

@@ -103,7 +103,7 @@ description: >-
   An example repo for using TypeScript in Vue, with maximal VSCode suggestions -
   patarapolw/vue-typescript-suggestions
 icon: 'https://github.githubassets.com/favicons/favicon.svg'
-image: 'https://avatars3.githubusercontent.com/u/21255931?s=400&v=4'
+image: 'https://avatars3.githubusercontent.com/u/21255931?s=100&v=4'
 title: patarapolw/vue-typescript-suggestions
 language: en
 type: object

@@ -64,7 +64,7 @@ description: >-
   Deep find a primitive, an Array or a plain Object inside an Array or a plain
   Object, so that you can edit the Object - patarapolw/deepfind
 icon: 'https://github.githubassets.com/favicons/favicon.svg'
-image: 'https://avatars3.githubusercontent.com/u/21255931?s=400&v=4'
+image: 'https://avatars3.githubusercontent.com/u/21255931?s=100&v=4'
 title: patarapolw/deepfind
 language: en
 type: object

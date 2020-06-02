@@ -41,7 +41,7 @@ description: >-
   Creating and editing *.apkg and *.anki2 safely. Contribute to
   patarapolw/ankisync2 development by creating an account on GitHub.
 icon: 'https://github.githubassets.com/favicons/favicon.svg'
-image: 'https://avatars3.githubusercontent.com/u/21255931?s=400&v=4'
+image: 'https://avatars3.githubusercontent.com/u/21255931?s=100&v=4'
 title: patarapolw/ankisync2
 language: en
 type: object

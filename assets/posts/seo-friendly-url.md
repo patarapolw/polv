@@ -29,7 +29,7 @@ description: >-
   punctuations, and shortening the string. Also works with Unicode characters. -
   patarapolw/seo-friendly-slugify
 icon: 'https://github.githubassets.com/favicons/favicon.svg'
-image: 'https://avatars3.githubusercontent.com/u/21255931?s=400&v=4'
+image: 'https://avatars3.githubusercontent.com/u/21255931?s=100&v=4'
 title: patarapolw/seo-friendly-slugify
 language: en
 type: object

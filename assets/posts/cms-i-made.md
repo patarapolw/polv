@@ -42,7 +42,7 @@ description: >-
   Content Management System, to provide API endpoints for Static Site Generators
   or JAMStacks - patarapolw/blogdown-cms
 icon: 'https://github.githubassets.com/favicons/favicon.svg'
-image: 'https://avatars3.githubusercontent.com/u/21255931?s=400&v=4'
+image: 'https://avatars3.githubusercontent.com/u/21255931?s=100&v=4'
 title: patarapolw/blogdown-cms
 language: en
 type: object
