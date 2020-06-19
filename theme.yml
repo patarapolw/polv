@@ -1,0 +1,33 @@
+title: polv's coding blog
+banner: polv's coding blog
+baseUrl: https://www.polv.cc
+description: polv's coding blog
+keywords:
+  - polv
+  - patarapolw
+  - programming
+tabs:
+  - name: Pinned
+    to: /tag/pinned
+author:
+  url: https://www.polv.cc
+  email: patarapolw@gmail.com
+  name: Pacharapol Withayasakpunt
+social:
+  twitter: patarapolw
+  reddit: patarapolw
+  quora: Pacharapol-Withayasakpunt
+  github: patarapolw
+sidebar:
+  tagCloud:
+    excluded:
+      - pinned
+      - dev.to
+  twitter: patarapolw
+analytics:
+  plausible: polv.cc
+comments:
+  remark42:
+    host: https://remark42.polv.cc
+    siteId: polv
+    locale: en
