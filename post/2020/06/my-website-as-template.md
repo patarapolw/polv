@@ -19,6 +19,8 @@ This was created by
 /theme.yml
 ```
 
+<!-- excerpt -->
+
 - Separate to two repos, of theme, and of content
 
 ```sh
