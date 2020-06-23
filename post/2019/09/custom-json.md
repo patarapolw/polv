@@ -7,6 +7,7 @@ tag:
   - javascript
   - json
   - python
+  - pinned
 ---
 
 I have always wanted `JSON.parse` and `JSON.stringify` to deal with custom objects, such as `Date` and `Set`.

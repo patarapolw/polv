@@ -5,7 +5,6 @@ image: >-
   https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcRMQFZ9SzNkt7LXFk6YgFPaVLs7tA2dZoM0tJokNVNz7q7Mi5Qa
 tag:
   - electron
-  - pinned
   - server
 ---
 

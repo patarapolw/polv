@@ -6,7 +6,6 @@ image: >-
 tag:
   - bolt-cms
   - php
-  - pinned
 ---
 
 PHP is a bit different from other languages, like Python or Dart, in that, it is a mainly a web programming language, running on a server. Furthermore, it is actually pre-installed in macOS.

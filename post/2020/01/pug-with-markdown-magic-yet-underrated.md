@@ -8,6 +8,7 @@ tag:
   - markdown
   - pug
   - vue
+  - pinned
 ---
 
 ## What is Pug

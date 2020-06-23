@@ -7,6 +7,7 @@ tag:
   - netlify
   - dev.to
   - lunr
+  - pinned
 ---
 
 This also obliviate the need to monitor your own database or entrust a third party to do it for you.

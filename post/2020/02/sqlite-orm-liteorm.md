@@ -6,6 +6,7 @@ tag:
   - javascript
   - sql
   - typescript
+  - pinned
 ---
 
 It starts with inter-op with [mongoose](https://mongoosejs.com/), and inspired from [Typegoose](https://github.com/typegoose/typegoose).
