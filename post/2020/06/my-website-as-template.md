@@ -14,12 +14,10 @@ This was created by
 - Move personalized information from every folders to some very specific folders
 
 ```sh
-/blog/**/*.md # Any deep nesting is possible
 /media/
+/post/**/*.md
 /theme.yml
 ```
-
-<!-- excerpt -->
 
 - Separate to two repos, of theme, and of content
 
@@ -27,6 +25,8 @@ This was created by
 # Shared commands
 brew install git-filter-repo # https://github.com/newren/git-filter-repo/blob/main/INSTALL.md
 ```
+
+<!-- excerpt -->
 
 ```sh
 # Content repo
