@@ -5,7 +5,8 @@ tag:
   - rstats
   - statistics
   - epidemiology
-  - medicine
+  - public-health
+  - health
   - gis
 ---
 
