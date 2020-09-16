@@ -10,7 +10,6 @@ tag:
 ---
 
 So, I got my hands on an 8-years-old MacBook Pro (mid 2012), with 4GB RAM, 500GB SATA HD, and Core i5 CPU.
-So, I got my hands on an 8-years-old MacBook Pro (mid 2012), with 4GB RAM, 500GB SATA HD, and Core i5 CPU.
 
 Good thing about this, is 500GB is very large. (Compared to nowadays usual small (but faster SSD) 128GB - too small to dual boot.)
 
@@ -53,6 +52,6 @@ As for rEFInd theming, I use this [Regular theme](https://github.com/bobafetthot
 - Windows 10 is surprisingly fast and less demanding.
     - However, I hate Windows Update. It might be good for security, but it is blocking at unpredictable times. When that happens, it delays rebooting cycle; both on starting up and shutting down.
 - Xubuntu is without doubt fast, but hardware support is never perfect.
-    - I tried to make three-finger-drag with `mtrack`, [but failed](https://github.com/p2rkw/xf86-input-mtrack/issues/109). Then, I successfully use [purely libinput, but not really perfect](https://github.com/marsqing/libinput-three-finger-drag).
+    - I made three-finger-drag with [`mtrack` and successfully](https://int3ractive.com/blog/2018/make-the-best-of-macbook-touchpad-on-ubuntu/).
 
 ![My Xubuntu](https://dev-to-uploads.s3.amazonaws.com/i/qyeajowmys7q2u293ks3.png)
