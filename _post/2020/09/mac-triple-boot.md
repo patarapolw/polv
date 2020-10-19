@@ -13,6 +13,8 @@ So, I got my hands on an 8-years-old MacBook Pro (mid 2012), with 4GB RAM, 500GB
 
 Good thing about this, is 500GB is very large. (Compared to nowadays usual small (but faster SSD) 128GB - too small to dual boot.)
 
+<!-- excerpt_separator -->
+
 ## My MacBook Pro is too old to reformat, and start from scratch, but there is a way out
 
 The first thing I do when I received an old MacBook Pro from my sister, knowing that free Apple support is long gone, I `Command+R` into Recovery mode, and format the hard disk.

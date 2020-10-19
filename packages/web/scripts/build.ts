@@ -32,7 +32,9 @@ export async function buildIndexes() {
   await Promise.all(
     files.map(async (f) => {
       const makeHtml = new MakeHtml(f, cacheMedia)
-      const { header, html } = await makeHtml.renderFile(srcPostPath(f))
+      const { header, html, excerptHtml, excerpt } = await makeHtml.renderFile(
+        srcPostPath(f)
+      )
 
       const { title, date, image: unlocalizedImage, tag } = (() => {
         const { title, date, image, tag } = header
@@ -49,9 +51,6 @@ export async function buildIndexes() {
       const image = unlocalizedImage
         ? await cacheMedia.localizeImage(unlocalizedImage)
         : null
-
-      const excerptHtml = html.split(/<!-- excerpt(?:_separator)? -->/)[0]
-      const excerpt = makeHtml.md.makeMarkdown(excerptHtml)
 
       const p: IPost = {
         path: f.replace(/\.mdx?$/, ''),
@@ -120,6 +119,8 @@ export async function buildIndexes() {
     fs.ensureFileSync(dstMediaPath(f))
     fs.copyFileSync(srcMediaPath(f), dstMediaPath(f))
   })
+
+  cacheMedia.close()
 }
 
 if (require.main === module) {

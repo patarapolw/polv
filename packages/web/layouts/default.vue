@@ -89,7 +89,7 @@
       </div>
     </nav>
 
-    <article class="mt-16">
+    <article style="margin-top: 60px">
       <div class="container">
         <div class="columns">
           <main

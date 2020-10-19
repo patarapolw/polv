@@ -1,12 +1,13 @@
+import path from 'path'
+
 import cheerio from 'cheerio'
 import ejs from 'ejs'
-import fs from 'fs-extra'
 import fetch from 'node-fetch'
+import fs from 'fs-extra'
 import scopeCss from 'scope-css'
 import sharp from 'sharp'
 import showdown from 'showdown'
-
-import { srcMediaPath } from '../dir'
+import { dstMediaPath, srcMediaPath } from '../dir'
 import { matter } from './matter'
 
 export class MakeHtml {
@@ -35,6 +36,8 @@ export class MakeHtml {
   ): Promise<{
     header: Record<string, any>
     html: string
+    excerptHtml: string
+    excerpt: string
   }> {
     const $ = cheerio.load('<body>')
 
@@ -51,9 +54,9 @@ export class MakeHtml {
         description: string
       }) => {
         return (
-          $('div')
+          $('<div>')
             .append(
-              $('x-card')
+              $('<x-card>')
                 .attr({
                   href,
                   image,
@@ -61,7 +64,7 @@ export class MakeHtml {
                   description,
                 })
                 .append(
-                  $('a')
+                  $('<a>')
                     .attr({
                       href,
                       target: '_blank',
@@ -78,7 +81,7 @@ export class MakeHtml {
     const { data: header, content } = matter.parse(markdown)
 
     $('body').append(
-      $('div')
+      $('<div>')
         .attr({
           class: this.id,
         })
@@ -109,11 +112,11 @@ export class MakeHtml {
               : null,
           })
 
-          const s1 = $('source').attr({
+          const s1 = $('<source>').attr({
             srcset: imWebp,
             type: 'image/webp',
           })
-          const s2 = $('source').attr({
+          const s2 = $('<source>').attr({
             srcset: imPng,
             type: 'image/png',
           })
@@ -121,7 +124,7 @@ export class MakeHtml {
             src: imPng,
           })
 
-          $el.replaceWith($('picture').append(s1).append(s2).append(img))
+          $el.replaceWith($('<picture>').append(s1).append(s2).append(img))
         }
       })
     )
@@ -135,9 +138,14 @@ export class MakeHtml {
       }
     })
 
+    const html = $('body').html() || ''
+    const excerptHtml = html.split(/<!-- excerpt(?:_separator)? -->/)[0]
+
     return {
       header,
-      html: $('body').html() || '',
+      html,
+      excerptHtml,
+      excerpt: $('<div>').html(excerptHtml).text(),
     }
   }
 }
@@ -183,7 +191,10 @@ export class CacheMedia {
   }
 
   close() {
-    fs.writeFileSync(srcMediaPath('cache.json'), JSON.stringify(this.cache))
+    fs.writeFileSync(
+      srcMediaPath('cache.json'),
+      JSON.stringify(this.cache, null, 2)
+    )
   }
 
   async localizeImage(
@@ -204,21 +215,29 @@ export class CacheMedia {
     }
 
     const makeExt = (b: string, ext: string) => {
-      return b.replace(/\.[A-Z0-9]+$/i, '') + ext
+      return '/media/' + b.replace(/\.[A-Z0-9]+$/i, '') + ext
     }
 
     let imWebp = ''
     let imPng = ''
 
     if (/^https?:\/\//.test(src)) {
-      const base =
-        src.replace(/^.+\//, '').replace(/\?.+$/, '').replace(/#.+$/, '') ||
-        'image'
+      let base = this.cache[src]
 
-      imWebp = makeExt(base, '.webp')
-      imPng = makeExt(base, '.png')
+      if (!base) {
+        let folder = Math.random().toString(36).substr(2)
+        while (fs.existsSync(dstMediaPath(folder))) {
+          folder = Math.random().toString(36).substr(2)
+        }
 
-      if (!this.cache[src]) {
+        await fs.ensureDir(dstMediaPath(folder))
+
+        base = path.join(
+          folder,
+          src.replace(/^.+\//, '').replace(/\?.+$/, '').replace(/#.+$/, '') ||
+            'image'
+        )
+
         this.cache[src] = base
 
         const b: Buffer = await fetch(src).then((r) => r.buffer())
@@ -232,10 +251,13 @@ export class CacheMedia {
         }
 
         await Promise.all([
-          s.toFile(makeExt(base, '.webp')),
-          s.toFile(makeExt(base, '.png')),
+          s.toFile(dstMediaPath(makeExt(base, '.webp'))),
+          s.toFile(dstMediaPath(makeExt(base, '.png'))),
         ])
       }
+
+      imWebp = makeExt(base, '.webp')
+      imPng = makeExt(base, '.png')
     } else {
       imWebp = makeExt(src, '.webp')
       imPng = makeExt(src, '.png')

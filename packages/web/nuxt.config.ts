@@ -23,6 +23,7 @@ export const zAuthor = () =>
     name: z.string(),
     email: z.string().optional(),
     url: z.string().optional(),
+    image: z.string(),
   })
 
 export type IAuthor = z.infer<ReturnType<typeof zAuthor>>

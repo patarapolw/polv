@@ -45,7 +45,6 @@ devDependencies:
   '@nuxtjs/eslint-config-typescript': 3.0.0_eslint@7.11.0
   '@nuxtjs/eslint-module': 2.0.0_eslint@7.11.0
   babel-eslint: 10.1.0_eslint@7.11.0
-  dotenv: 8.2.0
   eslint: 7.11.0
   eslint-config-prettier: 6.12.0_eslint@7.11.0
   eslint-plugin-nuxt: 1.0.0_eslint@7.11.0
@@ -53,6 +52,7 @@ devDependencies:
   npm-run-all: 4.1.5
   prettier: 2.1.2
   sass: 1.27.0
+  sass-loader: 10.0.3_sass@1.27.0
   ts-node: 9.0.0
 lockfileVersion: 5.1
 packages:
@@ -4705,6 +4705,7 @@ packages:
     resolution:
       integrity: sha512-QM8q3zDe58hqUqjraQOmzZ1LIH9SWQJTlEKCH4kJ2oQvLZk7RbQXvtDM2XEq3fwkV9CCvvH4LA0AV+ogFsBM2Q==
   /dotenv/8.2.0:
+    dev: false
     engines:
       node: '>=8'
     resolution:
@@ -6786,6 +6787,12 @@ packages:
       node: '>=0.10.0'
     resolution:
       integrity: sha512-dcS1ul+9tmeD95T+x28/ehLgd9mENa3LsvDTtzm3vyBEO7RPptvAD+t44WVXaUjTBRcrpFeFlC8WCruUR456hw==
+  /klona/2.0.4:
+    dev: true
+    engines:
+      node: '>= 8'
+    resolution:
+      integrity: sha512-ZRbnvdg/NxqzC7L9Uyqzf4psi1OM4Cuc+sJAkQPjO6XkQIJTNbfK2Rsmbw8fx1p2mkZdp2FZYo2+LwXYY/uwIA==
   /last-call-webpack-plugin/3.0.0:
     dependencies:
       lodash: 4.17.20
@@ -7361,7 +7368,6 @@ packages:
     resolution:
       integrity: sha512-hZXc7K2e+PgeI1eDBe/10Ard4ekbfrrqG8Ep+8Jmf4JID2bNg7NvCPOZN+kfF574pFQI7mum2AUqDidoKqcTOw==
   /neo-async/2.6.2:
-    dev: false
     resolution:
       integrity: sha512-Yd3UES5mWCSqR+qNT93S3UoYUkqAZ9lLg8a7g9rimsWmYGK8cVToA4/sF3RrshdyV3sAGMXVUmpMYOw+dLpOuw==
   /netlify-lambda/2.0.1:
@@ -9393,6 +9399,31 @@ packages:
     dev: false
     resolution:
       integrity: sha512-YZo3K82SD7Riyi0E1EQPojLz7kpepnSQI9IyPbHHg1XXXevb5dJI7tpyN2ADxGcQbHG7vcyRHk0cbwqcQriUtg==
+  /sass-loader/10.0.3_sass@1.27.0:
+    dependencies:
+      klona: 2.0.4
+      loader-utils: 2.0.0
+      neo-async: 2.6.2
+      sass: 1.27.0
+      schema-utils: 3.0.0
+      semver: 7.3.2
+    dev: true
+    engines:
+      node: '>= 10.13.0'
+    peerDependencies:
+      fibers: '>= 3.1.0'
+      node-sass: ^4.0.0
+      sass: ^1.3.0
+      webpack: ^4.36.0 || ^5.0.0
+    peerDependenciesMeta:
+      fibers:
+        optional: true
+      node-sass:
+        optional: true
+      sass:
+        optional: true
+    resolution:
+      integrity: sha512-W4+FV5oUdYy0PnC11ZoPrcAexODgDCa3ngxoy5X5qBhZYoPz9FPjb6Oox8Aa0ZYEyx34k8AQfOVuvqefOSAAUQ==
   /sass/1.27.0:
     dependencies:
       chokidar: 3.4.3
@@ -9435,6 +9466,16 @@ packages:
       node: '>= 8.9.0'
     resolution:
       integrity: sha512-SHiNtMOUGWBQJwzISiVYKu82GiV4QYGePp3odlY1tuKO7gPtphAT5R/py0fA6xtbgLL/RvtJZnU9b8s0F1q0Xg==
+  /schema-utils/3.0.0:
+    dependencies:
+      '@types/json-schema': 7.0.6
+      ajv: 6.12.6
+      ajv-keywords: 3.5.2_ajv@6.12.6
+    dev: true
+    engines:
+      node: '>= 10.13.0'
+    resolution:
+      integrity: sha512-6D82/xSzO094ajanoOSbe4YvXWMfn2A//8Y1+MUqFAJul5Bs+yn36xbK9OtNDcRVSBJ9jjeoXftM6CfztsjOAA==
   /semver/5.7.1:
     hasBin: true
     resolution:
@@ -11182,7 +11223,6 @@ specifiers:
   core-js: ^3.6.5
   dayjs: ^1.9.3
   dot-prop-immutable: ^2.1.0
-  dotenv: ^8.2.0
   ejs: ^3.1.5
   eslint: ^7.10.0
   eslint-config-prettier: ^6.12.0
@@ -11202,6 +11242,7 @@ specifiers:
   prettier: ^2.1.2
   rimraf: ^3.0.2
   sass: ^1.27.0
+  sass-loader: ^10.0.3
   scope-css: 'github:patarapolw/scope-css'
   sharp: ^0.26.2
   showdown: ^1.9.1
