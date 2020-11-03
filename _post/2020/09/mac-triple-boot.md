@@ -2,7 +2,6 @@
 title: I triple-booted on an 8-years-old MacBook Pro
 date: 2020-09-16
 tag:
-  - mac
   - macos
   - windows
   - linux

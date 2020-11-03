@@ -26,7 +26,7 @@
           <FontAwesome icon="caret-right" />
         </span>
 
-        <span class="tw-sr-only"> Next </span>
+        <span :class="$style['sr-only']"> Next </span>
       </nuxt-link>
 
       <ul class="pagination-list">

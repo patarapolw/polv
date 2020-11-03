@@ -41,7 +41,7 @@ export default class PostHeader extends Vue {
 
 <style module scoped src="~/styles/tw.module.css"></style>
 
-<style scoped>
+<style lang="scss" scoped>
 section:first-child {
   display: flex;
   flex-direction: row;
@@ -54,16 +54,16 @@ section:first-child {
   flex-direction: row;
   white-space: nowrap;
   justify-content: center;
-}
 
-.el-author img {
-  border: none;
-  display: block;
-  width: 24px;
-  min-width: 24px;
-}
+  img {
+    border: none;
+    display: block;
+    width: 24px;
+    min-width: 24px;
+  }
 
-.el-author span + span {
-  margin-left: 0.5rem;
+  span + span {
+    margin-left: 0.5rem;
+  }
 }
 </style>

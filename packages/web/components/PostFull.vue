@@ -5,7 +5,17 @@
         <PostHeader :post="post" />
 
         <div v-if="post.image" class="mx-6 mb-4">
-          <img class="tw-w-full" :src="post.image" :alt="post.title" />
+          <img
+            v-if="typeof post.image === 'string'"
+            :src="post.image"
+            :alt="post.title"
+            style="width: 100%"
+          />
+          <picture v-else style="width: 100%">
+            <source :srcset="post.image.imWebp" type="image/webp" />
+            <source :srcset="post.image.imPng" type="image/png" />
+            <img :src="post.image.imPng" :alt="post.title" />
+          </picture>
         </div>
 
         <h1 class="title">{{ post.title }}</h1>

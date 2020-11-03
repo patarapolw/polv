@@ -12,7 +12,7 @@
     "clean:content": "rimraf content",
     "clean:db": "ts-node -O '{\"module\":\"commonjs\",\"noImplicitAny\":false}' scripts/clean.ts",
     "build": "run-p 'build:**'",
-    "build:nuxt": "nuxt-ts build && nuxt-ts export",
+    "build:nuxt": "nuxt-ts build && nuxt-ts generate",
     "build:lambda": "netlify-lambda build lambda",
     "postinstall": "netlify-lambda install",
     "deploy": "netlify deploy --dir dist --functions lambda-dist"
@@ -59,6 +59,11 @@
     "zod": "^1.11.9"
   },
   "devDependencies": {
+    "@babel/plugin-proposal-class-properties": "^7.12.1",
+    "@babel/plugin-proposal-object-rest-spread": "^7.12.1",
+    "@babel/plugin-transform-object-assign": "^7.12.1",
+    "@babel/preset-env": "^7.12.1",
+    "@babel/preset-typescript": "^7.12.1",
     "@nuxt/types": "^2.14.6",
     "@nuxt/typescript-build": "^2.0.3",
     "@nuxtjs/eslint-config": "^3.1.0",

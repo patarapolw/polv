@@ -47,7 +47,7 @@ export default class PostTeaser extends Vue {
 }
 </script>
 
-<style scoped>
+<style lang="scss" scoped>
 .content {
   width: 100%;
   margin: 0;
@@ -68,20 +68,12 @@ export default class PostTeaser extends Vue {
   margin-bottom: 1rem;
   margin-left: -1.5rem;
   margin-right: -1.5rem;
-}
 
-.image-teaser img {
-  width: 100%;
-}
-
-.post-content {
-  width: 100%;
-  overflow: visible;
-}
-
-@media only screen and (min-width: 800px) {
-  .image-teaser {
+  img {
     width: 100%;
+  }
+
+  @media only screen and (min-width: 800px) {
     max-width: 300px;
     max-height: 300px;
     float: right;
@@ -89,5 +81,10 @@ export default class PostTeaser extends Vue {
     margin-right: 0;
     margin-top: 0;
   }
+}
+
+.post-content {
+  width: 100%;
+  overflow: visible;
 }
 </style>
