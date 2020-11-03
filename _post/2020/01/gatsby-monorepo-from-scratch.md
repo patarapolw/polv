@@ -118,27 +118,21 @@ module.exports = {
 
 Apparently, I haven't finished yet, so I will update soon, also with minimalism, in the repo
 
-```pug parsed
-a(data-make-html="card" href="https://github.com/patarapolw/non-root-gatsby-blog")
-  | https://github.com/patarapolw/non-root-gatsby-blog
-  pre(data-template style="display: none;").
-    image: 'https://avatars3.githubusercontent.com/u/21255931?s=400&v=4'
-    title: patarapolw/non-root-gatsby-blog
-    description: >-
-      An attempt to create a Gatsby blog as a part of Monorepo, with /data and /dist
-      (output-dir) directories sticking out, instead of being inside the Gatsby
-      repo. - patarapolw/non-root-gatsby-blog
-```
+<%- xCard({
+  href: 'https://github.com/patarapolw/non-root-gatsby-blog',
+  image: 'https://avatars3.githubusercontent.com/u/21255931?s=400&v=4',
+  title: 'patarapolw/non-root-gatsby-blog',
+  description: 'An attempt to create a Gatsby blog as a part of Monorepo, with /data and /dist '
+    + '(output-dir) directories sticking out, instead of being inside the Gatsby '
+    + 'repo. - patarapolw/non-root-gatsby-blog'
+}) %>
 
 ## Part 2
 
-```pug parsed
-a(data-make-html="card" href="https://dev.to/patarapolw/my-first-gatsby-page-with-transformed-graphql-query-4d2h")
-  | https://dev.to/patarapolw/my-first-gatsby-page-with-transformed-graphql-query-4d2h
-  pre(data-template style="display: none;").
-    image: 'https://dev.to/social_previews/article/239437.png'
-    title: 'My first Gatsby Page, with Transformed GraphQL Query'
-    description: >-
-      Continuing from
-      https://dev.to/patarapolw/non-root-gatsby-blog-in-a-monorepo-created-from-scratch-1l2...
-```
+<%- xCard({
+  href: 'https://dev.to/patarapolw/my-first-gatsby-page-with-transformed-graphql-query-4d2h',
+  image: 'https://dev.to/social_previews/article/239437.png',
+  title: 'My first Gatsby Page, with Transformed GraphQL Query',
+  description: 'Continuing from '
+    + 'https://dev.to/patarapolw/non-root-gatsby-blog-in-a-monorepo-created-from-scratch-1l2...'
+}) %>

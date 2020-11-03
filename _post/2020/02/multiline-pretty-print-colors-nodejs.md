@@ -95,15 +95,12 @@ Now the pretty printing function is ready to go.
 
 If you only need the pretty printing function, I have provided it here.
 
-```pug parsed
-a(data-make-html="card" href="https://github.com/patarapolw/prettyprint")
-  | https://github.com/patarapolw/prettyprint
-  pre(data-template style="display: none;").
-    image: 'https://avatars3.githubusercontent.com/u/21255931?s=400&v=4'
-    title: patarapolw/prettyprint
-    description: >-
-      prettyprint beyond `JSON.stringify(obj, null, 2)` -- Multiline strings and
-      colors - patarapolw/prettyprint
-```
+<%- xCard({
+  href: 'https://github.com/patarapolw/prettyprint',
+  image: 'https://avatars3.githubusercontent.com/u/21255931?s=400&v=4',
+  title: 'patarapolw/prettyprint',
+  description: 'prettyprint beyond `JSON.stringify(obj, null, 2)` -- Multiline strings and '
+    + 'colors - patarapolw/prettyprint'
+}) %>
 
 I also made it accessible via CLI, and possibly other programming languages, such as Python (via JSON / safeEval, actually).

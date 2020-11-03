@@ -36,16 +36,13 @@ For this, I have to vote for Ubuntu-based distros, in which somehow [Elementary 
 
 So, the answer is [Elementary OS](https://elementary.io/)
 
-```pug parsed
-a(data-make-html="card" href="https://elementary.io/")
-  | https://elementary.io/
-  pre(data-template style="display: none;").
-    image: 'https://elementary.io/images/preview.png'
-    title: >-
-      The fast, open, and privacy-respecting replacement for Windows and macOS ⋅
-      elementary OS
-    description: 'The fast, open, and privacy-respecting replacement for Windows and macOS'
-```
+<%- xCard({
+  href: 'https://elementary.io/',
+  image: 'https://elementary.io/images/preview.png',
+  title: 'The fast, open, and privacy-respecting replacement for Windows and macOS ⋅ '
+    + 'elementary OS',
+  description: 'The fast, open, and privacy-respecting replacement for Windows and macOS'
+}) %>
 
 ## What is still impossible
 

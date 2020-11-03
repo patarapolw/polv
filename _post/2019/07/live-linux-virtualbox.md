@@ -13,18 +13,15 @@ So, I googled for solution, and found this <https://forums.virtualbox.org/viewto
 
 Another problem is that there is no x64 enabled in VirtualBox, despite running Windows x64
 
-```pug parsed
-a(data-make-html="card" href="https://superuser.com/questions/866962/why-does-virtualbox-only-have-32-bit-option-no-64-bit-option-on-windows-7")
-  | https://superuser.com/questions/866962/why-does-virtualbox-only-have-32-bit-option-no-64-bit-option-on-windows-7
-  pre(data-template style="display: none;").
-    image: >-
-      https://cdn.sstatic.net/Sites/superuser/Img/apple-touch-icon@2.png?v=e869e4459439
-    title: 'Why does virtualbox only have 32-bit option, no 64-bit option on Windows 7?'
-    description: >-
-      I have downloaded and installed the newest virtualbox 4.3.20 for my Windows 7
-      (64-bit OS), but when I want to install 64-bit Linux, the New->Create Virtual
-      Machine only displays 32-bit option, no 6...
-```
+<%- xCard({
+  href: 'https://superuser.com/questions/866962/'
+    + 'why-does-virtualbox-only-have-32-bit-option-no-64-bit-option-on-windows-7',
+  image: 'https://cdn.sstatic.net/Sites/superuser/Img/apple-touch-icon@2.png?v=e869e4459439',
+  title: 'Why does virtualbox only have 32-bit option, no 64-bit option on Windows 7?',
+  description: 'I have downloaded and installed the newest virtualbox 4.3.20 for my Windows 7 '
+    + '(64-bit OS), but when I want to install 64-bit Linux, the New->Create Virtual '
+    + 'Machine only displays 32-bit option, no 6...'
+}) %>
 
 <!-- excerpt_separator -->
 

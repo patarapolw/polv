@@ -5,11 +5,20 @@
 
       <div class="post-content">
         <div v-if="post.image" class="image-teaser">
-          <img :src="post.image" :alt="post.title" />
+          <img
+            v-if="typeof post.image === 'string'"
+            :src="post.image"
+            :alt="post.title"
+          />
+          <picture v-else>
+            <source :srcset="post.image.imWebp" type="image/webp" />
+            <source :srcset="post.image.imPng" type="image/png" />
+            <img :src="post.image.imPng" :alt="post.title" />
+          </picture>
         </div>
 
         <nuxt-link :to="url">
-          <h2 class="title mb-6 header-link">{{ post.title }}</h2>
+          <h2 class="title mb-4 header-link">{{ post.title }}</h2>
         </nuxt-link>
 
         <div class="content" v-html="post.excerptHtml" />

@@ -36,22 +36,14 @@ Well, it depends on your hardware.
 
 In my case, for Windows, it is Realtek RTL8821ce, and the solution on StackOverflow
 
-```pug parsed
-a(data-make-html="card" href="https://askubuntu.com/questions/1071299/how-to-install-wi-fi-driver-for-realtek-rtl8821ce-on-ubuntu-18-04")
-  | https://askubuntu.com/questions/1071299/how-to-install-wi-fi-driver-for-realtek-rtl8821ce-on-ubuntu-18-04
-  pre(data-template style="display: none;").
-    image: >-
-      https://cdn.sstatic.net/Sites/askubuntu/Img/apple-touch-icon@2.png?v=c492c9229955
-    title: How to install Wi-Fi driver for Realtek RTL8821CE on Ubuntu 18.04?
-    description: >-
-      I'm trying to install drivers for my Wifi on my HP All-in-one desktop. I've
-      been told to show the output of the command "sudo lshw -C network" so here it
-      is:
-
-
-      *-network
-
-      description: Ethernet interf...
-```
+<%- xCard({
+  href: 'https://askubuntu.com/questions/1071299/'
+    + 'how-to-install-wi-fi-driver-for-realtek-rtl8821ce-on-ubuntu-18-04',
+  image: 'https://cdn.sstatic.net/Sites/askubuntu/Img/apple-touch-icon@2.png?v=c492c9229955',
+  title: 'How to install Wi-Fi driver for Realtek RTL8821CE on Ubuntu 18.04?',
+  description:  "I'm trying to install drivers for my Wifi on my HP All-in-one desktop. I've "
+    + 'been told to show the output of the command "sudo lshw -C network" so here it '
+    + 'is: ...'
+}) %>
 
 For macOS, it is the matter of activating proprietary Broadcom WiFi driver, and you just need an internet connection...

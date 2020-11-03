@@ -13,13 +13,10 @@ By default, both [Markdown field](https://docs.bolt.cm/3.6/fields/markdown#input
 
 So, I fixed this while preserving the editor (CodeMirror/UIKit) here.
 
-```pug parsed
-a(data-make-html="card" href="https://github.com/patarapolw/bolt-markup")
-  | https://github.com/patarapolw/bolt-markup
-  pre(data-template style="display: none;").
-    image: 'https://avatars3.githubusercontent.com/u/21255931?s=400&v=4'
-    title: patarapolw/bolt-markup
-    description: >-
-      Bolt extension to insert unsafe markdown and HTML, while preserving the editor
-      - patarapolw/bolt-markup
-```
+<%- xCard({
+  href: 'https://github.com/patarapolw/bolt-markup',
+  image: 'https://avatars3.githubusercontent.com/u/21255931?s=400&v=4',
+  title: 'patarapolw/bolt-markup',
+  description: 'Bolt extension to insert unsafe markdown and HTML, while preserving the editor '
+    + '- patarapolw/bolt-markup'
+}) %>

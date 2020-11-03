@@ -49,7 +49,7 @@ export class MakeHtml {
         description,
       }: {
         href: string
-        image: string
+        image?: string
         title: string
         description: string
       }) => {
@@ -57,18 +57,22 @@ export class MakeHtml {
           $('<div>')
             .append(
               $('<x-card>')
-                .attr({
-                  href,
-                  image,
-                  title,
-                  description,
-                })
+                .attr(
+                  JSON.parse(
+                    JSON.stringify({
+                      href,
+                      image,
+                      title,
+                      description,
+                    })
+                  ) as Record<string, string>
+                )
                 .append(
                   $('<a>')
                     .attr({
                       href,
                       target: '_blank',
-                      rel: 'noopenner noreferrer',
+                      rel: 'noopener noreferrer nofollow',
                     })
                     .text(href)
                 )

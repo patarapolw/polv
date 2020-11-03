@@ -12,7 +12,7 @@ export interface IPost {
   slug: string
   path: string
   title: string
-  image?: string
+  image?: any
   tag?: string[]
   date?: string
   excerpt: string
@@ -57,7 +57,7 @@ export async function buildIndexes() {
         slug: f.replace(/^.+\//, '').replace(/\.mdx?$/, ''),
         title,
         date: date ? dayjs(date).toISOString() : undefined,
-        image: image ? `/media/${image}` : undefined,
+        image: typeof image === 'string' ? `/media/${image}` : image,
         tag: (tag || []).map((t) => t.toLocaleLowerCase().replace(/ /g, '-')),
         excerpt,
         excerptHtml,

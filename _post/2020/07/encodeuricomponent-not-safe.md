@@ -61,16 +61,13 @@ So,
 "<>`{}
 ```
 
-```pug parsed
-a(data-make-html="card" href="https://dev.to/antho1404/encoding-mess-with-javascript-oan")
-  | https://dev.to/antho1404/encoding-mess-with-javascript-oan
-  pre(data-template style="display: none;").
-    image: 'https://dev.to/social_previews/article/397520.png'
-    title: Encoding mess with Javascript
-    description: >-
-      Transfer data by URL by encoding them is harder than it looks and you need to
-      be careful about evil characters.
-```
+<%- xCard({
+  href: 'https://dev.to/antho1404/encoding-mess-with-javascript-oan',
+  image: 'https://dev.to/social_previews/article/397520.png',
+  title: 'Encoding mess with Javascript',
+  description: 'Transfer data by URL by encoding them is harder than it looks and you need to '
+    + 'be careful about evil characters.'
+}) %>
 
 - Not sure if non-ASCII (`/[^\x00-\x7F]/`) needs to be encoded. You can try it in my demo, and see if it breaks.
 
@@ -78,13 +75,10 @@ a(data-make-html="card" href="https://dev.to/antho1404/encoding-mess-with-javasc
 
 So, I created a library for this,
 
-```pug parsed
-a(data-make-html="card" href="https://github.com/patarapolw/encodeuri-plus")
-  | https://github.com/patarapolw/encodeuri-plus
-  pre(data-template style="display: none;").
-    image: 'https://avatars3.githubusercontent.com/u/21255931?s=400&v=4'
-    title: patarapolw/encodeuri-plus
-    description: >-
-      encodeURI that is safe, and doesn't do too much in a specific scenario -
-      patarapolw/encodeuri-plus
-```
+<%- xCard({
+  href: 'https://github.com/patarapolw/encodeuri-plus',
+  image: 'https://avatars3.githubusercontent.com/u/21255931?s=400&v=4',
+  title: 'patarapolw/encodeuri-plus',
+  description: "encodeURI that is safe, and doesn't do too much in a specific scenario - "
+    + 'patarapolw/encodeuri-plus'
+}) %>

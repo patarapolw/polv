@@ -196,15 +196,12 @@ tsc
 
 For web browsers, if you enable `"module": "esnext"` in `tsconfig.json`, you can relative import as well, using `<script type="module">`, although you will need to go extra mile, as this is not Babel.
 
-```pug parsed
-a(data-make-html="card" href="https://dev.to/patarapolw/laziest-way-to-publish-for-both-npm-and-script-src-4859")
-  | https://dev.to/patarapolw/laziest-way-to-publish-for-both-npm-and-script-src-4859
-  pre(data-template style="display: none;").
-    image: 'https://dev.to/social_previews/article/264551.png'
-    title: Laziest way to publish for both NPM and <script src="">
-    description: >-
-      But it is slightly harder for TypeScript's tsc.  Actually, the real problem
-      here is loading other Jav...
-```
+<%- xCard({
+  href: 'https://dev.to/patarapolw/laziest-way-to-publish-for-both-npm-and-script-src-4859',
+  image: 'https://dev.to/social_previews/article/264551.png',
+  title: 'Laziest way to publish for both NPM and <script src="">',
+  description: "But it is slightly harder for TypeScript's tsc.  Actually, the real problem "
+    + 'here is loading other Jav...'
+}) %>
 
 Or, just use Snowpack.

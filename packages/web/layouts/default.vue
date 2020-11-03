@@ -139,10 +139,18 @@
 </template>
 
 <script lang="ts">
+import 'highlight.js/styles/default.css'
+
 import { Component, Vue } from 'nuxt-property-decorator'
+import hljs from 'highlight.js'
 
 import { normalizeArray } from '@/assets/util'
 import PageSocial from '@/components/PageSocial.vue'
+import { hljsRegisterVue } from '@patarapolw/highlightjs-vue'
+
+if (process.client) {
+  hljsRegisterVue(hljs)
+}
 
 const rawData = JSON.parse(process.env.BlogLayout!)
 

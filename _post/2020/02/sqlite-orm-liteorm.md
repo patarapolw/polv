@@ -26,14 +26,11 @@ Still, there are something that would be hard to do / cannot do...
 - Query by RegExp (I use `LIKE '%'||$identifier||'%'` instead. RegExp queries need re-compile.)
 - Limited update / delete (like `LIMIT 1` ==> I would have to re-compile SQLite)
 
-```pug parsed
-a(data-make-html="card" href="https://github.com/patarapolw/liteorm")
-  | https://github.com/patarapolw/liteorm
-  pre(data-template style="display: none;").
-    image: 'https://avatars3.githubusercontent.com/u/21255931?s=400&v=4'
-    title: patarapolw/liteorm
-    description: >-
-      A simple wrapper for sqlite; with typings based on TypeScript decorators and
-      reflect-metadata. With async eventemitter (emittery). Focusing on JSON, Date,
-      and MongoDB interop. - patarapolw/liteorm
-```
+<%- xCard({
+  href: 'https://github.com/patarapolw/liteorm',
+  image: 'https://avatars3.githubusercontent.com/u/21255931?s=400&v=4',
+  title: 'patarapolw/liteorm',
+  description: 'A simple wrapper for sqlite; with typings based on TypeScript decorators and '
+    + 'reflect-metadata. With async eventemitter (emittery). Focusing on JSON, Date, '
+    + 'and MongoDB interop. - patarapolw/liteorm'
+}) %>

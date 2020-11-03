@@ -98,13 +98,10 @@ I have also tried <https://github.com/vuejs/jsx>, but Vue CLI seems to already s
 
 If you stuck somewhere, see this repo. I might also add Nuxt in the future.
 
-```pug parsed
-a(data-make-html="card" href="https://github.com/patarapolw/vue-typescript-suggestions")
-  | https://github.com/patarapolw/vue-typescript-suggestions
-  pre(data-template style="display: none;").
-    image: 'https://avatars3.githubusercontent.com/u/21255931?s=400&v=4'
-    title: patarapolw/vue-typescript-suggestions
-    description: >-
-      An example repo for using TypeScript in Vue, with maximal VSCode suggestions -
-      patarapolw/vue-typescript-suggestions
-```
+<%- xCard({
+  href: 'https://github.com/patarapolw/vue-typescript-suggestions',
+  image: 'https://avatars3.githubusercontent.com/u/21255931?s=400&v=4',
+  title: 'patarapolw/vue-typescript-suggestions',
+  description: 'An example repo for using TypeScript in Vue, with maximal VSCode suggestions - '
+    + 'patarapolw/vue-typescript-suggestions'
+}) %>

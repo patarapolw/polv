@@ -65,16 +65,13 @@ git push -f origin master
 
 I also summarized this on GitHub's wiki.
 
-```pug parsed
-a(data-make-html="card" href="https://github.com/patarapolw/nuxt-blog-template")
-  | https://github.com/patarapolw/nuxt-blog-template
-  pre(data-template style="display: none;").
-    image: 'https://avatars3.githubusercontent.com/u/21255931?s=400&v=4'
-    title: patarapolw/nuxt-blog-template
-    description: >-
-      Nuxt.js blog template, with working version at https://www.polv.cc -
-      patarapolw/nuxt-blog-template
-```
+<%- xCard({
+  href: 'https://github.com/patarapolw/nuxt-blog-template',
+  image: 'https://avatars3.githubusercontent.com/u/21255931?s=400&v=4',
+  title: 'patarapolw/nuxt-blog-template',
+  description: 'Nuxt.js blog template, with working version at https://www.polv.cc - '
+    + 'patarapolw/nuxt-blog-template'
+}) %>
 
 Of course, this is used in a real website -- https://www.polv.cc and the lighthouse score (https://web.dev/measure/) is quite commendable, I think; although there are indeed [rooms to improve](https://github.com/patarapolw/nuxt-blog-template/issues/5).
 

@@ -14,25 +14,21 @@ Today, I have some experience regarding both creating a PWA, and testing it.
 
 This website, actually.
 
-```pug parsed
-a(data-make-html="card" href="https://www.zhquiz.cc/")
-  | https://www.zhquiz.cc/
-  pre(data-template style="display: none;").
-    title: ZhQuiz
-    description: 'Hanzi, Vocab and Sentences quizzing system'
-```
+<%- xCard({
+  href: 'https://www.zhquiz.cc',
+  title: 'ZhQuiz',
+  description: 'Hanzi, Vocab and Sentences quizzing system'
+}) %>
 
 <!-- excerpt -->
 
 Since this was creating using Nuxt.js, I did not create [`manifest.webmanifest`](https://web.dev/add-manifest/) directly. Instead, I use
 
-```pug parsed
-a(data-make-html="card" href="https://pwa.nuxtjs.org/")
-  | https://pwa.nuxtjs.org/
-  pre(data-template style="display: none;").
-    title: ⚡ Nuxt PWA
-    description: 'Supercharge Nuxt with a heavily tested, updated and stable PWA solution'
-```
+<%- xCard({
+  href: 'https://pwa.nuxtjs.org',
+  title: '⚡ Nuxt PWA',
+  description: 'Supercharge Nuxt with a heavily tested, updated and stable PWA solution'
+}) %>
 
 Upon opening the website in mobile (Android), it now prompted web to add to home screen, and I said no this time (because the name was wrong. `@nuxtjs/pwa`'s fault.)
 

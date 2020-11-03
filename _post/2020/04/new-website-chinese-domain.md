@@ -7,15 +7,13 @@ tag:
   - domain
 ---
 
-The website is <https://zhquiz.cc>.
+The website is <https://www.zhquiz.cc>.
 
-```pug parsed
-a(data-make-html="card" href="https://zhquiz.cc/")
-  | https://zhquiz.cc/
-  pre(data-template style="display: none;").
-    title: 'ZhQuiz - Hanzi, Vocab and Sentences quizzing'
-    description: 'Hanzi, Vocab and Sentences quizzing system'
-```
+<%- xCard({
+  href: 'https://www.zhquiz.cc',
+  title: 'ZhQuiz - Hanzi, Vocab and Sentences quizzing',
+  description: 'Hanzi, Vocab and Sentences quizzing system'
+}) %>
 
 Sorry, there is not landing page yet, just login and do the personalized quiz.
 

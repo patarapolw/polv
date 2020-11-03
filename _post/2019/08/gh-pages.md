@@ -14,16 +14,13 @@ The new branch called `gh-pages` will be created, with only built elements, no o
 
 See the package here
 
-```pug parsed
-a(data-make-html="card" href="https://www.npmjs.com/package/gh-pages")
-  | https://www.npmjs.com/package/gh-pages
-  pre(data-template style="display: none;").
-    image: 'https://static.npmjs.com/338e4905a2684ca96e08c7780fc68412.png'
-    title: gh-pages
-    description: >-
-      Publish to a gh-pages branch on GitHub (or any other branch on any other
-      remote)
-```
+<%- xCard({
+  href: 'https://www.npmjs.com/package/gh-pages',
+  image: 'https://static.npmjs.com/338e4905a2684ca96e08c7780fc68412.png',
+  title: 'gh-pages',
+  description: 'Publish to a gh-pages branch on GitHub (or any other branch on any other '
+    + 'remote)'
+}) %>
 
 <!-- excerpt_separator -->
 

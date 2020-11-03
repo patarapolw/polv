@@ -84,16 +84,13 @@ function replicate (from: DbSqlite, to: DbSqlite, uids?: string[]) {
 
 If you can curious on what is safe columnName / tableName in SQLite, it is
 
-```pug parsed
-a(data-make-html="card" href="https://dev.to/patarapolw/what-sqlite-can-actually-do-4co8")
-  | https://dev.to/patarapolw/what-sqlite-can-actually-do-4co8
-  pre(data-template style="display: none;").
-    image: 'https://dev.to/social_previews/article/326185.png'
-    title: What SQLite CAN actually do
-    description: >-
-      Not sure about other RDBMS's.           JSON handling   This is possible via
-      JSON1 extension. I belie...
-```
+<%- xCard({
+  href: 'https://dev.to/patarapolw/what-sqlite-can-actually-do-4co8',
+  image: 'https://dev.to/social_previews/article/326185.png',
+  title: 'What SQLite CAN actually do',
+  description: "Not sure about other RDBMS's.           JSON handling   This is possible via "
+    + 'JSON1 extension. I belie...'
+}) %>
 
 Observables can be joined.
 

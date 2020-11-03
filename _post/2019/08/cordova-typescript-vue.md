@@ -15,16 +15,13 @@ Why Vue? Because Vue's [Vuetify](https://vuetifyjs.com/en/)'s Material design lo
 
 An example app I have used all the above-mentioned in the header is
 
-```pug parsed
-a(data-make-html="card" href="https://github.com/patarapolw/nltkpass-app")
-  | https://github.com/patarapolw/nltkpass-app
-  pre(data-template style="display: none;").
-    image: 'https://avatars3.githubusercontent.com/u/21255931?s=400&v=4'
-    title: patarapolw/nltkpass-app
-    description: >-
-      Mobile application for NLTKPass. Contribute to patarapolw/nltkpass-app
-      development by creating an account on GitHub.
-```
+<%- xCard({
+  href: 'https://github.com/patarapolw/nltkpass-app',
+  image: 'https://avatars3.githubusercontent.com/u/21255931?s=400&v=4',
+  title: 'patarapolw/nltkpass-app',
+  description: 'Mobile application for NLTKPass. Contribute to patarapolw/nltkpass-app '
+    + 'development by creating an account on GitHub.'
+}) %>
 
 <!-- excerpt_separator -->
 

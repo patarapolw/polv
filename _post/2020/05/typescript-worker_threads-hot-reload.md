@@ -75,16 +75,13 @@ parent.on('message', ({ id, type, filename }) => {
 })
 ```
 
-```pug parsed
-a(data-make-html="card" href="https://github.com/patarapolw/rep2recall/blob/master/packages/e-server/src/router/file.ts")
-  | https://github.com/patarapolw/rep2recall/blob/master/packages/e-server/src/router/file.ts
-  pre(data-template style="display: none;").
-    image: 'https://avatars3.githubusercontent.com/u/21255931?s=400&v=4'
-    title: patarapolw/rep2recall
-    description: >-
-      Repeat until recall. Aims to be more powerful Anki alternative. -
-      patarapolw/rep2recall
-```
+<%- xCard({
+  href: 'https://github.com/patarapolw/rep2recall/blob/master/packages/e-server/src/router/file.ts',
+  image: 'https://avatars3.githubusercontent.com/u/21255931?s=400&v=4',
+  title: 'patarapolw/rep2recall',
+  description: 'Repeat until recall. Aims to be more powerful Anki alternative. - '
+    + 'patarapolw/rep2recall'
+}) %>
 
 But for some reasons,
 

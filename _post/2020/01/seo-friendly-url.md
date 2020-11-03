@@ -23,14 +23,11 @@ Some questions remain unanswered, or unsure...
 
 As a matter of fact, I have already create [a package](https://www.npmjs.com/package/seo-friendly-slugify) as per my need.
 
-```pug parsed
-a(data-make-html="card" href="https://github.com/patarapolw/seo-friendly-slugify")
-  | https://github.com/patarapolw/seo-friendly-slugify
-  pre(data-template style="display: none;").
-    image: 'https://avatars3.githubusercontent.com/u/21255931?s=400&v=4'
-    title: patarapolw/seo-friendly-slugify
-    description: >-
-      Create SEO-friendly URL from any string, by stripping certain words, replacing
-      punctuations, and shortening the string. Also works with Unicode characters. -
-      patarapolw/seo-friendly-slugify
-```
+<%- xCard({
+  href: 'https://github.com/patarapolw/seo-friendly-slugify',
+  image: 'https://avatars3.githubusercontent.com/u/21255931?s=400&v=4',
+  title: 'patarapolw/seo-friendly-slugify',
+  description: 'Create SEO-friendly URL from any string, by stripping certain words, replacing '
+    + 'punctuations, and shortening the string. Also works with Unicode characters. - '
+    + 'patarapolw/seo-friendly-slugify'
+}) %>

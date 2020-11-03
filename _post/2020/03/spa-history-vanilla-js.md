@@ -14,16 +14,13 @@ True SPA like Vue can do it too, but on first load, you can hasten JavaScript by
 
 I have just create an SPA with history mode router in vanilla JS, but I do use a bundler (Rollup).
 
-```pug parsed
-a(data-make-html="card" href="https://github.com/patarapolw/minimal-rollup-ts-pug-sass-template")
-  | https://github.com/patarapolw/minimal-rollup-ts-pug-sass-template
-  pre(data-template style="display: none;").
-    image: 'https://avatars3.githubusercontent.com/u/21255931?s=400&v=4'
-    title: patarapolw/minimal-rollup-ts-pug-sass-template
-    description: >-
-      Rollup + TypeScript + Pug + SASS template with no plan for JavaScript
-      frameworks, whatsoever - patarapolw/minimal-rollup-ts-pug-sass-template
-```
+<%- xCard({
+  href: 'https://github.com/patarapolw/minimal-rollup-ts-pug-sass-template',
+  image: 'https://avatars3.githubusercontent.com/u/21255931?s=400&v=4',
+  title: 'patarapolw/minimal-rollup-ts-pug-sass-template',
+  description: 'Rollup + TypeScript + Pug + SASS template with no plan for JavaScript '
+    + 'frameworks, whatsoever - patarapolw/minimal-rollup-ts-pug-sass-template'
+}) %>
 
 <!-- excerpt_separator -->
 
@@ -103,13 +100,10 @@ This is to indicate that the SPA has finished loading and is now ready to be scr
 
 I will try using it extensively, to see if it is any good.
 
-```pug parsed
-a(data-make-html="card" href="https://github.com/patarapolw/minimal-rollup-ts-pug-sass-template")
-  | https://github.com/patarapolw/minimal-rollup-ts-pug-sass-template
-  pre(data-template style="display: none;").
-    image: 'https://avatars3.githubusercontent.com/u/21255931?s=400&v=4'
-    title: patarapolw/minimal-rollup-ts-pug-sass-template
-    description: >-
-      Rollup + TypeScript + Pug + SASS template with no plan for JavaScript
-      frameworks, whatsoever - patarapolw/minimal-rollup-ts-pug-sass-template
-```
+<%- xCard({
+  href: 'https://github.com/patarapolw/minimal-rollup-ts-pug-sass-template',
+  image: 'https://avatars3.githubusercontent.com/u/21255931?s=400&v=4',
+  title: 'patarapolw/minimal-rollup-ts-pug-sass-template',
+  description: 'Rollup + TypeScript + Pug + SASS template with no plan for JavaScript '
+    + 'frameworks, whatsoever - patarapolw/minimal-rollup-ts-pug-sass-template'
+}) %>

@@ -11,6 +11,8 @@ tag:
 
 Most major things here have to be `rEFInd`, `conky` and `libinput`
 
+<!-- excerpt_separator -->
+
 ## Conky
 
 ```lua

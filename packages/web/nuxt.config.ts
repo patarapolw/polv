@@ -126,9 +126,10 @@ const config = async (): Promise<NuxtConfig> => {
           : []),
       ],
     },
-    css: ['~/styles/app.scss', 'highlight.js/styles/default.css'],
+    css: ['~/styles/app.scss'],
     plugins: [
       '~/plugins/fontawesome.ts',
+      '~/plugins/x-card.client.ts',
       ...(theme.comments?.remark42 ? ['~/plugins/remark42.client.js'] : []),
     ],
     components: true,

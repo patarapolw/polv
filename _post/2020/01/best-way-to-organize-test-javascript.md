@@ -59,13 +59,10 @@ I also had some experience with testing on Travis CI, but I didn't set it up thi
 
 See <https://github.com/patarapolw/deepfind/blob/master/packages/deepfind/src/index.spec.ts>
 
-```pug parsed
-a(data-make-html="card" href="https://github.com/patarapolw/deepfind/blob/master/packages/deepfind/src/index.spec.ts")
-  | https://github.com/patarapolw/deepfind/blob/master/packages/deepfind/src/index.spec.ts
-  pre(data-template style="display: none;").
-    image: 'https://avatars3.githubusercontent.com/u/21255931?s=400&v=4'
-    title: patarapolw/deepfind
-    description: >-
-      Deep find a primitive, an Array or a plain Object inside an Array or a plain
-      Object, so that you can edit the Object - patarapolw/deepfind
-```
+<%- xCard({
+  href: 'https://github.com/patarapolw/deepfind/blob/master/packages/deepfind/src/index.spec.ts',
+  image: 'https://avatars3.githubusercontent.com/u/21255931?s=400&v=4',
+  title: 'patarapolw/deepfind',
+  description: 'Deep find a primitive, an Array or a plain Object inside an Array or a plain '
+    + 'Object, so that you can edit the Object - patarapolw/deepfind'
+}) %>

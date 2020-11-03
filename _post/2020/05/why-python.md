@@ -10,19 +10,15 @@ Of course, I did start much of my journey with Python, but now I started to pref
 
 <!-- excerpt_separator -->
 
-```pug parsed
-a(data-make-html="card" href="https://www.quora.com/Is-Python-only-good-for-frameworks-libraries")
-  | https://www.quora.com/Is-Python-only-good-for-frameworks-libraries
-  pre(data-template style="display: none;").
-    title: Is Python only good for frameworks/libraries? - Quora
-```
+<%- xCard({
+  href: 'https://www.quora.com/Is-Python-only-good-for-frameworks-libraries',
+  title: 'Is Python only good for frameworks/libraries? - Quora'
+}) %>
 
-```pug parsed
-a(data-make-html="card" href="https://www.quora.com/Why-do-people-like-to-write-C-C-bindings-in-Python")
-  | https://www.quora.com/Why-do-people-like-to-write-C-C-bindings-in-Python
-  pre(data-template style="display: none;").
-    title: Why do people like to write C/C++ bindings in Python? - Quora
-```
+<%- xCard({
+  href: 'https://www.quora.com/Why-do-people-like-to-write-C-C-bindings-in-Python',
+  title: 'Why do people like to write C/C++ bindings in Python? - Quora'
+}) %>
 
 > Python applications. so they arem’t C/C++ bindings (that implies the bindings are for C/C++ programs) - they are Python bindings for libraries written in C/C++.
 >

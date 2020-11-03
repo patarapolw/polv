@@ -17,16 +17,13 @@ I am thinking of what health statisticians would do with ICD10 and related healt
 
 This is partly that I have heard about OpenAI's GPT-3.
 
-```pug parsed
-a(data-make-html="card" href="https://lacker.io/ai/2020/07/06/giving-gpt-3-a-turing-test.html")
-  | https://lacker.io/ai/2020/07/06/giving-gpt-3-a-turing-test.html
-  pre(data-template style="display: none;").
-    title: Giving GPT-3 a Turing Test
-    description: >-
-      I’ve been playing around with OpenAI’s newGPT-3 language model. When I gotbeta
-      access, the first thing I wondered was, how human is GPT-3? Howclose is it to
-      ...
-```
+<%- xCard({
+  title: 'Giving GPT-3 a Turing Test',
+  description: 'I’ve been playing around with OpenAI’s newGPT-3 language model. When I got beta '
+    + 'access, the first thing I wondered was, how human is GPT-3? Howclose is it to '
+    + '...',
+  href: 'https://lacker.io/ai/2020/07/06/giving-gpt-3-a-turing-test.html'
+}) %>
 
 <!-- excerpt -->
 

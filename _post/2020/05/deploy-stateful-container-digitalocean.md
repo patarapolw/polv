@@ -17,16 +17,13 @@ The examples of usage includes,
 
 Actually, it's the answer to this question.
 
-```pug parsed
-a(data-make-html="card" href="https://dev.to/patarapolw/need-help-deploy-docker-that-needs-storage-on-google-2l7n")
-  | https://dev.to/patarapolw/need-help-deploy-docker-that-needs-storage-on-google-2l7n
-  pre(data-template style="display: none;").
-    image: 'https://dev.to/social_previews/article/342038.png'
-    title: Need help deploy Docker that needs storage on GCP
-    description: >-
-      For example,    https://github.com/umputun/remark42   Internal BoltDB Uses
-      docker-compose.yml       h...
-```
+<%- xCard({
+  href: 'https://dev.to/patarapolw/need-help-deploy-docker-that-needs-storage-on-google-2l7n',
+  image: 'https://dev.to/social_previews/article/342038.png',
+  title: 'Need help deploy Docker that needs storage on GCP',
+  description: 'For example,    https://github.com/umputun/remark42   Internal BoltDB Uses '
+    + 'docker-compose.yml       h...'
+}) %>
 
 <!-- excerpt_separator -->
 
@@ -53,11 +50,9 @@ The steps required are
 
 Don't know if this is just my experience. `docker-compose build` on DigitalOcean droplet failed due to not enough memory. I have to build on my development machine (macOS), then `push` to Docker Hub. (Yes, this is my first time pushing to Docker Hub.) For anyone curious, see this gist.
 
-```pug parsed
-a(data-make-html="card" href="https://gist.github.com/patarapolw/4c72fa4612c6e1c45474b82bac157f4a")
-  | https://gist.github.com/patarapolw/4c72fa4612c6e1c45474b82bac157f4a
-  pre(data-template style="display: none;").
-    image: 'https://github.githubassets.com/images/modules/gists/gist-og-image.png'
-    title: Remark42 setup file that is Nuxt Universal-enabled
-    description: Remark42 setup file that is Nuxt Universal-enabled - .qovery.yml
-```
+<%- xCard({
+  href: 'https://gist.github.com/patarapolw/4c72fa4612c6e1c45474b82bac157f4a',
+  image: 'https://github.githubassets.com/images/modules/gists/gist-og-image.png',
+  title: 'Remark42 setup file that is Nuxt Universal-enabled',
+  description: 'Remark42 setup file that is Nuxt Universal-enabled - .qovery.yml'
+}) %>

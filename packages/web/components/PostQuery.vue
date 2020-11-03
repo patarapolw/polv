@@ -17,6 +17,7 @@
 
 <script lang="ts">
 import { Component, Prop, Vue, Watch } from 'nuxt-property-decorator'
+import hljs from 'highlight.js'
 
 import { normalizeArray } from '@/assets/util'
 
@@ -90,6 +91,16 @@ export default class PostQuery extends Vue {
     }
 
     this.isReady = true
+
+    this.$nextTick(() => {
+      if (!this.$el) {
+        return
+      }
+
+      this.$el.querySelectorAll('pre code:not(.hljs)').forEach((el) => {
+        hljs.highlightBlock(el as HTMLElement)
+      })
+    })
   }
 
   @Watch('q')

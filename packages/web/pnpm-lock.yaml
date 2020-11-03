@@ -6,11 +6,11 @@ dependencies:
   '@nuxt/typescript-runtime': 2.0.0_@nuxt+types@2.14.7
   '@nuxtjs/axios': 5.12.2
   '@nuxtjs/bulma': 1.3.0
+  '@patarapolw/highlightjs-vue': 1.0.0-dev4_highlight.js@10.2.1
   '@types/aws-lambda': 8.10.64
   '@types/cheerio': 0.22.22
   '@types/ejs': 3.0.4
   '@types/fs-extra': 9.0.2
-  '@types/he': 1.1.1
   '@types/js-yaml': 3.12.5
   '@types/lunr': 2.3.3
   '@types/node-fetch': 2.5.7
@@ -54,7 +54,7 @@ devDependencies:
   sass: 1.27.0
   sass-loader: 10.0.3_sass@1.27.0
   ts-node: 9.0.0
-lockfileVersion: 5.1
+lockfileVersion: 5.2
 packages:
   /@babel/code-frame/7.10.4:
     dependencies:
@@ -1936,7 +1936,7 @@ packages:
       consola: 2.15.0
       error-stack-parser: 2.0.6
       string-width: 2.1.1
-      webpack: 4.44.2_webpack@4.44.2
+      webpack: 4.44.2
     dev: false
     engines:
       node: '>=8.0.0'
@@ -2160,7 +2160,7 @@ packages:
       time-fix-plugin: 2.0.7_webpack@4.44.2
       url-loader: 2.3.0_file-loader@4.3.0+webpack@4.44.2
       vue-loader: 15.9.3_2caee5c6214e69e94882edccc4bf5105
-      webpack: 4.44.2_webpack@4.44.2
+      webpack: 4.44.2
       webpack-bundle-analyzer: 3.9.0
       webpack-dev-middleware: 3.7.2_webpack@4.44.2
       webpack-hot-middleware: 2.25.0
@@ -2238,6 +2238,14 @@ packages:
     dev: false
     resolution:
       integrity: sha512-XiTWdadTwtmL/IGkNqbVe+dOlT+IMvcBu7TvKI7plWhVQeBCQ9iKhk3jgvVWFyiwL2yHJDlEwOM5v9oVES5Xmw==
+  /@patarapolw/highlightjs-vue/1.0.0-dev4_highlight.js@10.2.1:
+    dependencies:
+      highlight.js: 10.2.1
+    dev: false
+    peerDependencies:
+      highlight.js: '*'
+    resolution:
+      integrity: sha512-p1LgqMO/uwk99u8PZ5AZPs/ITGa3qJzfjuEiof3IB5qEaguRW/0oLw88WC3l2V9BlaYjfDUmHEtiL2TZqW82pQ==
   /@types/anymatch/1.3.1:
     resolution:
       integrity: sha512-/+CRPXpBDpo2RK9C68N3b2cOvO0Cf5B9aPijHsoDQTHivnGSObdOF2BRQOYjojWTDy6nQvMjmqRXIxH55VjxxA==
@@ -2366,10 +2374,6 @@ packages:
     dev: false
     resolution:
       integrity: sha512-SEYeGAIQIQX8NN6LDKprLjbrd5dARM5EXsd8GI/A5l0apYI1fGMWgPHSe4ZKL4eozlAyI+doUE9XbYS4xCkQ1w==
-  /@types/he/1.1.1:
-    dev: false
-    resolution:
-      integrity: sha512-jpzrsR1ns0n3kyWt92QfOUQhIuJGQ9+QGa7M62rO6toe98woQjnsnzjdMtsQXCdvjjmqjS2ZBCC7xKw0cdzU+Q==
   /@types/html-minifier-terser/5.1.1:
     dev: false
     resolution:
@@ -3270,7 +3274,7 @@ packages:
       mkdirp: 0.5.5
       pify: 4.0.1
       schema-utils: 2.7.1
-      webpack: 4.44.2_webpack@4.44.2
+      webpack: 4.44.2
     dev: false
     engines:
       node: '>= 6.9'
@@ -3287,7 +3291,7 @@ packages:
       mkdirp: 0.5.5
       pify: 4.0.1
       schema-utils: 2.7.1
-      webpack: 4.44.2_webpack@4.44.2
+      webpack: 4.44.2
     dev: false
     engines:
       node: '>= 6.9'
@@ -3628,7 +3632,7 @@ packages:
       mkdirp: 0.5.5
       neo-async: 2.6.2
       schema-utils: 2.7.1
-      webpack: 4.44.2_webpack@4.44.2
+      webpack: 4.44.2
     dev: false
     engines:
       node: '>= 8.9.0'
@@ -4264,7 +4268,7 @@ packages:
       postcss-value-parser: 4.1.0
       schema-utils: 2.7.1
       semver: 6.3.0
-      webpack: 4.44.2_webpack@4.44.2
+      webpack: 4.44.2
     dev: false
     engines:
       node: '>= 8.9.0'
@@ -5410,7 +5414,7 @@ packages:
       loader-utils: 2.0.0
       normalize-url: 1.9.1
       schema-utils: 1.0.0
-      webpack: 4.44.2_webpack@4.44.2
+      webpack: 4.44.2
       webpack-external-import: 2.2.4_webpack@4.44.2
       webpack-sources: 1.4.3
     dev: false
@@ -5477,7 +5481,7 @@ packages:
     dependencies:
       loader-utils: 1.4.0
       schema-utils: 2.7.1
-      webpack: 4.44.2_webpack@4.44.2
+      webpack: 4.44.2
     dev: false
     engines:
       node: '>= 8.9.0'
@@ -5913,7 +5917,7 @@ packages:
       rimraf: 2.7.1
       semver: 5.7.1
       tapable: 1.1.3
-      webpack: 4.44.2_webpack@4.44.2
+      webpack: 4.44.2
       webpack-sources: 1.4.3
       write-json-file: 2.3.0
     dev: false
@@ -6111,7 +6115,7 @@ packages:
       pretty-error: 2.1.1
       tapable: 1.1.3
       util.promisify: 1.0.0
-      webpack: 4.44.2_webpack@4.44.2
+      webpack: 4.44.2
     dev: false
     engines:
       node: '>=6.9'
@@ -7385,7 +7389,7 @@ packages:
       globby: 11.0.1
       jwt-decode: 2.2.0
       toml: 3.0.0
-      webpack: 4.44.2_webpack@4.44.2
+      webpack: 4.44.2
       webpack-merge: 4.2.2
     dev: false
     engines:
@@ -7735,7 +7739,7 @@ packages:
     dependencies:
       cssnano: 4.1.10
       last-call-webpack-plugin: 3.0.0
-      webpack: 4.44.2_webpack@4.44.2
+      webpack: 4.44.2
     dev: false
     peerDependencies:
       webpack: ^4.0.0
@@ -9684,12 +9688,12 @@ packages:
       node: '>=6'
     resolution:
       integrity: sha512-Qu+VC3EwYLldKa1fCxuuvULvSJOKEgk9pi8dZeCVK7TqBfUNTH4sFkk4joj8afVSfAYgJoSOetjx9QWOJ5mYoQ==
-  /slugify/1.4.5:
+  /slugify/1.4.6:
     dev: false
     engines:
       node: '>=8.0.0'
     resolution:
-      integrity: sha512-WpECLAgYaxHoEAJ8Q1Lo8HOs1ngn7LN7QjXgOLbmmfkcWvosyk4ZTXkTzKyhngK640USTZUlgoQJfED1kz5fnQ==
+      integrity: sha512-ZdJIgv9gdrYwhXqxsH9pv7nXxjUEyQ6nqhngRxoAAOlmMGA28FDq5O4/5US4G2/Nod7d1ovNcgURQJ7kHq50KQ==
   /snapdragon-node/2.1.1:
     dependencies:
       define-property: 1.0.0
@@ -10041,7 +10045,7 @@ packages:
       is-promise: 2.2.2
       loader-utils: 1.4.0
       schema-utils: 2.7.1
-      webpack: 4.44.2_webpack@4.44.2
+      webpack: 4.44.2
     dev: false
     engines:
       node: '>=7.6'
@@ -10163,7 +10167,7 @@ packages:
       serialize-javascript: 4.0.0
       source-map: 0.6.1
       terser: 4.8.0
-      webpack: 4.44.2_webpack@4.44.2
+      webpack: 4.44.2
       webpack-sources: 1.4.3
       worker-farm: 1.7.0
     dev: false
@@ -10183,7 +10187,7 @@ packages:
       serialize-javascript: 4.0.0
       source-map: 0.6.1
       terser: 4.8.0
-      webpack: 4.44.2_webpack@4.44.2
+      webpack: 4.44.2
       webpack-sources: 1.4.3
     dev: false
     engines:
@@ -10210,7 +10214,7 @@ packages:
       loader-runner: 2.4.0
       loader-utils: 1.4.0
       neo-async: 2.6.2
-      webpack: 4.44.2_webpack@4.44.2
+      webpack: 4.44.2
     dev: false
     engines:
       node: '>= 6.9.0 <7.0.0 || >= 8.9.0'
@@ -10231,7 +10235,7 @@ packages:
       integrity: sha512-/mrRod8xqpA+IHSLyGCQ2s8SPHiCDEeQJSep1jqLYeEUClOFG2Qsh+4FU6G9VeqpZnGW/Su8LQGc4YKni5rYSQ==
   /time-fix-plugin/2.0.7_webpack@4.44.2:
     dependencies:
-      webpack: 4.44.2_webpack@4.44.2
+      webpack: 4.44.2
     dev: false
     peerDependencies:
       webpack: '>=4.0.0'
@@ -10572,7 +10576,7 @@ packages:
       loader-utils: 1.4.0
       mime: 2.4.6
       schema-utils: 2.7.1
-      webpack: 4.44.2_webpack@4.44.2
+      webpack: 4.44.2
     dev: false
     engines:
       node: '>= 8.9.0'
@@ -10718,7 +10722,7 @@ packages:
       loader-utils: 1.4.0
       vue-hot-reload-api: 2.3.4
       vue-style-loader: 4.1.2
-      webpack: 4.44.2_webpack@4.44.2
+      webpack: 4.44.2
     dev: false
     peerDependencies:
       cache-loader: '*'
@@ -10877,7 +10881,7 @@ packages:
       mime: 2.4.6
       mkdirp: 0.5.5
       range-parser: 1.2.1
-      webpack: 4.44.2_webpack@4.44.2
+      webpack: 4.44.2
       webpack-log: 2.0.0
     dev: false
     engines:
@@ -10895,7 +10899,7 @@ packages:
       mem: 6.1.1
       pkg-up: 3.1.0
       tapable: 1.1.3
-      webpack: 4.44.2_webpack@4.44.2
+      webpack: 4.44.2
     dev: false
     peerDependencies:
       webpack: ^4.40.2
@@ -10936,7 +10940,7 @@ packages:
     dev: false
     resolution:
       integrity: sha512-lgTS3Xhv1lCOKo7SA5TjKXMjpSM4sBjNV5+q2bqesbSPs5FjGmU6jjtBSkX9b4qW87vDIsCIlUPOEhbZrMdjeQ==
-  /webpack/4.44.2_webpack@4.44.2:
+  /webpack/4.44.2:
     dependencies:
       '@webassemblyjs/ast': 1.9.0
       '@webassemblyjs/helper-module-context': 1.9.0
@@ -10966,7 +10970,6 @@ packages:
       node: '>=6.11.5'
     hasBin: true
     peerDependencies:
-      webpack: '*'
       webpack-cli: '*'
       webpack-command: '*'
     peerDependenciesMeta:
@@ -10985,7 +10988,7 @@ packages:
       pretty-time: 1.1.0
       std-env: 2.2.1
       text-table: 0.2.0
-      webpack: 4.44.2_webpack@4.44.2
+      webpack: 4.44.2
       wrap-ansi: 6.2.0
     dev: false
     engines:
@@ -11183,7 +11186,7 @@ packages:
   github.com/patarapolw/scope-css/d5f985ebc796677377c12b019f046b1929d2da2a:
     dependencies:
       escaper: 3.0.5
-      slugify: 1.4.5
+      slugify: 1.4.6
       strip-css-comments: 4.1.0
     dev: false
     engines:
@@ -11191,7 +11194,6 @@ packages:
       yarn: please-use-npm
     name: scope-css
     resolution:
-      registry: 'https://registry.npmjs.org/'
       tarball: 'https://codeload.github.com/patarapolw/scope-css/tar.gz/d5f985ebc796677377c12b019f046b1929d2da2a'
     version: 1.3.0
 specifiers:
@@ -11207,11 +11209,11 @@ specifiers:
   '@nuxtjs/eslint-config': ^3.1.0
   '@nuxtjs/eslint-config-typescript': ^3.0.0
   '@nuxtjs/eslint-module': ^2.0.0
+  '@patarapolw/highlightjs-vue': ^1.0.0-dev4
   '@types/aws-lambda': ^8.10.64
   '@types/cheerio': ^0.22.22
   '@types/ejs': ^3.0.4
   '@types/fs-extra': ^9.0.2
-  '@types/he': ^1.1.1
   '@types/js-yaml': ^3.12.5
   '@types/lunr': ^2.3.3
   '@types/node-fetch': ^2.5.7

@@ -66,16 +66,13 @@ Now, I can reference `@org/api-definition` anywhere inside both `./packages/serv
 
 Example and working repo
 
-```pug parsed
-a(data-make-html="card" href="https://github.com/patarapolw/web-api-typescript-monorepo")
-  | https://github.com/patarapolw/web-api-typescript-monorepo
-  pre(data-template style="display: none;").
-    image: 'https://avatars3.githubusercontent.com/u/21255931?s=400&v=4'
-    title: patarapolw/web-api-typescript-monorepo
-    description: >-
-      Web + API + server + TypeScript + ESLint + Yarn monorepo -
-      patarapolw/web-api-typescript-monorepo
-```
+<%- xCard({
+  href: 'https://github.com/patarapolw/web-api-typescript-monorepo',
+  image: 'https://avatars3.githubusercontent.com/u/21255931?s=400&v=4',
+  title: 'patarapolw/web-api-typescript-monorepo',
+  description: 'Web + API + server + TypeScript + ESLint + Yarn monorepo - '
+    + 'patarapolw/web-api-typescript-monorepo'
+}) %>
 
 Now, with some questions,
 

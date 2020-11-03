@@ -24,13 +24,10 @@ Rust's Cargo seems to be more happy with me, but it is a different language.
 
 The response for the community is quite helpful.
 
-```pug parsed
-a(data-make-html="card" href="https://dev.to/patarapolw/how-can-i-learn-to-like-golang-and-use-it-a-lot-38dj")
-  | https://dev.to/patarapolw/how-can-i-learn-to-like-golang-and-use-it-a-lot-38dj
-  pre(data-template style="display: none;").
-    image: 'https://dev.to/social_previews/article/346560.png'
-    title: How can I learn to like Golang? (and use it a lot)
-    description: >-
-      I don't Golang because,   I cannot set nil a variable (unless it is a pointer,
-      but not sure if it is...
-```
+<%- xCard({
+  href: 'https://dev.to/patarapolw/how-can-i-learn-to-like-golang-and-use-it-a-lot-38dj',
+  image: 'https://dev.to/social_previews/article/346560.png',
+  title: 'How can I learn to like Golang? (and use it a lot)',
+  description: "I don't Golang because,   I cannot set nil a variable (unless it is a pointer, "
+    + 'but not sure if it is...'
+}) %>

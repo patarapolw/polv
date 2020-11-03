@@ -10,27 +10,22 @@ This is possible with pre-install script to check for `yarn.lock` and `package.j
 
 The closest I can find for this is,
 
-```pug parsed
-a(data-make-html="card" href="https://github.com/sindresorhus/is-npm")
-  | https://github.com/sindresorhus/is-npm
-  pre(data-template style="display: none;").
-    image: 'https://avatars3.githubusercontent.com/u/170270?s=400&v=4'
-    title: sindresorhus/is-npm
-    description: Check if your code is running as an npm or yarn script - sindresorhus/is-npm
-```
+<%- xCard({
+  href: 'https://github.com/sindresorhus/is-npm',
+  image: 'https://avatars3.githubusercontent.com/u/170270?s=400&v=4',
+  title: 'sindresorhus/is-npm',
+  description: 'Check if your code is running as an npm or yarn script - sindresorhus/is-npm'
+}) %>
 
 Now, I did [ask the author to make CLI](https://github.com/sindresorhus/is-npm/issues/11) for me, but he didn't do exactly what I needed, so I made one myself.
 
-```pug parsed
-a(data-make-html="card" href="https://github.com/patarapolw/check-npm-yarn")
-  | https://github.com/patarapolw/check-npm-yarn
-  pre(data-template style="display: none;").
-    image: 'https://avatars3.githubusercontent.com/u/21255931?s=400&v=4'
-    title: patarapolw/check-npm-yarn
-    description: >-
-      CLI to check NPM or Yarn if specified, or look for package-lock.json or
-      yarn.lock - patarapolw/check-npm-yarn
-```
+<%- xCard({
+  href: 'https://github.com/patarapolw/check-npm-yarn',
+  image: 'https://avatars3.githubusercontent.com/u/21255931?s=400&v=4',
+  title: 'patarapolw/check-npm-yarn',
+  description: 'CLI to check NPM or Yarn if specified, or look for package-lock.json or '
+    + 'yarn.lock - patarapolw/check-npm-yarn'
+}) %>
 
 <!-- excerpt_separator -->
 
@@ -55,13 +50,10 @@ nsi packageA packageB packageC ...
 
 ## Related Topic
 
-```pug parsed
-a(data-make-html="card" href="https://dev.to/patarapolw/do-you-have-a-strong-reason-to-use-npm-or-yarn-or-something-else-3pbm")
-  | https://dev.to/patarapolw/do-you-have-a-strong-reason-to-use-npm-or-yarn-or-something-else-3pbm
-  pre(data-template style="display: none;").
-    image: 'https://dev.to/social_previews/article/280617.png'
-    title: Do you have a strong reason to use NPM or Yarn (or something else)?
-    description: >-
-      For some differences I have found,  Pro-Yarn   Work better with Nuxt
-      TypeScript -- Not sure if this i...
-```
+<%- xCard({
+  href: 'https://dev.to/patarapolw/do-you-have-a-strong-reason-to-use-npm-or-yarn-or-something-else-3pbm',
+  image: 'https://dev.to/social_previews/article/280617.png',
+  title: 'Do you have a strong reason to use NPM or Yarn (or something else)?',
+  description: 'For some differences I have found,  Pro-Yarn   Work better with Nuxt '
+    + 'TypeScript -- Not sure if this i...'
+}) %>

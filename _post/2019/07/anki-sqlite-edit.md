@@ -36,12 +36,9 @@ The `media` file is a text file of at least a string of `{}`, which is actually 
 
 I created a [PyPI package](https://github.com/patarapolw/ankisync2) is ease the editing of this SQLite (and text file), powered by [Peewee ORM](http://docs.peewee-orm.com/en/latest/index.html).
 
-```pug parsed
-a(data-make-html="card" href="https://github.com/patarapolw/ankisync2")
-  | https://github.com/patarapolw/ankisync2
-  pre(data-template style="display: none;").
-    image: 'https://avatars3.githubusercontent.com/u/21255931?s=400&v=4'
-    title: patarapolw/ankisync2
-    description: >-
-      Creating and editing *.apkg and *.anki2 safely.
-```
+<%- xCard({
+  href: 'https://github.com/patarapolw/ankisync2',
+  image: 'https://avatars3.githubusercontent.com/u/21255931?s=400&v=4',
+  title: 'patarapolw/ankisync2',
+  description: 'Creating and editing *.apkg and *.anki2 safely.'
+}) %>

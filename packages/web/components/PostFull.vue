@@ -35,6 +35,7 @@
 
 <script lang="ts">
 import { Component, Prop, Vue, Watch } from 'nuxt-property-decorator'
+import hljs from 'highlight.js'
 
 import '~/assets/remark42'
 
@@ -63,6 +64,10 @@ export default class PostFull extends Vue {
         this.initRemark42()
       })
     }
+
+    this.$el.querySelectorAll('pre code:not(.hljs)').forEach((el) => {
+      hljs.highlightBlock(el as HTMLElement)
+    })
   }
 
   beforeDestroy() {
