@@ -64,7 +64,7 @@
             <div class="control is-expanded" role="search">
               <input
                 v-model="q"
-                class="input is-rounded"
+                class="input"
                 type="search"
                 placeholder="Search"
                 aria-label="search"
