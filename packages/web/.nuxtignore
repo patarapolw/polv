@@ -1,0 +1,8 @@
+/.netlify/
+/.vscode/
+/lambda/
+/lambda-dist/
+/scripts/
+/serverMiddleware/
+/netlify.toml
+/README.md

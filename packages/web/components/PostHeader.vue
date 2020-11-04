@@ -1,5 +1,5 @@
 <template>
-  <section class="mb-4">
+  <section class="PostHeader">
     <a
       class="el-author"
       :href="author.url"
@@ -12,9 +12,10 @@
       <span>{{ author.name }}</span>
     </a>
 
-    <div :class="$style['flex-grow']" />
-
-    <div>{{ dateString }}</div>
+    <div class="flex-row">
+      <div class="spacer" />
+      <div>{{ dateString }}</div>
+    </div>
   </section>
 </template>
 
@@ -39,21 +40,39 @@ export default class PostHeader extends Vue {
 }
 </script>
 
-<style module scoped src="~/styles/tw.module.css"></style>
-
 <style lang="scss" scoped>
-section:first-child {
+.PostHeader {
   display: flex;
   flex-direction: row;
-  white-space: nowrap;
-  overflow: auto;
+
+  > * {
+    margin-bottom: 0.5rem;
+  }
+
+  .flex-row {
+    display: flex;
+    flex-direction: row;
+    flex-grow: 1;
+
+    .spacer {
+      flex-grow: 1;
+    }
+  }
+
+  @media (max-width: 501px) {
+    flex-direction: column-reverse;
+
+    .flex-row {
+      margin-top: -1rem;
+    }
+  }
 }
 
 .el-author {
   display: flex;
   flex-direction: row;
   white-space: nowrap;
-  justify-content: center;
+  align-items: center;
 
   img {
     border: none;
