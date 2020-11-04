@@ -1,5 +1,8 @@
 {
   "editor.formatOnSave": true,
   "editor.defaultFormatter": "esbenp.prettier-vscode",
-  "sort-imports.on-save": false
+  "sort-imports.on-save": false,
+  "files.associations": {
+    ".*ignore": "ignore"
+  }
 }
