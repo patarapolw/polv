@@ -1,26 +1,17 @@
-import qs from 'querystring'
+import { Request, Response, NextFunction } from 'express'
 
-import { ServerMiddleware } from '@nuxt/types'
-
-import { normalizeArray } from '../assets/util'
 import rawJson from '../build/raw.json'
 
-const router: ServerMiddleware = (req, res, next) => {
-  if (!req.originalUrl) {
-    next(new Error('no req.originalUrl'))
-    return
-  }
-
-  const { path: _path } = qs.parse(req.originalUrl.split('?')[1] || '')
-  const path = normalizeArray(_path)
+const router = (req: Request, res: Response, next: NextFunction) => {
+  const { path } = req.query
 
   if (!path) {
     next(new Error('slug must be provided'))
     return
   }
 
-  const r = rawJson[path] || {}
-  res.end(JSON.stringify(r))
+  const r = rawJson[path as string] || {}
+  res.json(r)
 }
 
 export default router

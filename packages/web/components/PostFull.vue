@@ -4,14 +4,13 @@
       <div class="card-content">
         <PostHeader :post="post" />
 
-        <div v-if="post.image" class="mx-6 mb-4">
+        <div v-if="post.image" class="header-image">
           <img
             v-if="typeof post.image === 'string'"
             :src="post.image"
             :alt="post.title"
-            style="width: 100%"
           />
-          <picture v-else style="width: 100%">
+          <picture v-else>
             <source :srcset="post.image.imWebp" type="image/webp" />
             <source :srcset="post.image.imPng" type="image/png" />
             <img :src="post.image.imPng" :alt="post.title" />
@@ -114,3 +113,15 @@ export default class PostFull extends Vue {
   }
 }
 </script>
+
+<style lang="scss" scoped>
+.header-image {
+  margin-bottom: 1rem;
+  margin-left: -1.5rem;
+  margin-right: -1.5rem;
+
+  > * {
+    width: 100%;
+  }
+}
+</style>

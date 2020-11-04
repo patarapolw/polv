@@ -14,6 +14,7 @@ import PostFull from '@/components/PostFull.vue'
   layout: 'blog',
   async asyncData({ app, params, error }) {
     try {
+      const PORT = process.client ? 3000 : 5000
       const {
         title,
         image,
@@ -21,11 +22,14 @@ import PostFull from '@/components/PostFull.vue'
         excerpt,
         contentHtml,
         date,
-      } = (await app.$axios.$get(`/serverMiddleware/post`, {
-        params: {
-          path: params.pathMatch,
-        },
-      }))!
+      } = (await app.$axios.$get(
+        `http://localhost:${PORT}/serverMiddleware/post`,
+        {
+          params: {
+            path: params.pathMatch,
+          },
+        }
+      ))!
 
       return {
         post: {

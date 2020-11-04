@@ -1,28 +1,21 @@
-import qs from 'querystring'
+import { Request, Response } from 'express'
 
-import { ServerMiddleware } from '@nuxt/types'
 import lunr, { Index } from 'lunr'
 
-import { normalizeArray } from '../assets/util'
 import idxJson from '../build/idx.json'
 import rawJson from '../build/raw.json'
 
 let idx: Index
 
-const router: ServerMiddleware = (req, res, next) => {
-  if (!req.originalUrl) {
-    next(new Error('no req.originalUrl'))
-    return
-  }
-
-  const { q, tag, offset } = qs.parse(req.originalUrl.split('?')[1] || '')
+const router = (req: Request, res: Response) => {
+  const { q, tag, offset } = req.query
 
   let allData
 
   if (q) {
     idx = idx || lunr.Index.load(idxJson)
 
-    allData = idx.search(normalizeArray(q) || '').map(({ ref }) => {
+    allData = idx.search(q as string).map(({ ref }) => {
       return rawJson[ref]
     })
   } else {
@@ -39,16 +32,14 @@ const router: ServerMiddleware = (req, res, next) => {
       return a ? (b ? b.localeCompare(a) : a) : b
     })
     .slice(
-      parseInt(normalizeArray(offset) || '0'),
-      parseInt(normalizeArray(offset) || '0') + 5
+      parseInt((offset as string) || '0'),
+      parseInt((offset as string) || '0') + 5
     )
 
-  res.end(
-    JSON.stringify({
-      count,
-      result,
-    })
-  )
+  res.json({
+    count,
+    result,
+  })
 }
 
 export default router

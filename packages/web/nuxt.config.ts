@@ -6,6 +6,7 @@ import dayjs from 'dayjs'
 import yaml from 'js-yaml'
 import * as z from 'zod'
 
+import getServer from './serverMiddleware'
 import rawJson from './build/raw.json'
 import { CONTENT_PATH } from './scripts/dir'
 
@@ -96,6 +97,8 @@ const config = async (): Promise<NuxtConfig> => {
     yaml.safeLoad(fs.readFileSync(path.join(CONTENT_PATH, 'theme.yml'), 'utf8'))
   )
 
+  const srv = await getServer()
+
   return {
     target: 'static',
     head: {
@@ -153,15 +156,9 @@ const config = async (): Promise<NuxtConfig> => {
       proxy: true,
     },
     proxy: {
+      '/serverMiddleware': 'http://localhost:5000',
       '/.netlify/functions': 'http://localhost:9000',
     },
-    serverMiddleware: [
-      { path: '/serverMiddleware/post', handler: '~/serverMiddleware/post.ts' },
-      {
-        path: '/serverMiddleware/search',
-        handler: '~/serverMiddleware/search.ts',
-      },
-    ],
     build: {
       postcss: {
         preset: {
@@ -184,6 +181,16 @@ const config = async (): Promise<NuxtConfig> => {
         tagCloudData: JSON.parse(fs.readFileSync('./build/tag.json', 'utf-8')),
         hasSocial: !!theme.social,
       }),
+    },
+    hooks: {
+      generate: {
+        done() {
+          if (srv) {
+            srv.close()
+          }
+          process.exit(0)
+        },
+      },
     },
     generate: {
       crawler: false,

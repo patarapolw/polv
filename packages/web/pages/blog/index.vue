@@ -13,7 +13,10 @@ import PostQuery from '@/components/PostQuery.vue'
   },
   layout: 'blog',
   async asyncData({ app }) {
-    const ps = await app.$axios.$get('/serverMiddleware/search')
+    const PORT = process.client ? 3000 : 5000
+    const ps = await app.$axios.$get(
+      `http://localhost:${PORT}/serverMiddleware/search`
+    )
 
     return {
       defaults: {

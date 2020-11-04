@@ -69,7 +69,7 @@ export default class PostTeaser extends Vue {
   margin-left: -1.5rem;
   margin-right: -1.5rem;
 
-  img {
+  > * {
     width: 100%;
   }
 
