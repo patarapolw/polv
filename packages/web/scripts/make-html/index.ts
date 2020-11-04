@@ -1,14 +1,14 @@
-import path from 'path'
+import { dstMediaPath, srcMediaPath } from '../dir'
 
 import cheerio from 'cheerio'
 import ejs from 'ejs'
 import fetch from 'node-fetch'
 import fs from 'fs-extra'
+import { matter } from './matter'
+import path from 'path'
 import scopeCss from 'scope-css'
 import sharp from 'sharp'
 import showdown from 'showdown'
-import { dstMediaPath, srcMediaPath } from '../dir'
-import { matter } from './matter'
 
 export class MakeHtml {
   public md: showdown.Converter
@@ -219,7 +219,7 @@ export class CacheMedia {
     }
 
     const makeExt = (b: string, ext: string) => {
-      return '/media/' + b.replace(/\.[A-Z0-9]+$/i, '') + ext
+      return b.replace(/\.[A-Z0-9]+$/i, '') + ext
     }
 
     let imWebp = ''
@@ -260,11 +260,11 @@ export class CacheMedia {
         ])
       }
 
-      imWebp = makeExt(base, '.webp')
-      imPng = makeExt(base, '.png')
+      imWebp = '/media/' + makeExt(base, '.webp')
+      imPng = '/media/' + makeExt(base, '.png')
     } else {
-      imWebp = makeExt(src, '.webp')
-      imPng = makeExt(src, '.png')
+      imWebp = '/media/' + makeExt(src, '.webp')
+      imPng = '/media/' + makeExt(src, '.png')
     }
 
     return { imWebp, imPng }
