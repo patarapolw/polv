@@ -38,22 +38,22 @@ So, I decided to visit my old friend, VirtualBox.
 
 ## VirtualBox advantages (and cons)
 
-- Graphics and input method engines are all decent and reliable. (Forgot to say that sound doesn't work in WSL2's X410, but does work in VirtualBox.)
+- Graphics and input method engines are all decent and reliable. (Forgot to say that **sound doesn't work in WSL2**'s X410, but does work in VirtualBox.)
 - True sandboxing. Better security.
   - Of course, a big pro/con of WSL2, is that you can access filesystem, bidirectionally to-and-from Windows. (to-WSL: SSH; from-WSL: network drive)
 
 WSL2 does have some unique cons.
 
-- Web development in WSL2, when opening a server port - the port increases by one in Windows, e.g. 8080 => 8081. None of these shit in VirtualBox.
-- systemd, and perhaps many other default daemons, does not run at all in WSL2. You cannot always expect things to work the same way as plain old Linux.
-  - This also includes, how to install Docker in WSL2.
+- Web development in WSL2, when opening a server port - [the port increases by one in Windows, e.g. 8080 => 8081](https://dev.to/patarapolw/comment/181l1). None of these shit in VirtualBox.
+- `systemd`, and perhaps many other default daemons, does not run at all in WSL2. You cannot always expect things to work the same way as plain old Linux.
+  - This also includes, [how to install Docker in WSL2](https://docs.docker.com/docker-for-windows/wsl/).
 - GUI, even with the best xrdp or X410 (or VcXsrv), throws error often. Input method engines do not work.
 
 Of course, VirtualBox comes with the same old cons.
 
-- Harder to set up to be performant. Have to manually allocate not only RAM and hard disk space; but also CPU's and even BIOS settings sometimes.
-  - Everything is automated and defaulted in WSL2. You don't have to set up anything to be performant. (You might want to limit RAM used, though.)
-- I still cannot figure a way to access WSL2 from VirtualBox. Network drives cannot be accessed from VirtualBox shared folders.
+- Harder to set up to be performant. Have to manually allocate not only RAM and hard disk space; but also CPU's and **even BIOS settings sometimes**.
+  - Everything is automated and defaulted in WSL2. You don't have to set up anything to be performant. (You might want to [limit RAM usage](https://github.com/microsoft/WSL/issues/4166), though.)
+- I still cannot figure **a way to access WSL2 from VirtualBox**. Network drives cannot be accessed from VirtualBox shared folders.
 
 ## Conclusions
 
