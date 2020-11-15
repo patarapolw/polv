@@ -28,7 +28,7 @@ Another major complaint is
   description: 'Your Windows build number: 18917 What&amp;#39;s wrong / what should be happening instead: WSL 2 starts using huge amounts of RAM after a while, just using it like normal. At the moment I&amp;#39;m using ph...'
 }) %>
 
-Luckily, I upgrade my laptop from 8GB to 16GB in advance. It uses 8GB RAM at baseline. However, there is no real performance delay.
+Luckily, I upgrade my laptop from 8GB to 16GB in advance. **It uses 8GB RAM at baseline. However, there is no real performance delay.**
 
 ![RAM used](https://dev-to-uploads.s3.amazonaws.com/i/2ma7rxiqirbqh4iby8pk.jpg)
 
@@ -40,7 +40,7 @@ So, I decided to visit my old friend, VirtualBox.
 
 - Graphics and input method engines are all decent and reliable. (Forgot to say that **sound doesn't work in WSL2**'s X410, but does work in VirtualBox.)
 - True sandboxing. Better security.
-  - Of course, a big pro/con of WSL2, is that you can access filesystem, bidirectionally to-and-from Windows. (to-WSL: SSH; from-WSL: network drive)
+  - Of course, a big pro/con of WSL2, is that **you can access filesystem, bidirectionally to-and-from Windows**. (to-WSL: SSH; from-WSL: network drive)
 
 WSL2 does have some unique cons.
 
