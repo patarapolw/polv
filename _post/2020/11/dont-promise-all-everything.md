@@ -19,6 +19,9 @@ Don't just do this. You will either break your own API, or get blocked.
 
 ```ts
 // const vocabs = fs.readFileSync('vocabs.txt', 'utf-8').trim().split(/\n/g)
+// console.log(vocab.length) //=> 100,000
+//
+// const resultMap = new Map<string, Result>()
 // const lookup: (v: string) => Promise<Result> = (v) => fetch(`/api?q=${encodeURIComponent(v)}`)
 //   .then((r) => r.json())
 //   .then((r) => resultMap.set(v, r))
@@ -32,7 +35,7 @@ await Promise.all(vocabs.map((v) => lookup(v)))
 const promises = vocabs.map((v) => () => lookup(v))
 
 const batchSize = 100
-for (let i = 0; i < batchSize; i += batchSize) {
+for (let i = 0; i < promises.length; i += batchSize) {
   await Promise.all(promises.slice(i, i + batchSize).map((p) => p()))
 }
 ```
@@ -42,5 +45,7 @@ for (let i = 0; i < batchSize; i += batchSize) {
 ```ts
 const sleep = (msec: number) => new Promise((resolve) => setTimeout(resolve, msec))
 
-await Promise.all(vocabs.map((v, i) => sleep(50 * i).then(() => lookup(v))))
+await Promise.all(
+  vocabs.map((v, i) => sleep(50 * i).then(() => lookup(v)))
+)
 ```
