@@ -3,8 +3,13 @@ template.innerHTML = /* html */ `
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/normalize.css@8.0.1/normalize.css">
 
 <style>
+::-webkit-scrollbar {
+  width: 0 !important;
+}
+
 * {
   font-family: sans-serif;
+  -ms-overflow-style: none;
 }
 
 :host > a {
@@ -33,6 +38,10 @@ article {
   justify-content: center;
 }
 
+article > * {
+  min-width: 200px;
+}
+
 img {
   height: auto;
   width: 100px;
@@ -43,12 +52,17 @@ img {
   margin-block-start: 0;
   margin-bottom: 0;
   font-size: 1.3rem;
+  font-weight: bold;
   padding-bottom: 1rem;
+  max-height: 10em;
+  overflow: scroll;
 }
 
 .description {
   display: none; /* block */
   min-height: 4em;
+  max-height: 10em;
+  overflow: scroll;
 }
 </style>
 
@@ -56,12 +70,12 @@ img {
   <img />
 </div>
 <article>
-  <h3 class="header"></h3>
+  <div class="header"></div>
   <div class="description"></div>
 </article>
 `
 
-export class XCard extends HTMLElement {
+class XCard extends HTMLElement {
   async connectedCallback() {
     // Await a little for incremental dom to load
     await new Promise((resolve) => setTimeout(resolve, 50))

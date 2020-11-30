@@ -101,4 +101,4 @@ Perhaps, I should learn more about [OpenGraph](https://ogp.me/).
 
 I have just watched this. It is quite good.
 
-<iframe width="560" height="315" src="https://www.youtube.com/embed/DvwS7cV9GmQ" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+<%- youtube({ href: 'DvwS7cV9GmQ' }) %>

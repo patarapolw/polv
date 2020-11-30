@@ -1,5 +1,9 @@
 /* eslint-disable camelcase */
-const remark_config = JSON.parse(process.env.remark42Config)
+const remark_config = {
+  host: 'https://remark42.polv.cc',
+  siteId: 'polv',
+  locale: 'en',
+}
 
 ;(function (c) {
   for (let i = 0; i < c.length; i++) {

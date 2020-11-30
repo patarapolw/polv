@@ -73,7 +73,7 @@ I did this with [better-sqlite3](https://github.com/JoshuaWise/better-sqlite3), 
 
 By the way, the deal with `/* sql */` is this VSCode extension - [Comment tagged templates](https://marketplace.visualstudio.com/items?itemName=bierner.comment-tagged-templates). I really recommend it over [my old deprecated post](https://dev.to/patarapolw/fake-tagged-template-string-literal-to-enable-syntax-highlighting-in-vscode-34g1).
 
-![vscode-comment-tagged-templates](https://github.com/mjbvz/vscode-comment-tagged-templates/raw/master/docs/example.png)
+![vscode-comment-tagged-templates](https://github.com/mjbvz/vscode-comment-tagged-templates/raw/master/docs/example.png =400x*)
 
 ## Making it ORM-like
 

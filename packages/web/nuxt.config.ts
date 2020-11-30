@@ -117,6 +117,15 @@ const config = async (): Promise<NuxtConfig> => {
       ],
       link: [{ rel: 'icon', type: 'image/x-icon', href: '/media/favicon.ico' }],
       script: [
+        ...(theme.sidebar?.twitter
+          ? [
+              {
+                src: 'https://platform.twitter.com/widgets.js',
+                async: true,
+                charset: 'utf-8',
+              },
+            ]
+          : []),
         ...(theme.analytics?.plausible
           ? [
               {
@@ -127,14 +136,15 @@ const config = async (): Promise<NuxtConfig> => {
               },
             ]
           : []),
+        { src: '/plugins-async/remark42.js', async: true, type: 'module' },
+        { src: '/plugins-async/x-card.js', async: true, type: 'module' },
       ],
     },
-    css: ['~/styles/app.scss'],
-    plugins: [
-      '~/plugins/fontawesome.ts',
-      '~/plugins/x-card.client.ts',
-      ...(theme.comments?.remark42 ? ['~/plugins/remark42.client.js'] : []),
+    css: [
+      '~/styles/app.scss',
+      '~/node_modules/highlight.js/styles/night-owl.css',
     ],
+    plugins: ['~/plugins/fontawesome.ts'],
     components: true,
     buildModules: ['@nuxt/typescript-build'],
     modules: [
@@ -158,6 +168,7 @@ const config = async (): Promise<NuxtConfig> => {
     proxy: {
       '/serverMiddleware': 'http://localhost:5000',
       '/.netlify/functions': 'http://localhost:9000',
+      '/plugins-async': 'http://localhost:1234',
     },
     build: {
       postcss: {

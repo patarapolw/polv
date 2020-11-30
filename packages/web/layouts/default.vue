@@ -124,11 +124,14 @@
 
             <client-only>
               <section v-if="sidebar.twitter" class="card mt-4">
-                <Timeline
-                  :id="sidebar.twitter"
-                  source-type="profile"
-                  :options="{ height: 800 }"
-                />
+                <a
+                  ref="twitter"
+                  class="twitter-timeline"
+                  data-height="800"
+                  :href="`https://twitter.com/${sidebar.twitter}`"
+                >
+                  {{ `Tweets by ${sidebar.twitter}` }}
+                </a>
               </section>
             </client-only>
           </aside>
@@ -139,8 +142,6 @@
 </template>
 
 <script lang="ts">
-import 'highlight.js/styles/default.css'
-
 import { Component, Vue } from 'nuxt-property-decorator'
 import hljs from 'highlight.js'
 
@@ -157,11 +158,6 @@ const rawData = JSON.parse(process.env.BlogLayout!)
 @Component({
   components: {
     PageSocial,
-    ...(rawData.sidebar?.twitter
-      ? {
-          Timeline: async () => (await import('vue-tweet-embed')).Timeline,
-        }
-      : {}),
   },
 })
 export default class BlogLayout extends Vue {
@@ -241,6 +237,13 @@ export default class BlogLayout extends Vue {
 
   mounted() {
     this.q = normalizeArray(this.$route.query.q) || ''
+
+    const { twttr } = window as any
+    if (this.sidebar?.twitter) {
+      if (twttr) {
+        twttr.widgets.load()
+      }
+    }
   }
 
   onSearch() {

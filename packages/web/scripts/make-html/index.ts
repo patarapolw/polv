@@ -1,14 +1,13 @@
-import { dstMediaPath, srcMediaPath } from '../dir'
-
+import path from 'path'
 import cheerio from 'cheerio'
 import ejs from 'ejs'
 import fetch from 'node-fetch'
 import fs from 'fs-extra'
-import { matter } from './matter'
-import path from 'path'
 import scopeCss from 'scope-css'
 import sharp from 'sharp'
 import showdown from 'showdown'
+import { dstMediaPath, srcMediaPath } from '../dir'
+import { matter } from './matter'
 
 export class MakeHtml {
   public md: showdown.Converter
@@ -75,6 +74,29 @@ export class MakeHtml {
                       rel: 'noopener noreferrer nofollow',
                     })
                     .text(href)
+                )
+            )
+            .html() || ''
+        )
+      },
+      youtube: ({ href }: { href: string }) => {
+        return (
+          $('<div>')
+            .append(
+              $('<figure>')
+                .addClass('image is-16by9 responsive-iframe')
+                .append(
+                  $('<iframe>')
+                    .addClass('has-ratio')
+                    .attr({
+                      frameborder: 0,
+                      allow:
+                        'accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture',
+                      allowfullscreen: '',
+                      src: href.startsWith('https://')
+                        ? href
+                        : `https://www.youtube.com/embed/${href}`,
+                    })
                 )
             )
             .html() || ''

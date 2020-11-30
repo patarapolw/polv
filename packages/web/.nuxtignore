@@ -2,7 +2,9 @@
 /.vscode/
 /lambda/
 /lambda-dist/
+/plugins-async/
 /scripts/
 /serverMiddleware/
 /netlify.toml
 /README.md
+*.d.ts

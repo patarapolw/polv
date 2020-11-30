@@ -9,7 +9,7 @@ tag:
 
 Social Dilemma is a Netflix movie that discusses inevitable results of social platforms and personalized technologies, as a byproduct of capitalism that created them.
 
-<iframe width="560" height="315" src="https://www.youtube.com/embed/uaaC57tcci0" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+<%- youtube({ href: 'uaaC57tcci0' }) %>
 
 And there is [movie's official website](https://www.thesocialdilemma.com/).
 
