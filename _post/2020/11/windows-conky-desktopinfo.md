@@ -23,7 +23,7 @@ Which is much much better than Widget Launcher, where you can find in Windows St
 
 First, I extracted `DesktopInfo290.zip` to `C:\DesktopInfo290`.
 
-Then I create a Shortcut to `C:\DesktopInfo290\DesktopInfo.exe` at `shell:startup` (type this the Location bar; then Copy, then Paste ShortCut). Despite having 64-bit Windows, `DesktopInfo64.exe` does not visibly run.
+Then I create a Shortcut to `C:\DesktopInfo290\DesktopInfo.exe` at `shell:startup` (Copy; then type `shell:startup` at the Location bar; then Paste Shortcut). Despite having 64-bit Windows, `DesktopInfo64.exe` does not visibly run.
 
 My widget settings `desktopinfo.ini` is this, where I edited `desktopinfo-advanced.ini`.
 
@@ -34,15 +34,15 @@ PAGE-TITLE=Home Page
 COLOR=%Cyan%
 
 COMMENT=color:%white%,style:w,font-face:BahnSchrift,font-size:140%,text:Desktop Info
-CMD=text:Time,interval:600,code-page:65001,file:python.exe,parameters:get_tz_datetime.py,display:%4
-TIMEZONE=interval:600
+CMD=text:Time,interval:60,code-page:65001,file:python.exe,parameters:get_tz_datetime.py,display:%4
+TIMEZONE=interval:60
+UPTIME=interval:60,display:%1 d %2 h %3 min
 WMI=interval:60,text:Battery,namespace:root\cimv2,query:WIn32_Battery,display:%EstimatedChargeRemaining%% (%battery%BatteryStatus%%)
 HOST
 USER
 HTTPGET=interval:600,text:External IP,source:http://ipecho.net/plain
-NETPACKETS=interval:5,display:r:%1[1.0n]  s:%2[1.0n]
-; NETPACKETSRATE=interval:5,text:Net Rate,mtu:1500,display:r:%1[1.1b]Bps  s:%2[1.1b]Bps
-NETPACKETSRATE=interval:3,chart:line2 height:3 scale:log max:10 series1:1 color1:%yellow% series2:2 color2:%blue%,display: Down:%1[1.1b]Bps       Up:%2[1.1b]Bps
+NETPACKETS=interval:5,display:Down: %1[9.0n]    Up: %2[9.0n]
+NETPACKETSRATE=interval:3,chart:line2 height:3 scale:log max:25 series1:1 color1:%yellow% series2:2 color2:%blue%,display:Down:%1[5.1b]Bps       Up:%2[5.1b]Bps
 CONTROL=type:1,color:%white%,text:,display:Network Connections,uri:%SystemRoot%\System32\control.exe,args:ncpa.cpl
 
 # page 1 - cpu
@@ -58,7 +58,7 @@ COLOR=b0ffb0
 COMMENT=text:,font-size:50%
 PHYSICALRAM=interval:3,chart:line2 height:3 scale:linear max:100 series1:3 color1:00ff00,threshold1:3 80 %red%,display:%1[3.1b]B / %2[3.1b]B (%3% used)
 TOPPROCESSMEM=interval:10,font-size:80%,text:Top Memory,display:%1 (pid:%2) %3[1.1b]B
-PAGEFAULTS=interval:10,font-size:100%,threshold1:5 -80 2222bb,display:Tot: %1\, Hrd: %2\, Hit: %5%
+PAGEFAULTS=interval:10,font-size:100%,threshold1:5 -80 2222bb,display:Total: %1[1.0n]\, Ratio: %2\, Hit: %5%
 
 COLOR=%Orange%
 
