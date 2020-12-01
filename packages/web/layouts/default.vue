@@ -40,9 +40,9 @@
           <component
             :is="t.href ? 'a' : 'nuxt-link'"
             v-for="t in tabs"
-            :key="t.name"
+            :key="t.id"
             class="navbar-item"
-            :to="'/tab/' + t.name"
+            :to="'/tab/' + t.id"
             :target="t.href ? '_blank' : ''"
             rel="noopener nofollow noreferrer"
           >

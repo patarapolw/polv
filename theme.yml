@@ -8,14 +8,22 @@ keywords:
   - programming
 tabs:
   - name: Pinned
+    id: pinned
     q: category:pinned
+  - name: Health
+    id: health
+    q: tag:health
   - name: Windows
+    id: windows
     q: category:windows
   - name: macOS
+    id: macos
     q: category:macos
   - name: Linux
+    id: linux
     q: category:linux
   - name: Cross-platform
+    id: crossplatform
     q: tag:crossplatform
 author:
   url: https://www.polv.cc

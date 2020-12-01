@@ -11,6 +11,8 @@ tag:
   - ocr
   - opencv
   - objectdetection
+  - health
+  - medicine
 category:
   - pinned
 ---

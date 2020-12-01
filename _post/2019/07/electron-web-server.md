@@ -6,6 +6,7 @@ image: >-
 tag:
   - electron
   - server
+  - crossplatform
 category:
   - pinned
 ---

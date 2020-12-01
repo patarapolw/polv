@@ -10,6 +10,7 @@ tag:
   - os
   - python
   - travis
+  - crossplatform
 ---
 
 And it also allows C compiling to binary, as long as you can get the right setup.

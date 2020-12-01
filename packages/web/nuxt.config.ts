@@ -31,6 +31,7 @@ export const zTabs = () =>
   z.array(
     z.object({
       name: z.string(),
+      id: z.string(),
       q: z.string(),
     })
   )
@@ -174,7 +175,7 @@ const config = async (): Promise<NuxtConfig> => {
       social: JSON.stringify(theme.social || {}),
       tabs: JSON.stringify(
         (theme.tabs || []).reduce(
-          (prev, c) => ({ ...prev, [c.name]: c.q }),
+          (prev, c) => ({ ...prev, [c.id]: c.q }),
           {} as Record<string, string>
         )
       ),
@@ -196,6 +197,7 @@ const config = async (): Promise<NuxtConfig> => {
         },
       },
     },
+    // Use crawler by default
     generate: {
       // crawler: false,
       // routes() {
