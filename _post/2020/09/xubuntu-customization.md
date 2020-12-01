@@ -11,7 +11,11 @@ category:
   - linux
 ---
 
-Most major things here have to be `rEFInd`, `conky` and `libinput`
+_Updated 2020-12-01_
+
+Most major things here have to be [rEFInd](http://www.rodsbooks.com/refind/installing.html), [conky](http://ubuntuhandbook.org/index.php/2020/07/install-conky-manager-ubuntu-20-04-lts/) and [libinput-gestures](https://github.com/bulletmark/libinput-gestures)
+
+`rEFInd` for me is MacBook-specific, though. I install it on macOS's side.
 
 <!-- excerpt_separator -->
 
@@ -31,18 +35,19 @@ conky.config = {
 	own_window = true,
 	own_window_type = 'normal',
 	own_window_argb_visual = true,
-	own_window_argb_value = 50,
+	-- own_window_argb_value = 50,
+	own_window_transparent = true,
 	own_window_hints = 'undecorated,below,sticky,skip_taskbar,skip_pager',
 	border_inner_margin = 5,
 	border_outer_margin = 0,
 	xinerama_head = 1,
 	alignment = 'bottom_right',
-	gap_x = 0,
-	gap_y = 33,
+	gap_x = 20,
+	gap_y = 20,
 	draw_shades = false,
 	draw_outline = false,
 	draw_borders = false,
-	draw_graph_borders = false,
+	draw_graph_borders = true,
 	use_xft = true,
 	font = 'Ubuntu Mono:size=12',
 	xftalpha = 0.8,
@@ -50,8 +55,7 @@ conky.config = {
 	default_color = 'white',
 	own_window_colour = '#000000',
 	minimum_width = 300, minimum_height = 0,
-	alignment = 'top_right',
-
+	alignment = 'top_right'
 };
 conky.text = [[
 ${alignr}${time %H:%M:%S}
@@ -67,16 +71,24 @@ ${execi 1000 acpi -b | awk "{print $1}" | sed 's/,.*//'}${alignr}${battery_perce
 ${font sans-serif:bold:size=10}CPU ${hr 2}
 ${font sans-serif:normal:size=8}${execi 1000 grep model /proc/cpuinfo | cut -d : -f2 | tail -1 | sed 's/\s//'}
 
-CPU0: ${cpu cpu0}% ${cpubar cpu0}
-CPU1: ${cpu cpu1}% ${cpubar cpu1}
-CPU2: ${cpu cpu2}% ${cpubar cpu2}
-CPU3: ${cpu cpu3}% ${cpubar cpu3}
+${alignr} Total CPU: ${cpu cpu0}%
+${cpugraph cpu0 50,300 -t}
+CPU1: ${cpu cpu1}% ${alignr}${cpubar cpu1 6,240}
+CPU2: ${cpu cpu2}% ${alignr}${cpubar cpu2 6,240}
+CPU3: ${cpu cpu3}% ${alignr}${cpubar cpu3 6,240}
+CPU4: ${cpu cpu4}% ${alignr}${cpubar cpu4 6,240}
+CPU5: ${cpu cpu5}% ${alignr}${cpubar cpu5 6,240}
+CPU6: ${cpu cpu6}% ${alignr}${cpubar cpu6 6,240}
+CPU7: ${cpu cpu7}% ${alignr}${cpubar cpu7 6,240}
+CPU8: ${cpu cpu8}% ${alignr}${cpubar cpu8 6,240}
 
 ${font sans-serif:bold:size=10}MEMORY ${hr 2}
 ${font sans-serif:normal:size=8}RAM $alignc $mem / $memmax $alignr $memperc%
 $membar
 SWAP $alignc ${swap} / ${swapmax} $alignr ${swapperc}%
 ${swapbar}
+
+${memgraph 50,300 -t}
 
 ${font sans-serif:bold:size=10}DISK USAGE ${hr 2}
 ${font sans-serif:normal:size=8}/ $alignc ${fs_used /} / ${fs_size /} $alignr ${fs_used_perc /}%
@@ -85,8 +97,8 @@ ${fs_bar /}
 ${font Ubuntu:bold:size=10}NETWORK ${hr 2}
 ${font sans-serif:normal:size=8}Local IPs:${alignr}External IP:
 ${execi 1000 ip a | grep inet | grep -vw lo | grep -v inet6 | cut -d \/ -f1 | sed 's/[^0-9\.]*//g'}  ${alignr}${execi 60000  wget -q -O- http://ipecho.net/plain; echo}
-${font sans-serif:normal:size=8}Down: ${downspeed wlp2s0}  ${alignr}Up: ${upspeed wlp2s0} 
-${color lightgray}${downspeedgraph wlp2s0 30,130 } ${alignr}${upspeedgraph wlp2s0 30,130 }$color
+${font sans-serif:normal:size=8}Down: ${downspeed wlp2s0}  ${alignr}Up: ${upspeed wlp1s0} 
+${color lightgray}${downspeedgraph wlp2s0 30,145} ${alignr}${upspeedgraph wlp1s0 30,145}$color
 ${font sans-serif:bold:size=10}TOP PROCESSES ${hr 2}
 ${font sans-serif:normal:size=8}Name $alignr PID   CPU%   MEM%${font sans-serif:normal:size=8}
 ${top name 1} $alignr ${top pid 1} ${top cpu 1}% ${top mem 1}%
@@ -100,4 +112,18 @@ ${top name 8} $alignr ${top pid 8} ${top cpu 8}% ${top mem 8}%
 ${top name 9} $alignr ${top pid 9} ${top cpu 9}% ${top mem 9}%
 ${top name 10} $alignr ${top pid 10} ${top cpu 10}% ${top mem 10}%
 ]];
+```
+
+## libinput-gestures
+
+As the author targeted GNOME-3 desktop (but I prefer Xfce, and sometimes, MATE), this has to be tweaked a little.
+
+```sh
+cp /etc/libinput-gestures.conf ~/.config/libinput-gestures.conf
+code ~/.config/libinput-gestures.conf
+```
+
+```conf
+gesture swipe left	_internal ws_left
+gesture swipe right	_internal ws_right
 ```
