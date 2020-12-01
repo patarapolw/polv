@@ -10,6 +10,7 @@ template.innerHTML = /* html */ `
 * {
   font-family: sans-serif;
   -ms-overflow-style: none;
+  scrollbar-width: none;
 }
 
 :host > a {
