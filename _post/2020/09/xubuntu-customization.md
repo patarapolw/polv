@@ -11,7 +11,7 @@ category:
   - linux
 ---
 
-_Updated 2020-12-01_
+*Updated 2020-12-01*
 
 Most major things here have to be [rEFInd](http://www.rodsbooks.com/refind/installing.html), [conky](http://ubuntuhandbook.org/index.php/2020/07/install-conky-manager-ubuntu-20-04-lts/) and [libinput-gestures](https://github.com/bulletmark/libinput-gestures)
 
