@@ -1,11 +1,13 @@
 ---
 title: WSL vs plain old VirtualBox
-date: 2020-11-15
+date: 2020-11-15T00:00:00+07:00
 tag:
   - wsl
   - windows
   - linux
   - virtualbox
+category:
+  - windows
 ---
 
 So, I have been using WSL2 on Windows 10 for a while; and I have made a few complaints. The latest one is.

@@ -1,11 +1,12 @@
 ---
 title: Don't forget Google Webmaster
-date: '2019-12-05 00:00 +07:00'
+date: 2019-12-05T00:00:00+07:00
 image: >-
   https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcSPfYmTcJPvPkZtVffhOKF5aTtxVMc3ZkgfCGpu1byb7YxUGLp_
 tag:
   - google
   - seo
+category:
   - pinned
 ---
 

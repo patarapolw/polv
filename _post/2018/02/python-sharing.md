@@ -1,6 +1,6 @@
 ---
 title: Sharing Python project that works in another computer!
-date: '2018-02-27 03:04 +07:00'
+date: 2018-02-27T03:04:00+07:00
 tag:
   - packaging
   - python

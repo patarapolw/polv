@@ -1,8 +1,7 @@
 ---
 title: 'Share your .eslintrc, auto-fix on save, and related config files'
-date: '2020-01-07 00:00 +07:00'
+date: 2020-01-07T00:00:00+07:00
 tag:
-  - dev.to
   - javascript
   - linting
   - typescript

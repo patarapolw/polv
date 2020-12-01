@@ -1,6 +1,6 @@
 ---
 title: Deno might not kill Node, but something else
-date: 2020-10-02
+date: 2020-10-02T00:00:00+07:00
 tag:
   - deno
   - javascript

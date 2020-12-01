@@ -1,10 +1,13 @@
 ---
 title: Powerlevel10k CLI wizard to generate Oh-My-Zsh! theme
-date: 2020-10-20
+date: 2020-10-20T00:00:00+07:00
 tag:
   - zsh
   - terminal
   - linux
+category:
+  - linux
+  - macos
 ---
 
 So, if you use zsh, don't just try `random` theme. `powerlevel10k/powerlevel10k` is not in there.

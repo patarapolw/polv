@@ -1,10 +1,12 @@
 ---
 title: Installing Linux on macOS MacBook Air -- Major Obstacles
-date: '2019-07-06 00:00 +07:00'
+date: 2019-07-06T00:00:00+07:00
 image: 'https://miro.medium.com/max/3000/1*Qsu6s05Xepx3_YKmmviURg.png'
 tag:
   - linux
   - macos
+category:
+  - linux
 ---
 
 Installing Linux is never hard on Windows, with supported hardwares, e.g. Dell, but on macOS, it is another beast; probably because of a very specific proprietary hardware -- main harddisk and cannot install additional internal harddisk. Furthermore, I have both macOS 11" (2015) ad 13" (2017) with different problems. After, it is never as easy as installing Windows.

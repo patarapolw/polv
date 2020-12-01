@@ -1,12 +1,13 @@
 ---
 title: Customizing JSON parser and stringifier
-date: '2019-09-11 00:00 +07:00'
+date: 2019-09-11T00:00:00+07:00
 image: >-
   https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcQ7pdGqnbQneek9mD0QbbdEFO1kjNHxeG2jRt42OoCY2a9HefQy
 tag:
   - javascript
   - json
   - python
+category:
   - pinned
 ---
 

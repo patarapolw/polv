@@ -33,9 +33,7 @@ export const matter = {
     const { matter, content } = this.split(s)
 
     if (matter) {
-      const data = yaml.safeLoad(matter, {
-        schema: yaml.JSON_SCHEMA,
-      })
+      const data = yaml.safeLoad(matter)
 
       if (typeof data === 'object' && !Array.isArray(data)) {
         return { data: data as Record<string, T>, content }

@@ -1,10 +1,11 @@
 ---
 title: 'Building JavaScript assets offline, before deploying to the web server'
-date: '2019-12-25 00:00 +07:00'
+date: 2019-12-25T00:00:00+07:00
 tag:
-  - dev.to
   - javascript
   - netlify
+category:
+  - hosting
 ---
 
 **I have always wondered why I have to run `yarn build` scripts online on Heroku / Netlify / Now.sh**; which takes time, does not guarantee to succeed and HTML / JavaScript / CSS are cross platform anyway.

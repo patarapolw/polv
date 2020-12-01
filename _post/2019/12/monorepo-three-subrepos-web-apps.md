@@ -1,9 +1,7 @@
 ---
 title: Monorepo with three subrepos for web apps
-category: blog
-date: '2019-12-26 00:00 +07:00'
+date: 2019-12-26T00:00:00+07:00
 tag:
-  - dev.to
   - typescript
   - webdev
 ---

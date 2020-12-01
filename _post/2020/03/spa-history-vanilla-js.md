@@ -1,8 +1,7 @@
 ---
 title: SPA with history mode router in vanilla JS (with potential for SSG)
-date: '2020-03-02 00:00 +07:00'
+date: 2020-03-02T00:00:00+07:00
 tag:
-  - dev.to
   - javascript
   - spa
   - vanilla-js

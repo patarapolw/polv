@@ -1,11 +1,13 @@
 ---
 title: Publish static websites to GitHub Pages (or any Git) cleanly with gh-pages
-date: '2019-08-17 00:00 +07:00'
+date: 2019-08-17T00:00:00+07:00
 image: >-
   https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcQFKi5a1hzYykg3TJiYcMvOJa2mjhRwSXxX2LCRPC-TfoUIc5TB
 tag:
-  - gh-pages
+  - github-pages
   - heroku
+category:
+  - hosting
 ---
 
 This is as simple as `npm run build && gh-pages -d dist`, and there will be no pollution from build remnants. You can safely as `/dist/` to `.gitignore`.

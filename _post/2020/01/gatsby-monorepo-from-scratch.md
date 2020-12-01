@@ -1,8 +1,7 @@
 ---
 title: 'Gatsby blog in a Monorepo, created from scratch, with some requirements'
-date: '2020-01-15 00:00 +07:00'
+date: 2020-01-15T00:00:00+07:00
 tag:
-  - dev.to
   - gatsby
   - monorepo
 ---

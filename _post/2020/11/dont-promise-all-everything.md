@@ -1,6 +1,6 @@
 ---
 title: Don't Promise.all() everything at once
-date: 2020-11-26
+date: 2020-11-26T00:00:00+07:00
 tag:
   - javascript
   - async

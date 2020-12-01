@@ -1,11 +1,12 @@
 ---
 title: I turned my website into a template, mostly by git tricks
-date: 2020-06-20
+date: 2020-06-20T00:00:00+07:00
 tag:
   - nuxt
   - git
   - vue
-  - dev.to
+category:
+  - making
   - pinned
 ---
 

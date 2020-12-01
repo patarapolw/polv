@@ -1,6 +1,6 @@
 ---
 title: Additional features for GitHub Pages blog
-date: '2019-07-05 00:00 +07:00'
+date: 2019-07-05T00:00:00+07:00
 image: >-
   https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcT9gKwkPcrFDuSH7LcaAnhMkpK1AVSVk6a9wDWauOY_J6CvKl2r
 tag:

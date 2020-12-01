@@ -1,13 +1,15 @@
 ---
 title: macOS clean install and installing necessary dev applications
-date: '2019-11-30 00:00 +07:00'
+date: 2019-11-30T00:00:00+07:00
 image: >-
   https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcS2Up9c7iRc_aIDVfouaC2OAZYiK6o7ZzermxFeFcsqL3OHb_w8
 tag:
   - chinese
   - japanese
-  - macOS
+  - macos
   - mandarin
+category:
+  - macos
 ---
 
 [Reformatting macOS](https://www.imore.com/how-to-prepare-mac-for-sale#reformat-your-hard-drive) is quite easy, but let's see what I do next, for my

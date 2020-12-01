@@ -1,6 +1,6 @@
 ---
 title: Simple dynamic typing in Kotlin with Kotson
-date: '2019-07-25 00:00 +07:00'
+date: 2019-07-25T00:00:00+07:00
 image: >-
   https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcRI0rk1ieVKhHnaRc3h1vDHHeRJf7Lb8nycLGq_l3FFVXWRyuqa
 tag:
@@ -8,6 +8,7 @@ tag:
   - gson
   - kotlin
   - kotson
+category:
   - pinned
 ---
 

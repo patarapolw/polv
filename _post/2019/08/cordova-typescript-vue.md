@@ -1,6 +1,6 @@
 ---
 title: 'Cordova, TypeScript, Vue and using features beyond WebView'
-date: '2019-08-08 00:00 +07:00'
+date: 2019-08-08T00:00:00+07:00
 image: >-
   https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcS9pgod2gRowruzWDJxQXtxJjS-P4cf3lMYJ-cnqf29fZKQFTQ6
 tag:

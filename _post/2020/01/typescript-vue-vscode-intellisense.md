@@ -1,8 +1,7 @@
 ---
 title: 'A guide to using TypeScript in Vue, with maximal VSCode IntelliSense'
-date: '2020-01-14 00:00 +07:00'
+date: 2020-01-14T00:00:00+07:00
 tag:
-  - dev.to
   - typescript
   - vscode
   - vue

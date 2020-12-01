@@ -1,9 +1,8 @@
 ---
 title: CMS I made to feed Nuxt
-date: '2020-04-21 00:00 +07:00'
+date: 2020-04-21T00:00:00+07:00
 tag:
   - cms
-  - dev.to
   - nuxt
 ---
 

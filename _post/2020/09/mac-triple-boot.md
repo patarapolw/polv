@@ -1,11 +1,15 @@
 ---
 title: I triple-booted on an 8-years-old MacBook Pro
-date: 2020-09-16
+date: 2020-09-16T00:00:00+07:00
 tag:
   - macos
   - windows
   - linux
   - ubuntu
+category:
+  - linux
+  - macos
+  - windows
 ---
 
 So, I got my hands on an 8-years-old MacBook Pro (mid 2012), with 4GB RAM, 500GB SATA HD, and Core i5 CPU.

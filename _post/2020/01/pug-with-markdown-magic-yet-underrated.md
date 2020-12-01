@@ -1,13 +1,12 @@
 ---
 title: 'Pug with Markdown is Magic, yet underrated'
-date: '2020-01-04 00:00 +07:00'
+date: 2020-01-04T00:00:00+07:00
 tag:
-  - dev.to
-  - frontend
   - javascript
   - markdown
   - pug
   - vue
+category:
   - pinned
 ---
 

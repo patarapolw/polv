@@ -1,12 +1,10 @@
 ---
 title: Multi-OS build with Appveyor and Travis CI
-category: blog
-date: '2020-05-13 00:00 +07:00'
+date: 2020-05-13T00:00:00+07:00
 tag:
   - appveyor
   - ci
   - desktop
-  - dev.to
   - electron
   - javascript
   - os

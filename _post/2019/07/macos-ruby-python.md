@@ -1,6 +1,6 @@
 ---
 title: 'Python and Ruby is pre-installed in macOS, but ...'
-date: '2019-07-07 00:00 +07:00'
+date: 2019-07-07T00:00:00+07:00
 image: >-
   https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcRzRPgFnsH3URbSEs5o9rM9BxY-JcGggifXVXEx7bsUVk3KW9QA
 tag:
@@ -9,6 +9,8 @@ tag:
   - node.js
   - python
   - ruby
+category:
+  - macos
 ---
 
 Just don't install anything into System's programming languages, unless you have a virtual environment. Also, you can manage Python and Ruby's versions.

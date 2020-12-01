@@ -1,8 +1,7 @@
 ---
 title: 'Creating an NPM repo with browser version, and also with testing and linting'
-date: '2020-01-07 00:00 +07:00'
+date: 2020-01-07T00:00:00+07:00
 tag:
-  - dev.to
   - javascript
   - testing
   - typescript

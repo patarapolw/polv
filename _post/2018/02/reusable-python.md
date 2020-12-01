@@ -1,6 +1,6 @@
 ---
 title: Create reusable codes across Projects and potentially ShareIt!
-date: '2018-02-07 03:10 +07:00'
+date: 2018-02-07T03:10:00+07:00
 tag:
   - python
 image: >-

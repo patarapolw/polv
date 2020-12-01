@@ -1,6 +1,6 @@
 ---
 title: SQL table design for Arrays, Dates and Indexes - what I learnt from ORM
-date: 2020-11-26 22:00
+date: 2020-11-26T22:00:00+07:00
 tag:
   - sql
   - sqlite

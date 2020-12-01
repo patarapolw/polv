@@ -1,8 +1,7 @@
 ---
 title: Layouts in Vue CLI (not Nuxt)
-date: '2020-05-20 00:00 +07:00'
+date: 2020-05-20T00:00:00+07:00
 tag:
-  - dev.to
   - vue
   - vue-cli
 ---

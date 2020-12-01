@@ -1,6 +1,6 @@
 ---
 title: My common.py
-date: '2018-02-03 02:51 +07:00'
+date: 2018-02-03T02:51:00+07:00
 tag:
   - python
 image: 'https://upload.wikimedia.org/wikipedia/commons/a/ad/Lozingle_10032014.jpg'

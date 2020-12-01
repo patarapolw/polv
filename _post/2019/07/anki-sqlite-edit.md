@@ -1,6 +1,6 @@
 ---
 title: Creating and editing Anki's *.apkg and *.anki2 via SQLite
-date: '2019-07-30 00:00 +07:00'
+date: 2019-07-30T00:00:00+07:00
 image: >-
   https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcR4ooqth-qfi7gtBk5tgnXGiF6CUAhQzLemTpLRUjtSUox19l9T
 tag:

@@ -9,6 +9,18 @@
     "
   >
     <a
+      v-if="social.facebook"
+      class="navbar-item"
+      :href="`https://facebook.com/${social.facebook}`"
+      target="_blank"
+      rel="noopener nofollow noreferrer"
+    >
+      <span class="icon">
+        <FontAwesome :icon="['fab', 'facebook-f']" />
+      </span>
+    </a>
+
+    <a
       v-if="social.twitter"
       class="navbar-item"
       :href="`https://twitter.com/${social.twitter}`"
@@ -41,6 +53,18 @@
     >
       <span class="icon">
         <FontAwesome :icon="['fab', 'quora']" />
+      </span>
+    </a>
+
+    <a
+      v-if="social.linkedin"
+      class="navbar-item"
+      :href="`https://www.linkedin.com/in/${social.linkedin}`"
+      target="_blank"
+      rel="noopener nofollow noreferrer"
+    >
+      <span class="icon">
+        <FontAwesome :icon="['fab', 'linkedin-in']" />
       </span>
     </a>
 

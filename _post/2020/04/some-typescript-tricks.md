@@ -1,8 +1,7 @@
 ---
 title: Some TypeScript tricks
-date: '2020-04-23 00:00 +07:00'
+date: 2020-04-23T00:00:00+07:00
 tag:
-  - dev.to
   - typescript
 ---
 

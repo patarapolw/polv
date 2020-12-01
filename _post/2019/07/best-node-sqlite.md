@@ -1,6 +1,6 @@
 ---
 title: Various Node.js sqlite packages. What is the best?
-date: '2019-07-17 00:00 +07:00'
+date: 2019-07-17T00:00:00+07:00
 image: >-
   https://upload.wikimedia.org/wikipedia/commons/thumb/3/38/SQLite370.svg/1200px-SQLite370.svg.png
 tag:

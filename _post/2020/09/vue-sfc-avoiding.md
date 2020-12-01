@@ -1,6 +1,6 @@
 ---
 title: Vue SFC support (Vetur) not working for you? There are simple ways out. (Possibly also other SFC's, e.g. Svelte.)
-date: 2020-09-11
+date: 2020-09-11T00:00:00+07:00
 tag:
   - vue
   - svelte

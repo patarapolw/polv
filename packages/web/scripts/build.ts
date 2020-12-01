@@ -1,4 +1,3 @@
-import dayjs from 'dayjs'
 import fg from 'fast-glob'
 import fs from 'fs-extra'
 import lunr from 'lunr'
@@ -14,6 +13,7 @@ export interface IPost {
   title: string
   image?: any
   tag?: string[]
+  category?: string[]
   date?: string
   excerpt: string
   excerptHtml: string
@@ -36,16 +36,17 @@ export async function buildIndexes() {
         srcPostPath(f)
       )
 
-      const { title, date, image: unlocalizedImage, tag } = (() => {
-        const { title, date, image, tag } = header
+      const { title, date, image: unlocalizedImage, tag, category } = (() => {
+        const { title, date, image, tag, category } = header
         return z
           .object({
             title: z.string(),
-            date: z.string().optional(),
+            date: z.date().optional(),
             image: z.string().optional(),
             tag: z.array(z.string()).optional(),
+            category: z.array(z.string()).optional(),
           })
-          .parse({ title, date, image, tag })
+          .parse({ title, date, image, tag, category })
       })()
 
       const image = unlocalizedImage
@@ -56,9 +57,10 @@ export async function buildIndexes() {
         path: f.replace(/\.mdx?$/, ''),
         slug: f.replace(/^.+\//, '').replace(/\.mdx?$/, ''),
         title,
-        date: date ? dayjs(date).toISOString() : undefined,
+        date: date ? date.toISOString() : undefined,
         image: typeof image === 'string' ? `/media/${image}` : image,
         tag: (tag || []).map((t) => t.toLocaleLowerCase().replace(/ /g, '-')),
+        category,
         excerpt,
         excerptHtml,
         contentHtml: html,
@@ -85,6 +87,7 @@ export async function buildIndexes() {
         this.field('slug', { boost: 5 })
         this.field('title', { boost: 5 })
         this.field('tag', { boost: 5 })
+        this.field('category', { boost: 5 })
         this.field('excerpt')
 
         rawJson.map((doc) => {

@@ -2,12 +2,10 @@ import fs from 'fs'
 import path from 'path'
 
 import { NuxtConfig } from '@nuxt/types'
-import dayjs from 'dayjs'
 import yaml from 'js-yaml'
 import * as z from 'zod'
 
 import getServer from './serverMiddleware'
-import rawJson from './build/raw.json'
 import { CONTENT_PATH } from './scripts/dir'
 
 export const zRemark42 = () =>
@@ -33,8 +31,7 @@ export const zTabs = () =>
   z.array(
     z.object({
       name: z.string(),
-      to: z.string().optional(),
-      href: z.string().optional(),
+      q: z.string(),
     })
   )
 
@@ -43,22 +40,12 @@ export type ITabs = z.infer<ReturnType<typeof zTabs>>
 export const zSidebar = () =>
   z.object({
     twitter: z.string().optional(),
-    tagCloud: z
-      .object({
-        excluded: z.array(z.string()).optional(),
-      })
-      .optional(),
+    tagCloud: z.boolean().optional(),
   })
 
 export type ISidebar = z.infer<ReturnType<typeof zSidebar>>
 
-export const zSocial = () =>
-  z.object({
-    twitter: z.string().optional(),
-    reddit: z.string().optional(),
-    quora: z.string().optional(),
-    github: z.string().optional(),
-  })
+export const zSocial = () => z.record(z.string())
 
 export type ISocial = z.infer<ReturnType<typeof zSocial>>
 
@@ -185,6 +172,12 @@ const config = async (): Promise<NuxtConfig> => {
       remark42Config: JSON.stringify(theme.comments?.remark42 || null),
       author: JSON.stringify(theme.author),
       social: JSON.stringify(theme.social || {}),
+      tabs: JSON.stringify(
+        (theme.tabs || []).reduce(
+          (prev, c) => ({ ...prev, [c.name]: c.q }),
+          {} as Record<string, string>
+        )
+      ),
       BlogLayout: JSON.stringify({
         banner: theme.banner,
         tabs: theme.tabs,
@@ -204,65 +197,57 @@ const config = async (): Promise<NuxtConfig> => {
       },
     },
     generate: {
-      crawler: false,
-      routes() {
-        const routes = ['/', '/blog']
-
-        const blog = new Set()
-        const tag = new Map()
-
-        const getUrl = ({ path }: { path: string }) => {
-          return `/post/${path}`
-        }
-
-        Object.entries<{
-          tag?: string[]
-          date?: string
-        }>(rawJson)
-          .map(([path, { tag, date }]) => ({
-            path,
-            tag,
-            date,
-          }))
-          .map((f) => {
-            const p = {
-              path: f.path,
-              date: f.date ? dayjs(f.date).toDate() : undefined,
-            }
-            blog.add(p)
-            routes.push(getUrl(p))
-
-            const ts: string[] = f.tag || []
-
-            ts.map((t) => {
-              const ts = tag.get(t) || new Set()
-              ts.add(p)
-              tag.set(t, ts)
-            })
-          })
-
-        Array(Math.ceil(blog.size / 5))
-          .fill(null)
-          .map((_, i) => {
-            if (i > 0) {
-              routes.push(`/blog/${i + 1}`)
-            }
-          })
-
-        Array.from(tag).map(([t, ts]) => {
-          Array(Math.ceil(ts.size / 5))
-            .fill(null)
-            .map((_, i) => {
-              if (i > 0) {
-                routes.push(`/tag/${t}/${i + 1}`)
-              } else {
-                routes.push(`/tag/${t}`)
-              }
-            })
-        })
-
-        return routes
-      },
+      // crawler: false,
+      // routes() {
+      //   const routes = ['/', '/blog']
+      //   const blog = new Set()
+      //   const tag = new Map()
+      //   const getUrl = ({ path }: { path: string }) => {
+      //     return `/post/${path}`
+      //   }
+      //   Object.entries<{
+      //     tag?: string[]
+      //     date?: string
+      //   }>(rawJson)
+      //     .map(([path, { tag, date }]) => ({
+      //       path,
+      //       tag,
+      //       date,
+      //     }))
+      //     .map((f) => {
+      //       const p = {
+      //         path: f.path,
+      //         date: f.date ? dayjs(f.date).toDate() : undefined,
+      //       }
+      //       blog.add(p)
+      //       routes.push(getUrl(p))
+      //       const ts: string[] = f.tag || []
+      //       ts.map((t) => {
+      //         const ts = tag.get(t) || new Set()
+      //         ts.add(p)
+      //         tag.set(t, ts)
+      //       })
+      //     })
+      //   Array(Math.ceil(blog.size / 5))
+      //     .fill(null)
+      //     .map((_, i) => {
+      //       if (i > 0) {
+      //         routes.push(`/blog/${i + 1}`)
+      //       }
+      //     })
+      //   Array.from(tag).map(([t, ts]) => {
+      //     Array(Math.ceil(ts.size / 5))
+      //       .fill(null)
+      //       .map((_, i) => {
+      //         if (i > 0) {
+      //           routes.push(`/tag/${t}/${i + 1}`)
+      //         } else {
+      //           routes.push(`/tag/${t}`)
+      //         }
+      //       })
+      //   })
+      //   return routes
+      // },
     },
   }
 }

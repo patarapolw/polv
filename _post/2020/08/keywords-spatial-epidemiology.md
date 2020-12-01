@@ -1,6 +1,6 @@
 ---
 title: Keywords in spatial epidemiology
-date: 2020-08-06
+date: 2020-08-06T00:00:00+07:00
 tag:
   - rstats
   - statistics

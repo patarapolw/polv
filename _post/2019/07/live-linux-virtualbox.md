@@ -1,12 +1,14 @@
 ---
 title: Linux Live CD runs slowly in VirtualBox
-date: '2019-07-18 00:00 +07:00'
+date: 2019-07-18T00:00:00+07:00
 image: >-
   https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcRcYZ2nd_E3QdJB9eb6AHjKZOMfyWnJdovpEonB1A8Ge7r6p8Yn
 tag:
   - live-linux
   - virtualbox
   - vm
+category:
+  - windows
 ---
 
 So, I googled for solution, and found this <https://forums.virtualbox.org/viewtopic.php?f=3&t=59456>

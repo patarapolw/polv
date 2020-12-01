@@ -2,7 +2,7 @@
 title: >-
   Writing declaration.d.ts for JavaScript modules, and Extending incomplete
   @types modules
-date: '2019-10-27 00:00 +07:00'
+date: 2019-10-27T00:00:00+07:00
 image: >-
   https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcTzrjWCZNR3zkBb4XyLO-jLQZiV9SI7tV0cV6HxKHXEYyoVDU5p
 tag:

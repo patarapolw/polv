@@ -38,13 +38,12 @@
       >
         <div class="navbar-start">
           <component
-            :is="t.to ? 'nuxt-link' : 'a'"
+            :is="t.href ? 'a' : 'nuxt-link'"
             v-for="t in tabs"
             :key="t.name"
             class="navbar-item"
-            :to="t.to"
+            :to="'/tab/' + t.name"
             :target="t.href ? '_blank' : ''"
-            :href="t.href"
             rel="noopener nofollow noreferrer"
           >
             {{ t.name }}
@@ -104,7 +103,7 @@
           </main>
 
           <aside v-if="sidebar" class="column is-4">
-            <section v-if="sidebar.tagCloud && tagCloudData" class="card mt-4">
+            <section v-if="sidebar.tagCloud" class="card mt-4">
               <header class="card-header">
                 <h3 class="card-header-title">Tag Cloud</h3>
               </header>

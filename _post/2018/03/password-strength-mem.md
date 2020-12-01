@@ -2,7 +2,7 @@
 title: An Analysis on Password Strength vs. Memorability
 image: >-
   https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcTgSYPCYNS5GZ9ec5BU2WDjn9YbZ1F2nEGABnZAhXZtSUkikTjg
-date: '2018-03-02 00:00 +07:00'
+date: 2018-03-02T00:00:00+07:00
 tag:
   - nlp
   - nltk

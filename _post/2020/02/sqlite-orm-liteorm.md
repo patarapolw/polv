@@ -1,11 +1,11 @@
 ---
 title: I wrote an ORM for SQLite
-date: '2020-02-16 00:00 +07:00'
+date: 2020-02-16T00:00:00+07:00
 tag:
-  - dev.to
   - javascript
   - sql
   - typescript
+category:
   - pinned
 ---
 

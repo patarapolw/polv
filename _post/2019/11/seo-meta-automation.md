@@ -2,7 +2,7 @@
 title: SEO meta tags and Server Side Rendering automation
 image: >-
   https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcRB_w1OLUgyb1u3o2WoyZuDVZHMnVpIGxYqw_awuhbxl-WenPIr
-date: '2019-11-20 00:00 +07:00'
+date: 2019-11-20T00:00:00+07:00
 tag:
   - nuxt
   - seo

@@ -1,8 +1,7 @@
 ---
 title: Observables are promises on steroids
-date: '2020-05-15 00:00 +07:00'
+date: 2020-05-15T00:00:00+07:00
 tag:
-  - dev.to
   - javascript
   - observable
   - rxjs

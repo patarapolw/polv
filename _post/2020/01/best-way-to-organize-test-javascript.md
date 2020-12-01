@@ -1,8 +1,7 @@
 ---
 title: What is a best way to organize Test Suites / Test Cases in JavaScript?
-date: '2020-01-05 00:00 +07:00'
+date: 2020-01-05T00:00:00+07:00
 tag:
-  - dev.to
   - javascript
   - testing
   - typescript

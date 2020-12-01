@@ -1,6 +1,6 @@
 ---
 title: Learning PHP from other programming languages
-date: '2019-07-08 00:00 +07:00'
+date: 2019-07-08T00:00:00+07:00
 image: >-
   https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcT-OMfTIWpQi63ocxmaCRVYOc0QIzgejLDHdFJtJuTYOmJgDqr_
 tag:

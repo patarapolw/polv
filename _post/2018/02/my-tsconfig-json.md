@@ -1,6 +1,6 @@
 ---
 title: My tsconfig.json
-date: '2019-07-17 00:00 +07:00'
+date: 2019-07-17T00:00:00+07:00
 image: >-
   https://3.bp.blogspot.com/-mbCB4VKUAT8/WvB5ZZoslaI/AAAAAAAAUAA/10O-BO8ynwgwf0RPGJiZDkduOw9QqKo8ACLcBGAs/s1600/typescript-configuration-file-tsconfig-json.jpg
 tag:

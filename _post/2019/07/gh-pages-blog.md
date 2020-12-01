@@ -1,11 +1,11 @@
 ---
 title: GitHub Pages as blog Combo
-date: '2019-07-03 00:00 +07:00'
+date: 2019-07-03T00:00:00+07:00
 image: >-
   https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcRqbDL-RdwO45w24ZeCv-N5bQAZxXOnd2nbCpymQvswWr4exu6K
 tag:
   - blogging
-  - gh-pages
+  - github-pages
 ---
 
 Right now, I only know one website that allows me to host HTML as full webpage that supports static JavaScript, that is [GitHub Pages](https://pages.github.com), which might not be truly static, if you have some good API supported in the background, e.g. Disqus, or Heroku.

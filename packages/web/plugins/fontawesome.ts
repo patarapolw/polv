@@ -8,6 +8,8 @@ import {
   faQuora,
   faReddit,
   faTwitter,
+  faLinkedin,
+  faLinkedinIn,
 } from '@fortawesome/free-brands-svg-icons'
 import {
   faAt,
@@ -30,7 +32,9 @@ library.add(
   faInstagram,
   faGithub,
   faReddit,
-  faQuora
+  faQuora,
+  faLinkedin,
+  faLinkedinIn
 )
 
 Vue.component('FontAwesome', FontAwesomeIcon)

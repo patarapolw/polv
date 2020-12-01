@@ -1,6 +1,6 @@
 ---
 title: Some useful python decorators I have made recently
-date: '2018-02-03 03:01 +07:00'
+date: 2018-02-03T03:01:00+07:00
 tag:
   - decorator
   - python

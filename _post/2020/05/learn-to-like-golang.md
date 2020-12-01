@@ -1,9 +1,8 @@
 ---
 title: How can I learn to like Golang? (and use it a lot)
 tag:
-  - dev.to
   - golang
-date: '2020-05-30 00:00 +07:00'
+date: 2020-05-30T00:00:00+07:00
 ---
 
 Well, I did complain, in order to change my point-of-view,

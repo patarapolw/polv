@@ -1,9 +1,8 @@
 ---
 title: Pretty printing objects with multiline strings in terminal with colors
-date: '2020-02-25 00:00 +07:00'
+date: 2020-02-25T00:00:00+07:00
 tag:
   - console
-  - dev.to
   - node.js
   - terminal
 ---

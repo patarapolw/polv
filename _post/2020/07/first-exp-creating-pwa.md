@@ -1,12 +1,12 @@
 ---
 title: My first experience creating and testing a PWA
-date: 2020-07-06
+date: 2020-07-06T00:00:00+07:00
 tag:
   - nuxt
   - pwa
   - zhquiz
   - chinese
-  - dev.to
+category:
   - pinned
 ---
 

@@ -1,6 +1,6 @@
 ---
 title: '[Python-web.py] Turning website into a desktop app'
-date: '2018-02-14 03:07 +07:00'
+date: 2018-02-14T03:07:00+07:00
 tag:
   - desktop
   - pyqt5

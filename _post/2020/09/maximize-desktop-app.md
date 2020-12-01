@@ -1,6 +1,6 @@
 ---
 title: Maximize (not fullscreen) your cross-platform desktop application
-date: 2020-09-11
+date: 2020-09-11T00:00:00+07:00
 tag:
   - go
   - c

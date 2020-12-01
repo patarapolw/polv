@@ -1,6 +1,6 @@
 ---
 title: Social Dilemma, a thoughtful, yet dangerous topic to discuss in general
-date: 2020-10-19
+date: 2020-10-19T00:00:00+07:00
 tag:
   - google
   - facebook

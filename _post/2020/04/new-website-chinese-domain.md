@@ -1,9 +1,8 @@
 ---
 title: Made a website for Chinese learners. Registered a domain name. But?
-date: '2020-04-27 00:00 +07:00'
+date: 2020-04-27T00:00:00+07:00
 tag:
   - chinese
-  - dev.to
   - domain
 ---
 

@@ -8,22 +8,29 @@ keywords:
   - programming
 tabs:
   - name: Pinned
-    to: /tag/pinned
+    q: category:pinned
+  - name: Windows
+    q: category:windows
+  - name: macOS
+    q: category:macos
+  - name: Linux
+    q: category:linux
+  - name: Cross-platform
+    q: tag:crossplatform
 author:
   url: https://www.polv.cc
   email: patarapolw@gmail.com
   name: Pacharapol Withayasakpunt
   image: /media/author.jpg
 social:
+  facebook: patarapolw
   twitter: patarapolw
   reddit: patarapolw
   quora: Pacharapol-Withayasakpunt
   github: patarapolw
+  linkedin: pacharapol-withayasakpunt-a32346192
 sidebar:
-  tagCloud:
-    excluded:
-      - pinned
-      - dev.to
+  tagCloud: true
   twitter: patarapolw
 analytics:
   plausible: polv.cc

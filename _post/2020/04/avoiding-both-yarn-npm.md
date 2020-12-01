@@ -1,8 +1,7 @@
 ---
 title: Avoiding having both `yarn.lock` and `package-lock.json`
-date: '2020-04-16 00:00 +07:00'
+date: 2020-04-16T00:00:00+07:00
 tag:
-  - dev.to
   - node.js
 ---
 

@@ -1,6 +1,6 @@
 ---
 title: Injecting unsafe HTML into Bolt entries + CodeMirror/UIKit editor
-date: '2019-07-09 00:00 +07:00'
+date: 2019-07-09T00:00:00+07:00
 image: >-
   https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcTDO_p0QiaGehExbdLMqCY2MT7TP759whHkorR0MegIwQ4IHb4R
 tag:

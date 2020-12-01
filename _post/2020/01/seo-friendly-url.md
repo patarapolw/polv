@@ -1,8 +1,7 @@
 ---
 title: How do I create an SEO-friendly URL?
-date: '2020-01-27 00:00 +07:00'
+date: 2020-01-27T00:00:00+07:00
 tag:
-  - dev.to
   - discuss
   - javascript
   - seo

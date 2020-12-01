@@ -1,11 +1,13 @@
 ---
 title: Windows equivalent of Conky - DesktopInfo
-date: 2020-11-30
+date: 2020-11-30T00:00:00+07:00
 tag:
   - windows
   - conky
   - desktopinfo
   - widget
+category:
+  - windows
 ---
 
 Luckily, Windows has a worthy equivalent of [Conky](https://github.com/brndnmtthws/conky), [DesktopInfo](https://www.glenn.delahoy.com/desktopinfo/).

@@ -1,6 +1,6 @@
 ---
 title: 'Nuxt magic with asyncData, and planning'
-date: '2019-11-28 00:00 +07:00'
+date: 2019-11-28T00:00:00+07:00
 image: >-
   https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcRP6tsihLLVMDGuWvclr05EvJQPvrhSeSWV2Klic2tkhpQywtbj
 tag:

@@ -1,6 +1,6 @@
 ---
 title: A reliable way to create PDF from HTML/markdown, with PDF specific features
-date: 2020-09-29
+date: 2020-09-29T00:00:00+07:00
 tag:
   - markdown
   - pdf

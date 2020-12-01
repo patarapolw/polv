@@ -1,6 +1,6 @@
 ---
 title: 'What is the true merit of Python, and why C/C++ plugins were made for it?'
-date: '2020-05-30 00:00 +07:00'
+date: 2020-05-30T00:00:00+07:00
 tag:
   - python
   - quora

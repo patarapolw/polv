@@ -1,11 +1,11 @@
 ---
 title: encodeURIComponent is both not safe enough, and overdone
-date: 2020-07-15
+date: 2020-07-15T00:00:00+07:00
 tag:
   - webdev
   - javascript
   - security
-  - dev.to
+category:
   - pinned
 ---
 

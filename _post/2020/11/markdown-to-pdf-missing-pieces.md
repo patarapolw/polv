@@ -1,11 +1,13 @@
 ---
 title: 'Markdown to PDF: missing pieces from various approaches, and beyond HTML'
-date: 2020-11-04
+date: 2020-11-04T00:00:00+07:00
 tag:
   - markdown
   - pdf
   - latex
   - vscode
+category:
+  - pinned
 ---
 
 Let me say this first, the best way to create PDF from markdown is via web technology (Chrome / Puppeteer), because it is the closest to WSYIWYG (What You See Is What You Get), but it is not perfect.

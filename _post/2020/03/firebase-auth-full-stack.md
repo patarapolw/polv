@@ -1,9 +1,8 @@
 ---
 title: Firebase auth with both frontend (SPA) and backend
-date: '2020-03-28 00:00 +07:00'
+date: 2020-03-28T00:00:00+07:00
 tag:
   - auth
-  - dev.to
   - firebase
   - fullstack
 ---

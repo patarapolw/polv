@@ -1,6 +1,6 @@
 ---
 title: AI should help early in digitization of public health (e.g. ICD-10)
-date: 2020-08-11
+date: 2020-08-11T00:00:00+07:00
 tag:
   - ai
   - openai
@@ -11,6 +11,8 @@ tag:
   - ocr
   - opencv
   - objectdetection
+category:
+  - pinned
 ---
 
 I am thinking of what health statisticians would do with ICD10 and related health data. I have seen many talks on [Speech Recognition](https://pypi.org/project/SpeechRecognition/), and digitization of patient's health documents; but I think we can go much further than that.

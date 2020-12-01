@@ -1,8 +1,7 @@
 ---
 title: TypeScript with worker_threads and hot reload
-date: '2020-05-13 00:00 +07:00'
+date: 2020-05-13T00:00:00+07:00
 tag:
-  - dev.to
   - node.js
   - typescript
   - worker_threads

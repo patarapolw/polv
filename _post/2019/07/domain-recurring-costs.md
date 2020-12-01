@@ -1,6 +1,6 @@
 ---
 title: 'Registering domain names -- recurring costs, hidden costs and process'
-date: '2019-07-10 00:00 +07:00'
+date: 2019-07-10T00:00:00+07:00
 image: >-
   https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcQUBcM_Oc07DTj_67JLDTwBi2luXbZCULc4-SHcRRNZ_OC3Ca0L
 tag:

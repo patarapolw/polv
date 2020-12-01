@@ -1,11 +1,13 @@
 ---
 title: Hosting MongoDB version 4 server on DigitalOcean
-date: '2019-07-01 00:00 +07:00'
+date: 2019-07-01T00:00:00+07:00
 image: >-
   https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcSe5Mr66_-cGVpyv_4SIkxAx1h0thctF1Ri8th9kS86mWy20wuQ
 tag:
   - digitalocean
   - mongodb
+category:
+  - hosting
 ---
 
 My gripe comes from the limitation with free tier and lower tiers of MongoDB Atlas. ([Where can I host MongoDB with allowDiskUse=true?](https://www.quora.com/unanswered/Where-can-I-host-MongoDB-with-allowDiskUse-true)) So, I have decided to host my own MongoDB on DigitalOcean.

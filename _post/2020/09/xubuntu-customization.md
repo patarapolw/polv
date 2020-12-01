@@ -1,12 +1,14 @@
 ---
 title: My Xubuntu customization
-date: 2020-09-16
+date: 2020-09-16T00:00:00+07:00
 tag:
   - linux
   - ubuntu
   - xfce
   - xubuntu
   - conky
+category:
+  - linux
 ---
 
 Most major things here have to be `rEFInd`, `conky` and `libinput`

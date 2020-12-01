@@ -1,8 +1,7 @@
 ---
 title: How to deploy STATEFUL container on DigitalOcean
-date: '2020-05-25 00:00 +07:00'
+date: 2020-05-25T00:00:00+07:00
 tag:
-  - dev.to
   - digitalocean
   - docker
 ---

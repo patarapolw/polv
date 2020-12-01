@@ -1,11 +1,13 @@
 ---
 title: Create an Electron app from any web server in any programming language.
-date: '2019-07-04 00:00 +07:00'
+date: 2019-07-04T00:00:00+07:00
 image: >-
   https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcRMQFZ9SzNkt7LXFk6YgFPaVLs7tA2dZoM0tJokNVNz7q7Mi5Qa
 tag:
   - electron
   - server
+category:
+  - pinned
 ---
 
 As Electron is actually an containerized extended Chromium web engine, I reckon that this must be possible somehow. However, by default, Electron uses `ipcMain`/`ipcRenderer` rather than `http` or `websocket`...

@@ -1,6 +1,6 @@
 ---
 title: A successful py2app setup.py code
-date: '2018-01-27 01:44 +07:00'
+date: 2018-01-27T01:44:00+07:00
 tag:
   - py2app
   - python

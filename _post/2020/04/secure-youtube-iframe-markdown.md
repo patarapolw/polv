@@ -1,8 +1,7 @@
 ---
 title: Securely embed YouTube and other iframe elements in Markdown
-date: '2020-04-30 00:00 +07:00'
+date: 2020-04-30T00:00:00+07:00
 tag:
-  - dev.to
   - markdown
   - security
 ---

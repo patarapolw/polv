@@ -1,12 +1,12 @@
 ---
 title: Only flat file CMS and serverless functions are enough for my needs
-date: 2020-06-02
+date: 2020-06-02T00:00:00+07:00
 tag:
   - cms
   - serverless
   - netlify
-  - dev.to
   - lunr
+category:
   - pinned
 ---
 
