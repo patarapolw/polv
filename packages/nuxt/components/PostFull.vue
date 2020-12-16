@@ -34,7 +34,7 @@
       </div>
     </article>
 
-    <footer v-if="hasComment" class="card my-4">
+    <footer v-if="remark42Config" class="card my-4">
       <div class="card-content">
         <div ref="remark42" />
       </div>
@@ -49,6 +49,7 @@ import hljs from 'highlight.js'
 import '~/assets/remark42'
 
 import PostHeader from './PostHeader.vue'
+import { THEME } from '~/assets/global'
 
 @Component({
   components: {
@@ -58,12 +59,8 @@ import PostHeader from './PostHeader.vue'
 export default class PostFull extends Vue {
   @Prop({ required: true }) post!: any
 
-  hasComment = !!process.env.remark42Config
+  remark42Config = THEME.comment?.remark42 || null
   remark42Instance: any = null
-
-  get pageUrl() {
-    return process.env.baseUrl + this.$route.path
-  }
 
   mounted() {
     if (window.REMARK42) {
@@ -97,17 +94,16 @@ export default class PostFull extends Vue {
   }
 
   initRemark42() {
-    if (process.client && process.env.remark42Config && window.REMARK42) {
+    if (process.client && this.remark42Config && window.REMARK42) {
       if (this.remark42Instance) {
         this.remark42Instance.destroy()
       }
 
-      const config = JSON.parse(process.env.remark42Config)
-
       this.remark42Instance = window.REMARK42.createInstance({
+        ...this.remark42Config,
         node: this.$refs.remark42 as HTMLElement,
-        host: config.host,
-        site_id: config.siteId,
+        host: this.remark42Config.host,
+        site_id: this.remark42Config.siteId,
       })
     }
   }

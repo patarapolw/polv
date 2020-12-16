@@ -14,28 +14,23 @@
 
     <div class="flex-row">
       <div class="spacer" />
-      <div>{{ dateString }}</div>
+      <div>{{ post.date | formateDate }}</div>
     </div>
   </section>
 </template>
 
 <script lang="ts">
-import dayjs from 'dayjs'
 import { Component, Prop, Vue } from 'nuxt-property-decorator'
+import { THEME } from '~/assets/global'
 
 @Component
 export default class PostHeader extends Vue {
   @Prop({ required: true }) post!: any
 
-  author = JSON.parse(process.env.author!)
+  author = THEME.author
 
   get authorImage() {
     return this.author.image
-  }
-
-  get dateString() {
-    const m = this.post.date ? dayjs(this.post.date) : null
-    return m ? m.format('ddd D MMMM YYYY') : ''
   }
 }
 </script>

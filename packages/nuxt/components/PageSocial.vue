@@ -84,10 +84,11 @@
 
 <script lang="ts">
 import { Component, Vue } from 'nuxt-property-decorator'
+import { THEME } from '~/assets/global'
 
 @Component
 export default class PageSocial extends Vue {
-  social = JSON.parse(process.env.social!)
+  social = THEME.social
 }
 </script>
 

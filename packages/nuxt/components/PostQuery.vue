@@ -60,7 +60,7 @@ export default class PostQuery extends Vue {
   }
 
   get page() {
-    return parseInt(this.$route.params.page || '1')
+    return parseInt((this.$route.query.page as string) || '1')
   }
 
   created() {

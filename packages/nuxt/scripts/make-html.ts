@@ -5,23 +5,18 @@ import cheerio from 'cheerio'
 import ejs from 'ejs'
 import showdown from 'showdown'
 
-export class MakeHTML {
-  $ = cheerio.load('')
+import { IMatter, zMatter } from '../server/db'
 
-  mdConverter = new showdown.Converter({
-    noHeaderId: true,
+export class MakeHtml {
+  private $ = cheerio.load('')
+  private mdConverter = new showdown.Converter({
     parseImgDimensions: true,
-    simplifiedAutoLink: true,
-    // literalMidWordUnderscores: true,
     strikethrough: true,
     tables: true,
-    tasklists: true,
-    // simpleLineBreaks: true,
+    disableForced4SpacesIndentedSublists: true,
     openLinksInNewWindow: true,
-    backslashEscapesHTMLTags: true,
     emoji: true,
     underline: true,
-    disableForced4SpacesIndentedSublists: true,
     metadata: true,
   })
 
@@ -68,80 +63,115 @@ export class MakeHTML {
     )
   }
 
-  async parse(
+  async renderFile(
     filename: string
   ): Promise<{
-    $: cheerio.Cheerio
-    html(): string
-    clean(): string
+    header: IMatter
+    contentHtml: string
+    excerptHtml: string
+    content: string
   }> {
+    const markdown = await ejs.renderFile(filename, {
+      xCard: ({
+        href,
+        image,
+        title,
+        description,
+      }: {
+        href: string
+        image?: string
+        title: string
+        description: string
+      }) => {
+        return (
+          this.$('<div>')
+            .append(
+              this.$('<x-card>')
+                .attr(
+                  JSON.parse(
+                    JSON.stringify({
+                      href,
+                      image,
+                      title,
+                      description,
+                    })
+                  ) as Record<string, string>
+                )
+                .append(
+                  this.$('<a>')
+                    .attr({
+                      href,
+                      target: '_blank',
+                      rel: 'noopener',
+                    })
+                    .text(href)
+                )
+            )
+            .html() || ''
+        )
+      },
+      youtube: ({ href }: { href: string }) => {
+        return (
+          this.$('<div>')
+            .append(
+              this.$('<figure>')
+                .addClass('image is-16by9 responsive-iframe')
+                .append(
+                  this.$('<iframe>')
+                    .addClass('has-ratio')
+                    .attr({
+                      frameborder: 0,
+                      allow:
+                        'accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture',
+                      allowfullscreen: '',
+                      src: href.startsWith('https://')
+                        ? href
+                        : `https://www.youtube.com/embed/${href}`,
+                    })
+                )
+            )
+            .html() || ''
+        )
+      },
+    })
+
     const id =
       'md-' +
       crypto
         .createHash('sha256')
-        .update(filename)
+        .update(markdown)
         .digest()
         .toString('hex')
-        .substr(0, 8)
+        .substring(0, 8)
 
-    const $div = this.$(`<div id="${id}">`)
-    $div.html(await this.getHTML(filename))
-    $div.find('style').each((_, el) => {
+    const rawHtml = this.mdConverter.makeHtml(markdown)
+    const header = zMatter.parse(this.mdConverter.getMetadata(false))
+
+    this.$('body').append(
+      this.$('<div>')
+        .attr({
+          class: id,
+        })
+        .html(rawHtml)
+    )
+
+    this.$('style').each((_, el) => {
       const $el = this.$(el)
-      const html = $el.html() || ''
-      if (html.trim()) {
-        $el.html(scopeCss(html, `#${id}`))
+      const css = $el.html()
+
+      if (css) {
+        $el.html(scopeCss(css, `.${id}`))
       }
     })
 
-    return {
-      $: $div,
-      html: () => {
-        return this.$('<div>').append($div).html() || ''
-      },
-      clean: () => {
-        return $div.text() || ''
-      },
-    }
-  }
+    const contentHtml = this.$('body').html() || ''
+    const excerptHtml = contentHtml.split(/<!-- excerpt(?:_separator)? -->/)[0]
 
-  private async getHTML(filename: string) {
-    return this.mdConverter.makeHtml(
-      await ejs.renderFile(filename, {
-        youtube: (id: string) =>
-          ejs.render(
-            /* html */ `
-          <div style="position:relative;padding-top:56.25%;">
-            <iframe src="https://www.youtube.com/embed/${id}"
-              frameborder="0"
-              allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
-              allowfullscreen
-              style="position:absolute;top:0;left:0;width:100%;height:100%"></iframe>
-          </div>`,
-            { rmWhitespace: true, beautify: false }
-          ),
-        xCard: (opts: {
-          href: string
-          image?: string
-          title: string
-          description?: string
-        }) =>
-          this.$('<div>')
-            .append(
-              this.$('<x-card>')
-                .attr(opts)
-                .append(
-                  this.$('<a>')
-                    .attr({
-                      href: opts.href,
-                      rel: 'noopener',
-                      target: '_blank',
-                    })
-                    .text(opts.title)
-                )
-            )
-            .html(),
-      })
-    )
+    return {
+      header,
+      contentHtml,
+      excerptHtml,
+      content: this.$('<div>').html(excerptHtml).text(),
+    }
   }
 }

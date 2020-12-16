@@ -1,13 +1,30 @@
 import express from 'express'
-import morgan from 'morgan'
+import lunr, { Index } from 'lunr'
 import * as z from 'zod'
 
-import { Database } from './db'
+import idxJson from '../build/idx.json'
+import _rawJson from '../build/raw.json'
+import { IPostSerialized } from './db'
 
 const app = express()
-app.use(morgan('dev'))
+let idx: Index
+const rawJson: Record<string, IPostSerialized> = _rawJson
+const allData: IPostSerialized[] = Object.values(rawJson).sort(
+  ({ date: a }, { date: b }) => {
+    if (typeof b === 'undefined') {
+      if (typeof a === 'undefined') {
+        return 0
+      }
 
-const db = new Database({ readonly: true })
+      return -1
+    }
+    if (typeof a === 'undefined') {
+      return 1
+    }
+
+    return b - a
+  }
+)
 
 app.get('/', (req, res) => {
   const { path } = z
@@ -16,7 +33,7 @@ app.get('/', (req, res) => {
     })
     .parse(req.query)
 
-  const r = db.get(path)
+  const r = rawJson[path]
   if (!r) {
     res.sendStatus(404)
     return
@@ -40,24 +57,29 @@ app.get('/q', (req, res) => {
   const perPage = 5
   const offset = (parseInt(_page) - 1) * perPage
 
+  let currentData: IPostSerialized[]
+
   if (q) {
-    res.json(
-      db.q(q, {
-        offset,
-        limit: perPage,
-        tag,
-      })
-    )
-    return
+    idx = idx || lunr.Index.load(idxJson)
+
+    currentData = idx.search(q).map(({ ref }) => {
+      return rawJson[ref]
+    })
+  } else {
+    currentData = allData
   }
 
-  res.json(
-    db.by({
-      offset,
-      limit: perPage,
-      tag,
-    })
-  )
+  if (tag) {
+    currentData = allData.filter((d) => d.tag && d.tag.includes(tag))
+  }
+
+  const count = currentData.length
+  const result = currentData.slice(offset, offset + 5)
+
+  res.json({
+    count,
+    result,
+  })
 })
 
 app.use((err: Error, _: express.Request, res: express.Response) => {

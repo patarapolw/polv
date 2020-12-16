@@ -22,11 +22,11 @@ import PostQuery from '@/components/PostQuery.vue'
 
     return {
       defaults: {
-        count: ps!.count,
-        posts: ps!.result,
+        count: ps.count,
+        posts: ps.result,
       },
     }
   },
 })
-export default class BlogPaged extends Vue {}
+export default class BlogPage extends Vue {}
 </script>

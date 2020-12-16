@@ -147,12 +147,11 @@ import hljs from 'highlight.js'
 import { normalizeArray } from '@/assets/util'
 import PageSocial from '@/components/PageSocial.vue'
 import { hljsRegisterVue } from '@patarapolw/highlightjs-vue'
+import { TAG, THEME } from '~/assets/global'
 
 if (process.client) {
   hljsRegisterVue(hljs)
 }
-
-const rawData = JSON.parse(process.env.BlogLayout!)
 
 @Component({
   components: {
@@ -160,18 +159,14 @@ const rawData = JSON.parse(process.env.BlogLayout!)
   },
 })
 export default class BlogLayout extends Vue {
-  banner: string = rawData.banner
-  tabs: any[] = rawData.tabs || []
-  sidebar: any = rawData.sidebar || null
-  tagCloudData: Record<string, number> = rawData.tagCloudData
-  hasSocial: boolean = rawData.hasSocial
+  banner: string = THEME.banner
+  tabs: any[] = THEME.tabs || []
+  sidebar: any = THEME.sidebar || null
+  tagCloudData: Record<string, number> = TAG
+  hasSocial: boolean = !!THEME.social
 
   q = ''
   isNavExpanded = false
-
-  get fullUrl() {
-    return process.env.baseUrl!
-  }
 
   get computedTags() {
     return Object.keys(this.tagCloudData)
@@ -215,7 +210,7 @@ export default class BlogLayout extends Vue {
   }
 
   head() {
-    const url = this.fullUrl + this.$route.path
+    const url = THEME.baseUrl + this.$route.path
 
     return {
       link: [
@@ -228,7 +223,7 @@ export default class BlogLayout extends Vue {
         {
           hid: 'og:url',
           property: 'og:url',
-          content: this.fullUrl,
+          content: url,
         },
       ],
     }

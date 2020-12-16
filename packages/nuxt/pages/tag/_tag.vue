@@ -14,12 +14,12 @@ import PostQuery from '@/components/PostQuery.vue'
   layout: 'blog',
   watchQuery: ['page'],
   async asyncData({ app, params, query }) {
-    const ps = (await app.$axios.$get('/api/search', {
+    const ps = await app.$axios.$get('/api/search', {
       params: {
         tag: params.tag,
         page: query.page,
       },
-    }))!
+    })
 
     return {
       defaults: {
@@ -29,5 +29,5 @@ import PostQuery from '@/components/PostQuery.vue'
     }
   },
 })
-export default class TagPaged extends Vue {}
+export default class TagPage extends Vue {}
 </script>

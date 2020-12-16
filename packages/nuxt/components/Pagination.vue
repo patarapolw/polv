@@ -7,7 +7,7 @@
     >
       <nuxt-link
         v-if="page > 1"
-        :to="setPageUrl(page - 1)"
+        :to="makePageUrl(page - 1)"
         class="pagination-previous"
       >
         <span class="icon">
@@ -19,7 +19,7 @@
 
       <nuxt-link
         v-if="page < total - 1"
-        :to="setPageUrl(page + 1)"
+        :to="makePageUrl(page + 1)"
         class="pagination-next"
       >
         <span class="icon">
@@ -32,7 +32,7 @@
       <ul class="pagination-list">
         <li v-if="page > 1">
           <nuxt-link
-            :to="setPageUrl(1)"
+            :to="makePageUrl(1)"
             class="pagination-link"
             aria-label="go to page 1"
           >
@@ -46,7 +46,7 @@
 
         <li v-if="page > 2">
           <nuxt-link
-            :to="setPageUrl(page - 1)"
+            :to="makePageUrl(page - 1)"
             class="pagination-link"
             :aria-label="`go to page ${page - 1}`"
           >
@@ -56,7 +56,7 @@
 
         <li>
           <nuxt-link
-            :to="setPageUrl(page)"
+            :to="makePageUrl(page)"
             class="pagination-link is-current"
             :aria-label="`go to page ${page}`"
             aria-current="page"
@@ -67,7 +67,7 @@
 
         <li v-if="page < total - 1">
           <nuxt-link
-            :to="setPageUrl(page + 1)"
+            :to="makePageUrl(page + 1)"
             class="pagination-link"
             :aria-label="`go to page ${page + 1}`"
           >
@@ -81,7 +81,7 @@
 
         <li v-if="page < total">
           <nuxt-link
-            :to="setPageUrl(total)"
+            :to="makePageUrl(total)"
             class="pagination-link"
             :aria-label="`go to page ${total}`"
           >
@@ -104,16 +104,18 @@ export default class Pagination extends Vue {
     return parseInt((this.$route.path.match(/\/(\d+)?$/) || [])[1] || '1')
   }
 
-  setPageUrl(p: number) {
-    const {
-      path,
-      query: { q },
-    } = this.$route
-    const path0 = path.replace(/\/(\d+)?$/, '')
+  makePageUrl(p: number) {
+    let path = this.$route.path
+    if (!(path.startsWith('/tag') || path.startsWith('/blog'))) {
+      path = '/blog'
+    }
 
     return this.$router.resolve({
-      path: `${path0 || '/blog'}${p === 1 ? '' : `/${p}`}`,
-      query: { q },
+      path,
+      query: {
+        ...this.$route.query,
+        page: p.toString(),
+      },
     }).href
   }
 }

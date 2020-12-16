@@ -6,6 +6,8 @@
 import { Component, Vue } from 'nuxt-property-decorator'
 
 import PostFull from '@/components/PostFull.vue'
+import { IPostSerialized } from '~/server/db'
+import { THEME } from '~/assets/global'
 
 @Component({
   components: {
@@ -14,29 +16,25 @@ import PostFull from '@/components/PostFull.vue'
   layout: 'blog',
   async asyncData({ app, params, error }) {
     try {
-      const PORT = process.client ? 3000 : 5000
       const {
         title,
         image,
         tag,
-        excerpt,
+        content,
         contentHtml,
         date,
-      } = (await app.$axios.$get(
-        `http://localhost:${PORT}/serverMiddleware/post`,
-        {
-          params: {
-            path: params.pathMatch,
-          },
-        }
-      ))!
+      } = (await app.$axios.$get('/api/post', {
+        params: {
+          path: params.pathMatch,
+        },
+      }))!
 
       return {
         post: {
           title,
           image,
           tag,
-          excerpt,
+          content,
           contentHtml,
           date,
         },
@@ -47,18 +45,12 @@ import PostFull from '@/components/PostFull.vue'
   },
 })
 export default class PostPage extends Vue {
-  post!: {
-    title: string
-    image?: string
-    tag?: string[]
-    excerpt: string
-    contentHtml: string
-  }
+  post!: IPostSerialized
 
   head() {
-    const { title: _title, excerpt, tag, image } = this.post
-    const title = `${_title} - ${process.env.title}`
-    const description = excerpt
+    const { title: _title, content, tag, image } = this.post
+    const title = `${_title} - ${THEME.title}`
+    const description = content.substr(0, 140)
 
     return {
       title,
