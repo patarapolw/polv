@@ -2,9 +2,11 @@ import fs from 'fs'
 
 import { NuxtConfig } from '@nuxt/types'
 
+import { SERVER_PORT, runServer } from './server/cli'
 import { getTheme } from './server/theme'
 
 const config = async (): Promise<NuxtConfig> => {
+  await runServer()
   const theme = getTheme()
 
   return {
@@ -86,8 +88,8 @@ const config = async (): Promise<NuxtConfig> => {
     },
     proxy: {
       '/.netlify/functions': 'http://localhost:9000',
+      '/api': `http://localhost:${SERVER_PORT}`,
     },
-    serverMiddleware: [{ path: '/api', handler: '~/server/index.ts' }],
     build: {
       postcss: {
         preset: {
@@ -97,9 +99,25 @@ const config = async (): Promise<NuxtConfig> => {
         },
       },
     },
+    hooks: {
+      generate: {
+        done() {
+          /**
+           * Do not kill
+           */
+          // try {
+          //   execSync(
+          //     `lsof -i tcp:${SERVER_PORT} | grep LISTEN | awk '{print $2}' | xargs kill -9`
+          //   )
+          // } catch (_) {}
+          process.exit(0)
+        },
+      },
+    },
     env: {
       THEME: JSON.stringify(theme),
       TAG: fs.readFileSync('./build/tag.json', 'utf-8'),
+      SERVER_PORT: SERVER_PORT.toString(),
     },
   }
 }

@@ -59,7 +59,7 @@ category:
   - I use this instead of downloading Node.js from the official website, or installing directly via Homebrew
 - [pvenv](https://github.com/pyenv/pyenv)
   - Python is already present on macOS, but it is Python 2. pyenv helps manage Python versions better than the official website itself.
-  - Ruby has the [same problems](/post/2019/07/macos-ruby-python). You should look for [rvm](https://rvm.io/) or [rbenv](https://github.com/rbenv/rbenv) if you plan on using Ruby or [install Jekyll](/post/2019/07/github-pages-blog).
+  - Ruby has the [same problems](/post/2019/07/macos-ruby-python). You should look for [rvm](https://rvm.io/) or [rbenv](https://github.com/rbenv/rbenv) if you plan on using Ruby or [install Jekyll](/post/2019/07/gh-pages-blog).
 - [Visual Studio Code](https://code.visualstudio.com/) and/or [VSCodium](https://github.com/VSCodium/vscodium) -- best editor for TypeScript (and probably JavaScript).
   - I haven't developed much liking to [WebStorm](https://www.jetbrains.com/webstorm/) in order to purchase it. (My impression? -- much similar to VSCode.)
   - I failed to customize [Atom IDE](https://atom.io/) to my liking. I prefer to have both VSCode and VSCodium on my computer instead.

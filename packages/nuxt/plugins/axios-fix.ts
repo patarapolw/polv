@@ -1,9 +1,10 @@
 import { Plugin } from '@nuxt/types'
 
 const plugin: Plugin = ({ $axios, error }) => {
-  if (typeof location !== 'undefined') {
-    $axios.defaults.baseURL = location.origin
-  }
+  $axios.defaults.baseURL =
+    typeof location !== 'undefined'
+      ? location.origin
+      : `http://localhost:${process.env.SERVER_PORT}`
 
   $axios.interceptors.response.use(
     (r) => {

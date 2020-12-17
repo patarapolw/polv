@@ -1,4 +1,4 @@
-import express from 'express'
+import express, { Router } from 'express'
 import lunr, { Index } from 'lunr'
 import * as z from 'zod'
 
@@ -6,12 +6,13 @@ import idxJson from '../build/idx.json'
 import _rawJson from '../build/raw.json'
 import { IPostSerialized } from './db'
 
-const app = express()
+export const router = Router()
+
 let idx: Index
 const rawJson: Record<string, IPostSerialized> = _rawJson
 const allData: IPostSerialized[] = Object.values(rawJson)
 
-app.get('/', (req, res) => {
+router.get('/', (req, res) => {
   const { path } = z
     .object({
       path: z.string(),
@@ -27,7 +28,7 @@ app.get('/', (req, res) => {
   res.json(r)
 })
 
-app.get('/q', (req, res) => {
+router.get('/q', (req, res) => {
   const { q, tag, page: _page = '1' } = z
     .object({
       q: z.string().optional(),
@@ -82,10 +83,8 @@ app.get('/q', (req, res) => {
   })
 })
 
-app.use((err: Error, _: express.Request, res: express.Response) => {
+router.use((err: Error, res: express.Response) => {
   // eslint-disable-next-line no-console
   console.error(err.stack)
   res.status(500).send(err)
 })
-
-export default app
