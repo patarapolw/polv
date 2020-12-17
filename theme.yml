@@ -42,7 +42,7 @@ sidebar:
   twitter: patarapolw
 analytics:
   plausible: polv.cc
-comments:
+comment:
   remark42:
     host: https://remark42.polv.cc
     siteId: polv
