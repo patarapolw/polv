@@ -15,9 +15,21 @@ export const handler: Handler = async (evt) => {
   const offset = (parseInt(_page) - 1) * perPage
 
   idx = idx || lunr.Index.load(idxJson)
-  allData =
-    allData ||
-    Object.values(rawJson).sort(({ date: a }, { date: b }) => {
+  allData = allData || Object.values(rawJson)
+
+  let currentData = allData
+  if (q) {
+    currentData = idx.search(q).map(({ ref }) => {
+      return rawJson[ref]
+    })
+  }
+
+  if (tag) {
+    currentData = currentData.filter(({ tag }) => tag && tag.includes(tag))
+  }
+
+  currentData = currentData
+    .sort(({ date: a }, { date: b }) => {
       if (typeof b === 'undefined') {
         if (typeof a === 'undefined') {
           return 0
@@ -31,31 +43,14 @@ export const handler: Handler = async (evt) => {
 
       return b - a
     })
-
-  let currentData = idx.search(q).map(({ ref }) => {
-    const { date, image, title, excerptHtml, tag, path } = rawJson[ref]
-    return {
+    .map(({ path, date, image, title, excerptHtml, tag }) => ({
       path,
       date,
       image,
       title,
       excerptHtml,
       tag,
-    }
-  })
-
-  if (tag) {
-    currentData = allData
-      .filter(({ tag }) => tag && tag.includes(tag))
-      .map(({ path, date, image, title, excerptHtml, tag }) => ({
-        path,
-        date,
-        image,
-        title,
-        excerptHtml,
-        tag,
-      }))
-  }
+    }))
 
   const count = currentData.length
   const result = currentData.slice(offset, offset + perPage)

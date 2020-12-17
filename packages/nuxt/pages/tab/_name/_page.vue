@@ -13,8 +13,10 @@ import { THEME } from '~/assets/global'
     PostQuery,
   },
   layout: 'blog',
-  watchQuery: ['query'],
-  async asyncData({ app, params, query }) {
+  /**
+   * Prerendering cannot use 'query'
+   */
+  async asyncData({ app, params }) {
     const tabs = (THEME.tabs || []).reduce(
       (prev, c) => ({
         ...prev,
@@ -23,10 +25,10 @@ import { THEME } from '~/assets/global'
       {} as Record<string, string>
     )
 
-    const ps = await app.$axios.$get(`/api/search`, {
+    const ps = await app.$axios.$get(`/api/q`, {
       params: {
         q: tabs[params.name],
-        page: query.page,
+        page: params.page,
       },
     })
 
@@ -38,5 +40,5 @@ import { THEME } from '~/assets/global'
     }
   },
 })
-export default class TabPage extends Vue {}
+export default class TabPagePaged extends Vue {}
 </script>

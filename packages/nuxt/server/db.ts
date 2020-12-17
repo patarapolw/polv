@@ -8,7 +8,7 @@ export const zMatter = z.object({
   title: z.string(),
   image: z.string().optional(),
   tag: z.array(z.string()).optional(),
-  category: z.string().optional(),
+  category: z.array(z.string()).optional(),
 })
 
 export type IMatter = z.infer<typeof zMatter>

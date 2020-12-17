@@ -14,7 +14,7 @@
 
     <div class="flex-row">
       <div class="spacer" />
-      <div>{{ post.date | formateDate }}</div>
+      <div>{{ post.date | formatDate }}</div>
     </div>
   </section>
 </template>

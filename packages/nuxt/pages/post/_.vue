@@ -23,7 +23,7 @@ import { THEME } from '~/assets/global'
         content,
         contentHtml,
         date,
-      } = (await app.$axios.$get('/api/post', {
+      } = (await app.$axios.$get('/api', {
         params: {
           path: params.pathMatch,
         },

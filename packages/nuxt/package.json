@@ -48,6 +48,7 @@
     "netlify-lambda": "^2.0.2",
     "npm-run-all": "^4.1.5",
     "nuxt": "^2.14.12",
+    "nuxt-mq": "^2.0.2",
     "nuxt-property-decorator": "^2.8.8",
     "rimraf": "^3.0.2",
     "showdown": "^1.9.1",

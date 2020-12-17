@@ -1,0 +1,35 @@
+<template>
+  <PostQuery :defaults="defaults" />
+</template>
+
+<script lang="ts">
+import { Component, Vue } from 'nuxt-property-decorator'
+
+import PostQuery from '@/components/PostQuery.vue'
+
+@Component({
+  components: {
+    PostQuery,
+  },
+  layout: 'blog',
+  /**
+   * Prerendering cannot use query
+   */
+  async asyncData({ app, params }) {
+    const ps = await app.$axios.$get('/api/q', {
+      params: {
+        tag: params.tag,
+        page: params.page,
+      },
+    })
+
+    return {
+      defaults: {
+        count: ps.count,
+        posts: ps.result,
+      },
+    }
+  },
+})
+export default class TagPagePaged extends Vue {}
+</script>

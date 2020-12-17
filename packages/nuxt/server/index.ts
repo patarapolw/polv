@@ -9,22 +9,7 @@ import { IPostSerialized } from './db'
 const app = express()
 let idx: Index
 const rawJson: Record<string, IPostSerialized> = _rawJson
-const allData: IPostSerialized[] = Object.values(rawJson).sort(
-  ({ date: a }, { date: b }) => {
-    if (typeof b === 'undefined') {
-      if (typeof a === 'undefined') {
-        return 0
-      }
-
-      return -1
-    }
-    if (typeof a === 'undefined') {
-      return 1
-    }
-
-    return b - a
-  }
-)
+const allData: IPostSerialized[] = Object.values(rawJson)
 
 app.get('/', (req, res) => {
   const { path } = z
@@ -70,8 +55,23 @@ app.get('/q', (req, res) => {
   }
 
   if (tag) {
-    currentData = allData.filter((d) => d.tag && d.tag.includes(tag))
+    currentData = currentData.filter((d) => d.tag && d.tag.includes(tag))
   }
+
+  currentData = currentData.sort(({ date: a }, { date: b }) => {
+    if (typeof b === 'undefined') {
+      if (typeof a === 'undefined') {
+        return 0
+      }
+
+      return -1
+    }
+    if (typeof a === 'undefined') {
+      return 1
+    }
+
+    return b - a
+  })
 
   const count = currentData.length
   const result = currentData.slice(offset, offset + 5)

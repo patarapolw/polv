@@ -44,16 +44,43 @@ const config = async (): Promise<NuxtConfig> => {
               },
             ]
           : []),
+        {
+          src:
+            'https://unpkg.com/@webcomponents/webcomponentsjs/webcomponents-loader.js',
+          defer: true,
+        },
+        {
+          type: 'module',
+          src: '/webcomponents.js',
+        },
       ],
     },
     css: [
       '~/styles/app.scss',
       '~/node_modules/highlight.js/styles/night-owl.css',
     ],
-    plugins: ['~/plugins/fontawesome.ts'],
+    plugins: [
+      '~/plugins/axios-fix.ts',
+      '~/plugins/fontawesome.ts',
+      '~/plugins/format.ts',
+    ],
     components: true,
     buildModules: ['@nuxt/typescript-build'],
-    modules: ['@nuxtjs/bulma', '@nuxtjs/axios'],
+    modules: [
+      '@nuxtjs/bulma',
+      '@nuxtjs/axios',
+      [
+        'nuxt-mq',
+        {
+          defaultBreakpoint: 'desktop',
+          breakpoints: {
+            mobile: 600,
+            tablet: 1024,
+            desktop: Infinity,
+          },
+        },
+      ],
+    ],
     axios: {
       proxy: true,
     },

@@ -101,7 +101,7 @@ export default class Pagination extends Vue {
   @Prop({ required: true }) total!: string
 
   get page() {
-    return parseInt((this.$route.path.match(/\/(\d+)?$/) || [])[1] || '1')
+    return parseInt(this.$route.params.page || '1')
   }
 
   makePageUrl(p: number) {
@@ -110,12 +110,14 @@ export default class Pagination extends Vue {
       path = '/blog'
     }
 
+    path = path.replace(/\d+$/, '').replace(/\/$/, '')
+    if (p > 1) {
+      path = path + '/' + p
+    }
+
     return this.$router.resolve({
       path,
-      query: {
-        ...this.$route.query,
-        page: p.toString(),
-      },
+      query: this.$route.query,
     }).href
   }
 }

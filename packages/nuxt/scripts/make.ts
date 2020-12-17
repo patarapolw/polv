@@ -1,9 +1,10 @@
 import fg from 'fast-glob'
 import fs from 'fs-extra'
+import yaml from 'js-yaml'
 import lunr from 'lunr'
 import rimraf from 'rimraf'
 
-import { IPostSerialized } from '../server/db'
+import { IPostSerialized, zMatter } from '../server/db'
 import { buildPath, dstMediaPath } from '../server/dir'
 import { THEME_FILENAME } from '../server/theme'
 import { srcPath } from './dir'
@@ -27,12 +28,15 @@ async function main() {
 
   await Promise.all(
     files.map(async (f) => {
-      const {
-        header,
-        excerptHtml,
-        contentHtml,
-        content,
-      } = await makeHtml.renderFile(srcPath('_post', f))
+      const header = zMatter.parse(
+        yaml.safeLoad(
+          fs.readFileSync(srcPath('_post', f), 'utf-8').split(/\n---\n/)[0]
+        )
+      )
+
+      const { excerptHtml, contentHtml, content } = await makeHtml.renderFile(
+        srcPath('_post', f)
+      )
 
       const p: IPostSerialized = {
         ...header,

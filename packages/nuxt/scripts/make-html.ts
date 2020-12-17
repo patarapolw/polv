@@ -5,8 +5,6 @@ import cheerio from 'cheerio'
 import ejs from 'ejs'
 import showdown from 'showdown'
 
-import { IMatter, zMatter } from '../server/db'
-
 export class MakeHtml {
   private $ = cheerio.load('')
   private mdConverter = new showdown.Converter({
@@ -36,8 +34,8 @@ export class MakeHtml {
     this.mdConverter.addExtension(
       {
         type: 'lang',
-        regex: /([^\\])_{1}(.*?[^\\])_{1}/g,
-        replace: '$1<i>$2</i>',
+        regex: /( [^\\])_{1}(.*?[^\\])_{1}( )/g,
+        replace: '$1<i>$2</i>$3',
       },
       'underscore-italic'
     )
@@ -66,7 +64,6 @@ export class MakeHtml {
   async renderFile(
     filename: string
   ): Promise<{
-    header: IMatter
     contentHtml: string
     excerptHtml: string
     content: string
@@ -145,17 +142,14 @@ export class MakeHtml {
         .substring(0, 8)
 
     const rawHtml = this.mdConverter.makeHtml(markdown)
-    const header = zMatter.parse(this.mdConverter.getMetadata(false))
 
-    this.$('body').append(
-      this.$('<div>')
-        .attr({
-          class: id,
-        })
-        .html(rawHtml)
-    )
+    const $div = this.$('<div>')
+      .attr({
+        class: id,
+      })
+      .html(rawHtml)
 
-    this.$('style').each((_, el) => {
+    $div.find('style').each((_, el) => {
       const $el = this.$(el)
       const css = $el.html()
 
@@ -164,14 +158,13 @@ export class MakeHtml {
       }
     })
 
-    const contentHtml = this.$('body').html() || ''
+    const contentHtml = this.$('<div>').append($div).html() || ''
     const excerptHtml = contentHtml.split(/<!-- excerpt(?:_separator)? -->/)[0]
 
     return {
-      header,
       contentHtml,
       excerptHtml,
-      content: this.$('<div>').html(excerptHtml).text(),
+      content: $div.text(),
     }
   }
 }

@@ -12,12 +12,13 @@ import PostQuery from '@/components/PostQuery.vue'
     PostQuery,
   },
   layout: 'blog',
-  watchQuery: ['page'],
-  async asyncData({ app, params, query }) {
-    const ps = await app.$axios.$get('/api/search', {
+  /**
+   * Prerendering cannot use query
+   */
+  async asyncData({ app, params }) {
+    const ps = await app.$axios.$get('/api/q', {
       params: {
         tag: params.tag,
-        page: query.page,
       },
     })
 
