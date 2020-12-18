@@ -1,3 +1,5 @@
+import '~/styles/app.scss'
+
 import { THEME } from '~/assets/global'
 import Layout from '~/components/Layout'
 import { dbPost, initDatabase } from '~/server/db'

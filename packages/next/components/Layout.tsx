@@ -1,10 +1,13 @@
+import 'twin.macro'
+
 import { faSearch } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { THEME } from '~/assets/global'
-import tw from '~/styles/tw.module.css'
 import Link from 'next/link'
 import { useRouter } from 'next/router'
 import { ReactNode, createRef, useEffect, useState } from 'react'
+
+import PageSocial from './PageSocial'
 
 const Layout = ({
   tagCount,
@@ -35,12 +38,6 @@ const Layout = ({
         name: t,
         class: (() => {
           const count = tagCount[t]
-          // if (count > 20) {
-          //   return 'c20'
-          // } else
-          // if (count > 10) {
-          //   return 'c10'
-          // } else
           if (count > 5) {
             return 'c5'
           } else if (count > 3) {
@@ -55,7 +52,9 @@ const Layout = ({
     .filter((el) => el)
 
   useEffect(() => {
-    setTablet(matchMedia('(max-width: 600px)').matches)
+    matchMedia(
+      '(min-width: 501px) and (max-width: 790px)'
+    ).addEventListener('change', (ev) => setTablet(ev.matches))
   }, [0])
 
   return (
@@ -72,7 +71,7 @@ const Layout = ({
             </a>
           </Link>
 
-          <div className={tw['flex-grow']}></div>
+          <div tw="flex-grow"></div>
 
           {THEME.social && isTablet ? <PageSocial /> : null}
 
@@ -107,9 +106,7 @@ const Layout = ({
           </div>
 
           <div className="navbar-end">
-            {THEME.social && !isTablet ? (
-              <PageSocial className={tw['mobile:w-full']} />
-            ) : null}
+            {THEME.social && !isTablet ? <PageSocial /> : null}
 
             <form
               className="field has-addons m-2 px-2"
