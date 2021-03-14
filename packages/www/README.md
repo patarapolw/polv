@@ -2,16 +2,9 @@
 
 You can also create `.env` and `.env.public`.
 
-## Generating / uploading contents
-
-Images aren't uploaded. You will need another CDN, like Cloudinary
+`swaxios` CLI can be run by
 
 ```sh
-yarn
-yarn build:server
-yarn link
-```
-
-```js
-import { SEPARATOR } from '@polv/server/server/db/mongo'
+npx swaxios # or
+pnpx swaxios
 ```

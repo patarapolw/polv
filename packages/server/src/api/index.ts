@@ -1,4 +1,5 @@
 import { FastifyPluginAsync } from 'fastify'
+import swagger from 'fastify-swagger'
 import S from 'jsonschema-definer'
 
 import { EntryModel, ITheme, SEPARATOR, UserModel, sTheme } from '../db/mongo'
@@ -7,6 +8,12 @@ const apiRouter: FastifyPluginAsync = async (f) => {
   if (process.env['NODE_ENV'] === 'development') {
     f.register(require('fastify-cors'))
   }
+
+  f.register(swagger, {
+    openapi: {},
+    routePrefix: '/doc',
+    exposeRoute: process.env['NODE_ENV'] === 'development',
+  })
 
   f.addHook<{
     Querystring: Record<string, string | string[]>
@@ -21,6 +28,7 @@ const apiRouter: FastifyPluginAsync = async (f) => {
     '/theme.json',
     {
       schema: {
+        operationId: 'getTheme',
         response: {
           200: sTheme.valueOf(),
         },
@@ -43,6 +51,7 @@ const apiRouter: FastifyPluginAsync = async (f) => {
       '/tag.json',
       {
         schema: {
+          operationId: 'getTag',
           response: {
             200: sResponse.valueOf(),
           },
@@ -87,6 +96,7 @@ const apiRouter: FastifyPluginAsync = async (f) => {
       '/',
       {
         schema: {
+          operationId: 'getEntryOne',
           querystring: sQuerystring.valueOf(),
           response: {
             200: sResponse.valueOf(),
@@ -153,6 +163,7 @@ const apiRouter: FastifyPluginAsync = async (f) => {
       '/list',
       {
         schema: {
+          operationId: 'getEntryList',
           querystring: sQuerystring.valueOf(),
           response: {
             200: sResponse.valueOf(),

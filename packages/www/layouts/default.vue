@@ -145,6 +145,7 @@ import { Component, Vue } from 'nuxt-property-decorator'
 
 import { normalizeArray } from '@/assets/util'
 import PageSocial from '@/components/PageSocial.vue'
+import { api } from '~/assets/api'
 
 // eslint-disable-next-line no-use-before-define
 @Component<BlogLayout>({
@@ -152,9 +153,8 @@ import PageSocial from '@/components/PageSocial.vue'
     PageSocial,
   },
   async fetch() {
-    const tagCloudData: Record<string, number> = await this.$axios.$get(
-      '/api/tag.json'
-    )
+    const tagCloudData = await api.getTag().then((r) => r.data)
+
     Object.keys(tagCloudData)
       .sort((a, b) => {
         const primary = tagCloudData[b] - tagCloudData[a]

@@ -13,7 +13,9 @@ async function main() {
   })
 
   const app = fastify({ logger })
-  const port = parseInt(process.env['SERVER_PORT'] || '17338')
+  const port = parseInt(
+    process.env['SERVER_PORT'] || process.env['PORT'] || '5000'
+  )
 
   app.register(apiRouter, { prefix: '/api' })
 

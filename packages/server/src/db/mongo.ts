@@ -74,7 +74,7 @@ class Entry {
   @prop({ unique: true, required: true }) path!: string
   @prop({ index: true, required: true }) title!: string
   @prop() image?: string
-  @prop({ index: true, default: () => [] }) tag?: string[]
+  @prop({ index: true, default: () => [], type: String }) tag?: string[]
   @prop({ index: true }) date?: Date
 
   @prop({

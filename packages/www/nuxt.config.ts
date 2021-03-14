@@ -1,20 +1,10 @@
 import { NuxtConfig } from '@nuxt/types'
-import type { ITheme } from '@polv/server/lib/db/mongo'
-import axios from 'axios'
-import waitOn from 'wait-on'
+
+import { initAPI } from './assets/api'
 
 export default async (): Promise<NuxtConfig> => {
-  const apiURL =
-    process.env.BASE_URL || `http://localhost:${process.env.SERVER_PORT}`
-
-  await waitOn({
-    resources: [apiURL],
-  })
-
-  const theme: ITheme = await axios
-    .get('/api/theme.json', {
-      baseURL: apiURL,
-    })
+  const theme = await initAPI()
+    .then((r) => r.getTheme())
     .then((r) => r.data)
 
   return {
@@ -23,7 +13,13 @@ export default async (): Promise<NuxtConfig> => {
       htmlAttrs: {
         lang: 'en',
       },
-      title: theme.title,
+      titleTemplate(t?: string) {
+        if (t) {
+          return `${t} - ${theme.title}`
+        }
+
+        return theme.title
+      },
       meta: [
         { charset: 'utf-8' },
         { name: 'viewport', content: 'width=device-width, initial-scale=1' },
@@ -124,19 +120,9 @@ export default async (): Promise<NuxtConfig> => {
           },
         },
       ],
-      // https://go.nuxtjs.dev/axios
-      '@nuxtjs/axios',
       // https://go.nuxtjs.dev/pwa
       '@nuxtjs/pwa',
     ],
-
-    // Axios module configuration: https://go.nuxtjs.dev/config-axios
-    axios: {
-      proxy: true,
-    },
-    proxy: {
-      '/api': `http://localhost:${process.env.SERVER_PORT}`,
-    },
 
     // PWA module configuration: https://go.nuxtjs.dev/pwa
     pwa: {
@@ -157,6 +143,8 @@ export default async (): Promise<NuxtConfig> => {
     },
     env: {
       THEME: JSON.stringify(theme),
+      SERVER_PORT: process.env.SERVER_PORT || '',
+      BASE_URL: process.env.BASE_URL || '',
     },
     server: {
       port: process.env.PORT,

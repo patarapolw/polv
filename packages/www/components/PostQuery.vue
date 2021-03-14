@@ -23,6 +23,7 @@ import { normalizeArray } from '@/assets/util'
 import Empty from './Empty.vue'
 import Pagination from './Pagination.vue'
 import PostTeaser from './PostTeaser.vue'
+import { api } from '~/assets/api'
 
 @Component({
   components: {
@@ -32,10 +33,7 @@ import PostTeaser from './PostTeaser.vue'
   },
 })
 export default class PostQuery extends Vue {
-  @Prop({ required: true }) defaults!: {
-    count: number
-    posts: any[]
-  }
+  @Prop({ default: '' }) cond!: string
 
   count = 0
   posts: any[] = []
@@ -47,11 +45,7 @@ export default class PostQuery extends Vue {
   }
 
   get q() {
-    try {
-      return normalizeArray(this.$route.query.q) || ''
-    } catch (_) {}
-
-    return ''
+    return this.cond + (normalizeArray(this.$route.query.q) || '')
   }
 
   get tag() {
@@ -59,7 +53,7 @@ export default class PostQuery extends Vue {
   }
 
   get page() {
-    return parseInt(this.$route.params.page || '1')
+    return parseInt(normalizeArray(this.$route.query.page) || '1')
   }
 
   created() {
@@ -69,25 +63,19 @@ export default class PostQuery extends Vue {
   @Watch('page')
   @Watch('tag')
   async updatePosts() {
-    if (this.q && !this.tag) {
-      const ps = await this.$axios.$post(
-        '/.netlify/functions/search',
-        undefined,
-        {
-          params: {
-            q: this.q,
-            page: this.page,
-            tag: this.tag,
-          },
-        }
-      )
-
-      this.count = ps.count
-      this.$set(this, 'posts', ps.result)
-    } else {
-      this.count = this.defaults.count
-      this.$set(this, 'posts', this.defaults.posts)
+    let q = this.q
+    if (this.tag) {
+      q += ` tag:${this.tag}`
     }
+
+    const r = await api.getEntryList({
+      q,
+      page: this.page,
+      limit: 5,
+    })
+
+    this.count = r.data.count
+    this.posts = r.data.result
 
     this.isReady = true
   }

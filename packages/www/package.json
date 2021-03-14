@@ -6,23 +6,24 @@
     "dev": "nuxt",
     "build": "nuxt build",
     "start": "nuxt start",
-    "lint": "eslint --ext '.ts,.js,.vue' --ignore-path .gitignore ."
+    "lint": "eslint --ext '.ts,.js,.vue' --ignore-path .gitignore .",
+    "openapi": "typegen http://127.0.0.1:$SERVER_PORT/api/doc/json > ./types/openapi.d.ts"
   },
   "dependencies": {
     "@fortawesome/fontawesome-svg-core": "^1.2.34",
     "@fortawesome/free-brands-svg-icons": "^5.15.2",
     "@fortawesome/free-solid-svg-icons": "^5.15.2",
     "@nuxt/typescript-runtime": "^2.0.1",
-    "@nuxtjs/axios": "^5.12.5",
     "@nuxtjs/fontawesome": "^1.1.2",
     "@nuxtjs/pwa": "^3.3.5",
+    "axios": "^0.21.1",
     "core-js": "^3.8.3",
     "nuxt": "^2.14.12",
     "nuxt-buefy": "^0.4.4",
+    "openapi-client-axios": "^3.13.1",
     "wait-on": "^5.2.1"
   },
   "devDependencies": {
-    "highlight.js": "^10.6.0",
     "@nuxt/types": "^2.14.12",
     "@nuxt/typescript-build": "^2.0.4",
     "@nuxtjs/eslint-config-typescript": "^5.0.0",
@@ -34,16 +35,15 @@
     "eslint-plugin-nuxt": "^2.0.0",
     "eslint-plugin-prettier": "^3.3.1",
     "eslint-plugin-vue": "^7.5.0",
+    "highlight.js": "^10.6.0",
     "import-sort-parser-typescript": "^6.0.0",
     "nuxt-mq": "^2.0.2",
     "nuxt-property-decorator": "^2.9.1",
     "nuxt-typed-vuex": "^0.1.22",
+    "openapi-client-axios-typegen": "^3.13.1",
     "prettier": "^2.2.1",
     "sass": "^1.32.8",
     "sass-loader": "10"
-  },
-  "peerDependencies": {
-    "@polv/server": "*"
   },
   "importSort": {
     ".ts, .tsx": {
