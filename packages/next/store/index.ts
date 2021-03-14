@@ -1,10 +1,10 @@
-import { ITheme, zTheme } from '~/server/db/mongo'
+import { ITheme, sTheme } from '~/server/db/mongo'
+import S from 'jsonschema-definer'
 import { actionTree, getAccessorType, mutationTree } from 'typed-vuex'
-import * as z from 'zod'
 
 const state = () =>
   new (class {
-    theme = zTheme.parse(JSON.parse(z.string().parse(process.env.THEME)))
+    theme = sTheme.ensure(JSON.parse(S.string().ensure(process.env.THEME!)))
   })()
 
 const mutations = mutationTree(state, {

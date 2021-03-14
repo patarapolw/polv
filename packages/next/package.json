@@ -33,8 +33,7 @@
     "nuxt": "^2.14.12",
     "nuxt-buefy": "^0.4.4",
     "tsconfig-paths": "^3.9.0",
-    "wait-on": "^5.2.1",
-    "zod": "^1.11.11"
+    "wait-on": "^5.2.1"
   },
   "devDependencies": {
     "@nuxt/types": "^2.14.12",

@@ -5,68 +5,52 @@ import {
   modelOptions,
   prop,
 } from '@typegoose/typegoose'
-import * as z from 'zod'
+import S from 'jsonschema-definer'
 
-export const zTheme = z
-  .object({
-    title: z.string(),
-    banner: z.string(),
-    baseUrl: z.string(),
-    description: z.string().optional(),
-    keywords: z.array(z.string()).optional(),
-    tabs: z
-      .array(
-        z.object({
-          name: z.string(),
-          id: z.string(),
-          q: z.string(),
-        })
-      )
-      .optional(),
-    author: z
-      .object({
-        url: z.string().optional(),
-        email: z.string().optional(),
-        name: z.string(),
-        image: z.string(),
-      })
-      .nonstrict(),
-    social: z
-      .object({
-        facebook: z.string().optional(),
-        twitter: z.string().optional(),
-        reddit: z.string().optional(),
-        quora: z.string().optional(),
-        github: z.string().optional(),
-        linkedin: z.string().optional(),
-      })
-      .nonstrict(),
-    sidebar: z
-      .object({
-        tagCloud: z.boolean().optional(),
-        twitter: z.string().optional(),
-      })
-      .optional(),
-    analytics: z
-      .object({
-        plausible: z.string().optional(),
-      })
-      .optional(),
-    comment: z
-      .object({
-        remark42: z
-          .object({
-            host: z.string(),
-            siteId: z.string(),
-            locale: z.string().optional(),
-          })
-          .optional(),
-      })
-      .optional(),
-  })
-  .nonstrict()
+export const sTheme = S.shape({
+  title: S.string(),
+  banner: S.string(),
+  baseUrl: S.string(),
+  description: S.string().optional(),
+  keywords: S.list(S.string()).optional(),
+  tabs: S.list(
+    S.shape({
+      name: S.string(),
+      id: S.string(),
+      q: S.string(),
+    })
+  ).optional(),
+  author: S.shape({
+    url: S.string().optional(),
+    email: S.string().optional(),
+    name: S.string(),
+    image: S.string(),
+  }).additionalProperties(true),
+  social: S.shape({
+    facebook: S.string().optional(),
+    twitter: S.string().optional(),
+    reddit: S.string().optional(),
+    quora: S.string().optional(),
+    github: S.string().optional(),
+    linkedin: S.string().optional(),
+  }).additionalProperties(true),
+  sidebar: S.shape({
+    tagCloud: S.boolean().optional(),
+    twitter: S.string().optional(),
+  }).optional(),
+  analytics: S.shape({
+    plausible: S.string().optional(),
+  }).optional(),
+  comment: S.shape({
+    remark42: S.shape({
+      host: S.string(),
+      siteId: S.string(),
+      locale: S.string().optional(),
+    }).optional(),
+  }).optional(),
+}).additionalProperties(true)
 
-export type ITheme = z.infer<typeof zTheme>
+export type ITheme = typeof sTheme.type
 
 @modelOptions({
   options: {
@@ -75,7 +59,7 @@ export type ITheme = z.infer<typeof zTheme>
 })
 class User {
   @prop({ default: '_' }) _id?: string
-  @prop({ validate: (v) => !!zTheme.parse(v) }) theme!: ITheme
+  @prop({ validate: (v) => !!sTheme.ensure(v) }) theme!: ITheme
 }
 
 export const UserModel = getModelForClass(User, {
