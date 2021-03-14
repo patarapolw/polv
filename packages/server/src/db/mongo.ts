@@ -3,6 +3,7 @@ import {
   getModelForClass,
   index,
   modelOptions,
+  mongoose,
   prop,
 } from '@typegoose/typegoose'
 import S from 'jsonschema-definer'
@@ -12,6 +13,7 @@ export const sTheme = S.shape({
   banner: S.string(),
   baseUrl: S.string(),
   description: S.string().optional(),
+  favicon: S.string(),
   keywords: S.list(S.string()).optional(),
   tabs: S.list(
     S.shape({
@@ -74,8 +76,14 @@ class Entry {
   @prop({ unique: true, required: true }) path!: string
   @prop({ index: true, required: true }) title!: string
   @prop() image?: string
-  @prop({ index: true, default: () => [], type: String }) tag?: string[]
   @prop({ index: true }) date?: Date
+
+  @prop({
+    index: true,
+    default: () => [],
+    type: String,
+  })
+  tag?: string[]
 
   @prop({
     required: true,
@@ -98,3 +106,12 @@ class Entry {
 export const EntryModel = getModelForClass(Entry, {
   schemaOptions: { timestamps: true },
 })
+
+export async function mongooseConnect() {
+  return await mongoose.connect(process.env['MONGO_URI']!, {
+    useNewUrlParser: true,
+    useUnifiedTopology: true,
+    useCreateIndex: true,
+    useFindAndModify: false,
+  })
+}

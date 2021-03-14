@@ -2,6 +2,7 @@ title: polv's coding blog
 banner: polv's coding blog
 baseUrl: https://www.polv.cc
 description: polv's coding blog
+favicon: https://res.cloudinary.com/patarapolw/image/upload/v1615741807/polv/favicon_j5h0ii.ico
 keywords:
   - polv
   - patarapolw
@@ -29,7 +30,7 @@ author:
   url: https://www.polv.cc
   email: patarapolw@gmail.com
   name: Pacharapol Withayasakpunt
-  image: /media/author.jpg
+  image: https://res.cloudinary.com/patarapolw/image/upload/v1615741807/polv/author_jbtm2m.jpg
 social:
   facebook: patarapolw
   twitter: patarapolw

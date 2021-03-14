@@ -155,7 +155,7 @@ import { api } from '~/assets/api'
   async fetch() {
     const tagCloudData = await api.getTag().then((r) => r.data)
 
-    Object.keys(tagCloudData)
+    this.computedTags = Object.keys(tagCloudData)
       .sort((a, b) => {
         const primary = tagCloudData[b] - tagCloudData[a]
         if (primary) {
@@ -194,6 +194,17 @@ import { api } from '~/assets/api'
       })
       .map((el) => el!)
       .filter((el) => el)
+  },
+  head() {
+    return {
+      titleTemplate: (t?: string) => {
+        if (t) {
+          return `${t} - ${this.$accessor.theme.title}`
+        }
+
+        return this.$accessor.theme.title
+      },
+    }
   },
 })
 export default class BlogLayout extends Vue {

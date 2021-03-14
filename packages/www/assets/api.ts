@@ -15,6 +15,10 @@ export const apiClient = new OpenAPIClientAxios({
 export let api: Client
 
 export async function initAPI() {
+  if (api) {
+    return api
+  }
+
   api = await apiClient.init<Client>()
   api.defaults.baseURL = apiURL
   return api

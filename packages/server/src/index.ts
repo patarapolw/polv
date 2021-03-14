@@ -1,16 +1,11 @@
 import fastify from 'fastify'
-import mongoose from 'mongoose'
 
 import apiRouter from './api'
+import { mongooseConnect } from './db/mongo'
 import { logger } from './logger'
 
 async function main() {
-  await mongoose.connect(process.env['MONGO_URI']!, {
-    useNewUrlParser: true,
-    useUnifiedTopology: true,
-    useCreateIndex: true,
-    useFindAndModify: false,
-  })
+  await mongooseConnect()
 
   const app = fastify({ logger })
   const port = parseInt(

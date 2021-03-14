@@ -1,11 +1,10 @@
 import { NuxtConfig } from '@nuxt/types'
 
-import { initAPI } from './assets/api'
+import { api, initAPI } from './assets/api'
 
 export default async (): Promise<NuxtConfig> => {
-  const theme = await initAPI()
-    .then((r) => r.getTheme())
-    .then((r) => r.data)
+  await initAPI()
+  const theme = await api.getTheme().then((r) => r.data)
 
   return {
     // Global page headers: https://go.nuxtjs.dev/config-head
@@ -13,13 +12,7 @@ export default async (): Promise<NuxtConfig> => {
       htmlAttrs: {
         lang: 'en',
       },
-      titleTemplate(t?: string) {
-        if (t) {
-          return `${t} - ${theme.title}`
-        }
-
-        return theme.title
-      },
+      title: theme.title,
       meta: [
         { charset: 'utf-8' },
         { name: 'viewport', content: 'width=device-width, initial-scale=1' },
@@ -29,7 +22,7 @@ export default async (): Promise<NuxtConfig> => {
           content: theme.description || '',
         },
       ],
-      link: [{ rel: 'icon', type: 'image/x-icon', href: '/media/favicon.ico' }],
+      link: [{ rel: 'icon', type: 'image/x-icon', href: theme.favicon }],
       script: [
         ...(theme.sidebar?.twitter
           ? [

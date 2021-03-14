@@ -21,7 +21,7 @@
           <h2 class="title mb-4 header-link">{{ post.title }}</h2>
         </nuxt-link>
 
-        <div class="content" v-html="post.excerptHtml" />
+        <div class="content" v-html="post.html" />
       </div>
     </article>
   </section>

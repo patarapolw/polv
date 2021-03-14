@@ -19,7 +19,7 @@
 
         <h1 class="title">{{ post.title }}</h1>
 
-        <div class="content" v-html="post.contentHtml" />
+        <div class="content" v-html="post.html" />
 
         <div style="overflow-wrap: break-word">
           <span class="tw-mr-2">Tags:</span>

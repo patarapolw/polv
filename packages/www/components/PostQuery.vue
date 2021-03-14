@@ -23,7 +23,7 @@ import { normalizeArray } from '@/assets/util'
 import Empty from './Empty.vue'
 import Pagination from './Pagination.vue'
 import PostTeaser from './PostTeaser.vue'
-import { api } from '~/assets/api'
+import { api, initAPI } from '~/assets/api'
 
 @Component({
   components: {
@@ -56,7 +56,8 @@ export default class PostQuery extends Vue {
     return parseInt(normalizeArray(this.$route.query.page) || '1')
   }
 
-  created() {
+  async mounted() {
+    await initAPI()
     this.updatePosts()
   }
 

@@ -9,12 +9,11 @@ import {
 
 type ITheme = Paths.GetTheme.Responses.$200
 
-const state = () =>
-  new (class {
-    theme: ITheme = JSON.parse(process.env.THEME!)
-  })()
+export const state = () => ({
+  theme: JSON.parse(process.env.THEME!) as ITheme,
+})
 
-const getters = getterTree(state, {
+export const getters = getterTree(state, {
   tabs(state) {
     return (state.theme.tabs || []).reduce(
       (prev, c) => ({
@@ -32,13 +31,13 @@ const getters = getterTree(state, {
   },
 })
 
-const mutations = mutationTree(state, {
+export const mutations = mutationTree(state, {
   SET_THEME(state, theme: ITheme) {
     state.theme = theme
   },
 })
 
-const actions = actionTree(
+export const actions = actionTree(
   { state, mutations },
   {
     async nuxtServerInit() {

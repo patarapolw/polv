@@ -150,7 +150,6 @@ const apiRouter: FastifyPluginAsync = async (f) => {
           date: S.string().format('date-time').optional(),
           image: S.string().optional(),
           tag: S.list(S.string()),
-          text: S.string(),
           html: S.string(),
         })
       ),
@@ -177,9 +176,11 @@ const apiRouter: FastifyPluginAsync = async (f) => {
 
         let cond: any = null
         const aggPipelines: any[] = [
+          { $match: { date: { $exists: true } } },
           {
             $facet: {
               result: [
+                { $sort: { date: -1 } },
                 { $skip: (page - 1) * limit },
                 { $limit: limit },
                 {
@@ -190,9 +191,7 @@ const apiRouter: FastifyPluginAsync = async (f) => {
                     date: 1,
                     image: 1,
                     tag: 1,
-                    text: {
-                      $arrayElemAt: [{ $split: ['$text', SEPARATOR] }, 0],
-                    },
+                    text: 0,
                     html: {
                       $arrayElemAt: [{ $split: ['$html', SEPARATOR] }, 0],
                     },
@@ -222,7 +221,7 @@ const apiRouter: FastifyPluginAsync = async (f) => {
             ...r0,
             text: r0.text.replace(SEPARATOR, ''),
           })),
-          count: r.count[0],
+          count: r.count[0].count,
         }
       }
     )
