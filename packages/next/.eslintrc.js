@@ -14,7 +14,7 @@ module.exports = {
   plugins: ['prettier'],
   // add your custom rules here
   rules: {
-    'import/sort': 0,
+    'import/order': 0,
     'vue/no-v-html': 0,
   },
 }
