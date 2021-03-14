@@ -18,7 +18,7 @@ const gcloudConf: pino.LoggerOptions = {
     level(label, number) {
       return {
         severity:
-          PinoLevelToSeverityLookup[label] || PinoLevelToSeverityLookup.info,
+          PinoLevelToSeverityLookup[label] || PinoLevelToSeverityLookup['info'],
         level: number,
       }
     },
@@ -26,7 +26,7 @@ const gcloudConf: pino.LoggerOptions = {
 }
 
 export const logger = pino({
-  ...(process.env.NODE_ENV === 'development'
+  ...(process.env['NODE_ENV'] === 'development'
     ? {
         prettyPrint: true,
         prettifier: function pinoInspector(opts: any) {

@@ -1,8 +1,7 @@
 import { NuxtConfig } from '@nuxt/types'
+import type { ITheme } from '@polv/server/lib/db/mongo'
 import axios from 'axios'
 import waitOn from 'wait-on'
-
-import type { ITheme } from './store'
 
 export default async (): Promise<NuxtConfig> => {
   const apiURL =

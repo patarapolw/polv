@@ -2,8 +2,6 @@
   "extends": "../tsconfig.json",
   "compilerOptions": {
     "rootDir": ".",
-    "outDir": "../server-dist",
-    "module": "commonjs",
-    "noEmit": false
+    "outDir": "../lib"
   }
 }

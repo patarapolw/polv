@@ -1,20 +1,19 @@
-/* eslint-disable no-throw-literal */
-/* eslint-disable require-await */
 import { FastifyPluginAsync } from 'fastify'
 import S from 'jsonschema-definer'
 
 import { EntryModel, ITheme, SEPARATOR, UserModel, sTheme } from '../db/mongo'
 
 const apiRouter: FastifyPluginAsync = async (f) => {
-  if (process.env.NODE_ENV === 'development') {
+  if (process.env['NODE_ENV'] === 'development') {
     f.register(require('fastify-cors'))
   }
 
   f.addHook<{
     Querystring: Record<string, string | string[]>
   }>('preValidation', async (req) => {
-    if (typeof req.query.select === 'string') {
-      req.query.select = req.query.select.split(/,/g)
+    const { select } = req.query
+    if (typeof select === 'string') {
+      req.query['select'] = select.split(/,/g)
     }
   })
 
