@@ -43,7 +43,7 @@ export default class PostPage extends Vue {
     const { title, text: description, tag, image } = this.post
 
     return {
-      title,
+      title: `${title} - ${this.$accessor.theme.title}`,
       meta: [
         {
           hid: 'description',

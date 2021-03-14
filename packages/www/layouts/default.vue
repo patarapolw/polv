@@ -195,17 +195,6 @@ import { api } from '~/assets/api'
       .map((el) => el!)
       .filter((el) => el)
   },
-  head() {
-    return {
-      titleTemplate: (t?: string) => {
-        if (t) {
-          return `${t} - ${this.$accessor.theme.title}`
-        }
-
-        return this.$accessor.theme.title
-      },
-    }
-  },
 })
 export default class BlogLayout extends Vue {
   banner: string = this.$accessor.theme.banner

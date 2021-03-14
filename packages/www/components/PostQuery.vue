@@ -4,14 +4,16 @@
       <h1 class="title is-2">Tag: {{ tag }}</h1>
     </header>
 
-    <article v-if="!isReady || posts.length > 0">
-      <div v-for="p in posts" :key="p.path" class="mb-4">
-        <PostTeaser :post="p" />
-      </div>
+    <div v-show="!$fetchState.pending">
+      <article v-if="posts.length > 0">
+        <div v-for="p in posts" :key="p.path" class="mb-4">
+          <PostTeaser :post="p" />
+        </div>
 
-      <Pagination v-if="pageTotal > 1" :total="pageTotal" />
-    </article>
-    <Empty v-else />
+        <Pagination v-if="pageTotal > 1" :total="pageTotal" />
+      </article>
+      <Empty v-else />
+    </div>
   </section>
 </template>
 
@@ -25,20 +27,24 @@ import Pagination from './Pagination.vue'
 import PostTeaser from './PostTeaser.vue'
 import { api, initAPI } from '~/assets/api'
 
-@Component({
+// eslint-disable-next-line no-use-before-define
+@Component<PostQuery>({
   components: {
     PostTeaser,
     Empty,
     Pagination,
   },
+  async fetch() {
+    await initAPI()
+    await this.updatePosts()
+  },
 })
 export default class PostQuery extends Vue {
   @Prop({ default: '' }) cond!: string
+  @Prop() tag?: string
 
   count = 0
   posts: any[] = []
-
-  isReady = false
 
   get pageTotal() {
     return Math.ceil(this.count / 5)
@@ -48,17 +54,8 @@ export default class PostQuery extends Vue {
     return this.cond + (normalizeArray(this.$route.query.q) || '')
   }
 
-  get tag() {
-    return this.$route.params.tag
-  }
-
   get page() {
     return parseInt(normalizeArray(this.$route.query.page) || '1')
-  }
-
-  async mounted() {
-    await initAPI()
-    this.updatePosts()
   }
 
   @Watch('page')
@@ -77,8 +74,6 @@ export default class PostQuery extends Vue {
 
     this.count = r.data.count
     this.posts = r.data.result
-
-    this.isReady = true
   }
 
   @Watch('q')

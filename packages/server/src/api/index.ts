@@ -1,8 +1,11 @@
+import dayjs from 'dayjs'
+import escapeStringRegexp from 'escape-string-regexp'
 import { FastifyPluginAsync } from 'fastify'
 import swagger from 'fastify-swagger'
 import S from 'jsonschema-definer'
 
 import { EntryModel, ITheme, SEPARATOR, UserModel, sTheme } from '../db/mongo'
+import { ISplitOpToken, splitOp } from '../db/tokenize'
 
 const apiRouter: FastifyPluginAsync = async (f) => {
   if (process.env['NODE_ENV'] === 'development') {
@@ -191,7 +194,6 @@ const apiRouter: FastifyPluginAsync = async (f) => {
                     date: 1,
                     image: 1,
                     tag: 1,
-                    text: 0,
                     html: {
                       $arrayElemAt: [{ $split: ['$html', SEPARATOR] }, 0],
                     },
@@ -204,8 +206,85 @@ const apiRouter: FastifyPluginAsync = async (f) => {
         ]
 
         if (q) {
-          cond = q
-          aggPipelines.unshift(cond)
+          const $and: any[] = []
+          const $or: any[] = []
+          const $nor: any[] = []
+
+          const segParse = (t: ISplitOpToken) => {
+            switch (t.k) {
+              case 'tag':
+                return { tag: t.v }
+              case 'title':
+                return { title: { $regex: escapeStringRegexp(t.v) } }
+              case 'path':
+                return { path: { $regex: escapeStringRegexp(t.v) } }
+              case 'content':
+                return { $text: { $search: t.v } }
+              case 'date':
+                let date: Date | null = null
+
+                if (/^\d+(\.\d+)?$/.test(t.v) || /^\.\d+/.test(t.v)) {
+                  date = dayjs()
+                    .subtract(Math.abs(parseFloat(t.v)), 'days')
+                    .toDate()
+                } else {
+                  let d: dayjs.Dayjs
+
+                  const m = /^(\d+(?:\.\d+)?)?([A-Z]{1,8})$/.exec(t.v)
+                  if (m) {
+                    d = dayjs().subtract(
+                      parseFloat(m[1]!),
+                      m[2] as dayjs.OpUnitType
+                    )
+                  } else {
+                    d = dayjs(t.v)
+                  }
+
+                  if (d.isValid()) {
+                    date = d.toDate()
+                  }
+                }
+
+                if (!date) {
+                  return { [Math.random()]: 1 }
+                }
+
+                switch (t.op) {
+                  case '>':
+                    return { date: { $gt: date } }
+                  case '<':
+                    return { date: { $lt: date } }
+                }
+
+                return { date: { $gt: date } }
+            }
+
+            return { $or: [{ tag: t.v }, { $text: { $search: t.v } }] }
+          }
+
+          splitOp(q).map((t) => {
+            switch (t.prefix) {
+              case '-':
+                $nor.push(segParse(t))
+                break
+              case '?':
+                $or.push(segParse(t))
+                break
+              default:
+                $and.push(segParse(t))
+            }
+          })
+
+          if ($or.length) {
+            $and.push({ $or })
+          }
+
+          if ($nor.length) {
+            $and.push({ $nor })
+          }
+
+          cond = $and.length ? { $and } : {}
+          aggPipelines.unshift({ $match: cond })
         }
 
         const [r] = await EntryModel.aggregate(aggPipelines)
@@ -217,10 +296,7 @@ const apiRouter: FastifyPluginAsync = async (f) => {
         }
 
         return {
-          result: r.result.map((r0: any) => ({
-            ...r0,
-            text: r0.text.replace(SEPARATOR, ''),
-          })),
+          result: r.result,
           count: r.count[0].count,
         }
       }

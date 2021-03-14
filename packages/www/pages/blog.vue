@@ -10,6 +10,7 @@ import PostQuery from '@/components/PostQuery.vue'
   components: {
     PostQuery,
   },
+  watchQuery: ['page'],
 })
 export default class BlogPage extends Vue {}
 </script>

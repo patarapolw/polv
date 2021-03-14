@@ -11,9 +11,10 @@ import PostQuery from '@/components/PostQuery.vue'
   components: {
     PostQuery,
   },
+  watchQuery: ['page'],
   head() {
     return {
-      title: this.tab.name,
+      title: `${this.tab.name} - ${this.$accessor.theme.title}`,
     }
   },
 })

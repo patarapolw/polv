@@ -113,7 +113,10 @@ export default class Pagination extends Vue {
 
     // eslint-disable-next-line @typescript-eslint/no-unused-vars
     const { page: _, ...query } = this.$route.query
-    query.page = p.toString()
+
+    if (p !== 1) {
+      query.page = p.toString()
+    }
 
     return this.$router.resolve({
       path,
