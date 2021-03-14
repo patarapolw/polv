@@ -3,7 +3,7 @@
 import { FastifyPluginAsync } from 'fastify'
 import S from 'jsonschema-definer'
 
-import { EntryModel, ITheme, UserModel, sTheme } from '../db/mongo'
+import { EntryModel, ITheme, SEPARATOR, UserModel, sTheme } from '../db/mongo'
 
 const apiRouter: FastifyPluginAsync = async (f) => {
   if (process.env.NODE_ENV === 'development') {
@@ -78,6 +78,7 @@ const apiRouter: FastifyPluginAsync = async (f) => {
       date: S.string().format('date-time').optional(),
       image: S.string().optional(),
       tag: S.list(S.string()),
+      text: S.string(),
       html: S.string(),
     })
 
@@ -96,12 +97,25 @@ const apiRouter: FastifyPluginAsync = async (f) => {
       async (req) => {
         const { path } = req.query
 
-        const entry = await EntryModel.findOne({ path }).select({
-          _id: 0,
-          path: 0,
-          text: 0,
-          markdown: 0,
-        })
+        const [entry] = await EntryModel.aggregate([
+          {
+            $match: { path },
+          },
+          { $limit: 1 },
+          {
+            $project: {
+              _id: 0,
+              title: 1,
+              date: 1,
+              image: 1,
+              tag: 1,
+              text: {
+                $arrayElemAt: [{ $split: ['$text', SEPARATOR] }, 0],
+              },
+              html: 1,
+            },
+          },
+        ])
 
         if (!entry) {
           throw { statusCode: 404 }
@@ -126,6 +140,7 @@ const apiRouter: FastifyPluginAsync = async (f) => {
           title: S.string(),
           date: S.string().format('date-time').optional(),
           image: S.string().optional(),
+          tag: S.list(S.string()),
           text: S.string(),
           html: S.string(),
         })
@@ -164,17 +179,12 @@ const apiRouter: FastifyPluginAsync = async (f) => {
                     title: 1,
                     date: 1,
                     image: 1,
+                    tag: 1,
                     text: {
-                      $arrayElemAt: [
-                        { $split: ['$text', '<!-- excerpt -->'] },
-                        0,
-                      ],
+                      $arrayElemAt: [{ $split: ['$text', SEPARATOR] }, 0],
                     },
                     html: {
-                      $arrayElemAt: [
-                        { $split: ['$html', '<!-- excerpt -->'] },
-                        0,
-                      ],
+                      $arrayElemAt: [{ $split: ['$html', SEPARATOR] }, 0],
                     },
                   },
                 },
@@ -197,7 +207,13 @@ const apiRouter: FastifyPluginAsync = async (f) => {
           }
         }
 
-        return { result: r.result, count: r.count[0] }
+        return {
+          result: r.result.map((r0: any) => ({
+            ...r0,
+            text: r0.text.replace(SEPARATOR, ''),
+          })),
+          count: r.count[0],
+        }
       }
     )
   }

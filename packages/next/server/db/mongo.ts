@@ -52,6 +52,9 @@ export const sTheme = S.shape({
 
 export type ITheme = typeof sTheme.type
 
+// From https://randomkeygen.com/. Make sure it is unsearchable.
+export const SEPARATOR = '<!-- cUVdnfHD4e0kM4v4VPiCRC4HV26PuPvZ -->'
+
 @modelOptions({
   options: {
     allowMixed: Severity.ALLOW,
@@ -72,10 +75,24 @@ class Entry {
   @prop({ index: true, required: true }) title!: string
   @prop() image?: string
   @prop({ index: true, default: () => [] }) tag?: string[]
-  @prop({ required: true }) text!: string
-  @prop() markdown?: string
-  @prop({ required: true }) html!: string
   @prop({ index: true }) date?: Date
+
+  @prop({
+    required: true,
+    validate: (v: string) => v.includes(SEPARATOR),
+  })
+  text!: string
+
+  @prop({
+    validate: (v: string) => v.includes(SEPARATOR),
+  })
+  markdown?: string
+
+  @prop({
+    required: true,
+    validate: (v: string) => v.includes(SEPARATOR),
+  })
+  html!: string
 }
 
 export const EntryModel = getModelForClass(Entry, {

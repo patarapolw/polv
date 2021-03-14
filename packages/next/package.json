@@ -1,7 +1,9 @@
 {
-  "name": "@polv/buefy-next",
+  "name": "@polv/server",
   "version": "0.1.0",
   "private": true,
+  "main": "server-dist/index.js",
+  "types": "server-dist/index.d.ts",
   "scripts": {
     "dev": "run-p 'dev:*'",
     "dev:server": "NODE_ENV=development ts-node-dev -P server/tsconfig.json -r tsconfig-paths/register server/index.ts",
