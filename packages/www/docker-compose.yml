@@ -1,0 +1,10 @@
+services:
+  polv:
+    build: .
+    environment:
+      - PORT=$PORT
+      - SERVER_PORT=17338
+      - BASE_URL
+      - MONGO_URI
+    ports:
+      - $PORT:$PORT

@@ -1,0 +1,57 @@
+{
+  "name": "@polv/server",
+  "version": "0.1.0",
+  "main": "lib/index.js",
+  "types": "lib/index.d.ts",
+  "author": "Pacharapol Withayasakpunt <polv@polv.cc> (https://www.polv.cc/)",
+  "license": "MIT",
+  "scripts": {
+    "dev": "yarn ts-dev src/index.ts",
+    "build": "tsc -P src/tsconfig.json",
+    "start": "node -r tsconfig-paths/register lib/index.js",
+    "ts": "ts-node -P src/tsconfig.json -r tsconfig-paths/register",
+    "ts-dev": "NODE_ENV=development ts-node-dev -P src/tsconfig.json -r tsconfig-paths/register"
+  },
+  "dependencies": {
+    "@typegoose/typegoose": "^7.6.0",
+    "dayjs": "^1.10.4",
+    "escape-string-regexp": "^4.0.0",
+    "fastify": "^3.14.0",
+    "fastify-swagger": "^4.4.1",
+    "jsonschema-definer": "^1.3.2",
+    "mongoose": "5.10.18",
+    "tsconfig-paths": "^3.9.0"
+  },
+  "devDependencies": {
+    "@patarapolw/scope-css": "^1.3.0",
+    "@types/cheerio": "^0.22.27",
+    "@types/dotenv-flow": "^3.1.0",
+    "@types/ejs": "^3.0.6",
+    "@types/js-yaml": "^4.0.0",
+    "@types/mongoose": "^5.10.3",
+    "@types/pino": "^6.3.6",
+    "@types/showdown": "^1.9.3",
+    "cheerio": "^1.0.0-rc.5",
+    "dotenv-flow": "^3.2.0",
+    "ejs": "^3.1.6",
+    "fast-glob": "^3.2.5",
+    "fastify-cors": "^5.2.0",
+    "highlight.js": "^10.6.0",
+    "highlightjs-vue": "highlightjs/highlightjs-vue",
+    "html-encoder-decoder": "^1.3.9",
+    "import-sort-parser-typescript": "^6.0.0",
+    "js-yaml": "^4.0.0",
+    "pino-pretty": "^4.7.1",
+    "prettier": "^2.2.1",
+    "showdown": "^1.9.1",
+    "ts-node": "^9.1.1",
+    "ts-node-dev": "^1.1.6",
+    "typescript": "^4.2.3"
+  },
+  "importSort": {
+    ".ts, .tsx": {
+      "parser": "typescript",
+      "style": "module"
+    }
+  }
+}

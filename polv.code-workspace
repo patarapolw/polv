@@ -1,0 +1,21 @@
+{
+  "folders": [
+    {
+      "path": "packages/server"
+    },
+    {
+      "path": "packages/www"
+    },
+    {
+      "path": "packages/nuxt"
+    },
+    {
+      "path": "."
+    }
+  ],
+  "settings": {
+    "files.associations": {
+      ".env.*": "dotenv"
+    }
+  }
+}

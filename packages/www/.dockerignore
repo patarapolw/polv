@@ -1,0 +1,11 @@
+# Ignore everything
+**
+
+# Allow files and directories
+!/.nuxt/
+!/assets/
+!/server-dist/
+!/package.json
+!/nuxt.config.ts
+!/yarn.lock
+!/tsconfig.json
