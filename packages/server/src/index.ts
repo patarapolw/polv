@@ -1,12 +1,9 @@
 import fastify from 'fastify'
 
 import apiRouter from './api'
-import { mongooseConnect } from './db/mongo'
 import { logger } from './logger'
 
 async function main() {
-  await mongooseConnect()
-
   const app = fastify({ logger })
   const port = parseInt(
     process.env['SERVER_PORT'] || process.env['PORT'] || '5000'

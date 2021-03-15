@@ -1,11 +1,3 @@
-import {
-  Severity,
-  getModelForClass,
-  index,
-  modelOptions,
-  mongoose,
-  prop,
-} from '@typegoose/typegoose'
 import S from 'jsonschema-definer'
 
 export const sTheme = S.shape({
@@ -56,62 +48,3 @@ export type ITheme = typeof sTheme.type
 
 // From https://randomkeygen.com/. Make sure it is unsearchable.
 export const SEPARATOR = '<!-- cUVdnfHD4e0kM4v4VPiCRC4HV26PuPvZ -->'
-
-@modelOptions({
-  options: {
-    allowMixed: Severity.ALLOW,
-  },
-})
-class User {
-  @prop({ default: '_' }) _id?: string
-  @prop({ validate: (v) => !!sTheme.ensure(v) }) theme!: ITheme
-}
-
-export const UserModel = getModelForClass(User, {
-  schemaOptions: { timestamps: true },
-})
-
-@index({ text: 'text' })
-class Entry {
-  @prop({ unique: true, required: true }) path!: string
-  @prop({ index: true, required: true }) title!: string
-  @prop() image?: string
-  @prop({ index: true }) date?: Date
-
-  @prop({
-    index: true,
-    default: () => [],
-    type: String,
-  })
-  tag?: string[]
-
-  @prop({
-    required: true,
-    validate: (v: string) => v.includes(SEPARATOR),
-  })
-  text!: string
-
-  @prop({
-    validate: (v: string) => v.includes(SEPARATOR),
-  })
-  markdown?: string
-
-  @prop({
-    required: true,
-    validate: (v: string) => v.includes(SEPARATOR),
-  })
-  html!: string
-}
-
-export const EntryModel = getModelForClass(Entry, {
-  schemaOptions: { timestamps: true },
-})
-
-export async function mongooseConnect() {
-  return await mongoose.connect(process.env['MONGO_URI']!, {
-    useNewUrlParser: true,
-    useUnifiedTopology: true,
-    useCreateIndex: true,
-    useFindAndModify: false,
-  })
-}
