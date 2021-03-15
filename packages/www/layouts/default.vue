@@ -145,15 +145,14 @@ import { Component, Vue } from 'nuxt-property-decorator'
 
 import { normalizeArray } from '@/assets/util'
 import PageSocial from '@/components/PageSocial.vue'
-import { api } from '~/assets/api'
 
 // eslint-disable-next-line no-use-before-define
 @Component<BlogLayout>({
   components: {
     PageSocial,
   },
-  async fetch() {
-    const tagCloudData = await api.getTag().then((r) => r.data)
+  created() {
+    const tagCloudData = JSON.parse(process.env.TAG!)
 
     this.computedTags = Object.keys(tagCloudData)
       .sort((a, b) => {

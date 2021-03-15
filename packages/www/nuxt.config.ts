@@ -5,6 +5,7 @@ import { api, initAPI } from './assets/api'
 export default async (): Promise<NuxtConfig> => {
   await initAPI()
   const theme = await api.getTheme().then((r) => r.data)
+  const TAG = await api.getTag().then((r) => r.data)
 
   return {
     // Target: https://go.nuxtjs.dev/config-target
@@ -91,7 +92,6 @@ export default async (): Promise<NuxtConfig> => {
     // Modules: https://go.nuxtjs.dev/config-modules
     modules: [
       // https://go.nuxtjs.dev/buefy
-      'nuxt-buefy',
       [
         'nuxt-buefy',
         {
@@ -117,7 +117,14 @@ export default async (): Promise<NuxtConfig> => {
           },
         },
       ],
+      '@nuxtjs/proxy',
     ],
+
+    proxy: {
+      '/.netlify': {
+        target: 'http://localhost:9000',
+      },
+    },
 
     // Build Configuration: https://go.nuxtjs.dev/config-build
     build: {},
@@ -125,6 +132,7 @@ export default async (): Promise<NuxtConfig> => {
       THEME: JSON.stringify(theme),
       SERVER_PORT: process.env.SERVER_PORT || '',
       BASE_URL: process.env.BASE_URL || '',
+      TAG: JSON.stringify(TAG),
     },
     server: {
       port: process.env.PORT,
