@@ -5,10 +5,8 @@ import { Client } from '../types/openapi'
 export const apiURL =
   process.env.BASE_URL || `http://localhost:${process.env.SERVER_PORT}`
 
-export const apiDefintionURL = `${apiURL}/api/doc/json`
-
 export const apiClient = new OpenAPIClientAxios({
-  definition: apiDefintionURL,
+  definition: require('./openapi.json'),
 })
 
 // eslint-disable-next-line import/no-mutable-exports

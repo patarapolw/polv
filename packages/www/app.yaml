@@ -1,4 +1,3 @@
-service: www
 runtime: nodejs12
 
 instance_class: F2
@@ -19,4 +18,4 @@ handlers:
 
 env_variables:
   HOST: '0.0.0.0'
-  BASE_URL: http://polvcode.uc.r.appspot.com
+  BASE_URL: http://api-dot-polvcode.uc.r.appspot.com/
