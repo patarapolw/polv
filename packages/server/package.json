@@ -6,11 +6,11 @@
   "author": "Pacharapol Withayasakpunt <polv@polv.cc> (https://www.polv.cc/)",
   "license": "MIT",
   "scripts": {
-    "dev": "NODE_ENV=development ts-node-dev -P src/tsconfig.json -r tsconfig-paths/register src/index.ts",
+    "dev": "yarn ts-dev src/index.ts",
     "build": "tsc -P src/tsconfig.json",
     "start": "node -r tsconfig-paths/register lib/index.js",
     "ts": "ts-node -P src/tsconfig.json -r tsconfig-paths/register",
-    "deploy": "yarn build && yarn ts scripts/deploy.ts && gcloud app deploy"
+    "ts-dev": "NODE_ENV=development ts-node-dev -P src/tsconfig.json -r tsconfig-paths/register"
   },
   "dependencies": {
     "@typegoose/typegoose": "^7.6.0",
