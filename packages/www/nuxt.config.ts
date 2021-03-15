@@ -7,6 +7,9 @@ export default async (): Promise<NuxtConfig> => {
   const theme = await api.getTheme().then((r) => r.data)
 
   return {
+    // Target: https://go.nuxtjs.dev/config-target
+    target: 'static',
+
     // Global page headers: https://go.nuxtjs.dev/config-head
     head: {
       htmlAttrs: {
@@ -88,6 +91,7 @@ export default async (): Promise<NuxtConfig> => {
     // Modules: https://go.nuxtjs.dev/config-modules
     modules: [
       // https://go.nuxtjs.dev/buefy
+      'nuxt-buefy',
       [
         'nuxt-buefy',
         {
@@ -113,34 +117,16 @@ export default async (): Promise<NuxtConfig> => {
           },
         },
       ],
-      // https://go.nuxtjs.dev/pwa
-      '@nuxtjs/pwa',
     ],
 
-    // PWA module configuration: https://go.nuxtjs.dev/pwa
-    pwa: {
-      manifest: {
-        lang: 'en',
-      },
-    },
-
     // Build Configuration: https://go.nuxtjs.dev/config-build
-    build: {
-      postcss: {
-        preset: {
-          features: {
-            customProperties: false,
-          },
-        },
-      },
-    },
+    build: {},
     env: {
       THEME: JSON.stringify(theme),
       SERVER_PORT: process.env.SERVER_PORT || '',
       BASE_URL: process.env.BASE_URL || '',
     },
     server: {
-      host: process.env.NODE_ENV === 'development' ? undefined : '0.0.0.0',
       port: process.env.PORT,
     },
   }

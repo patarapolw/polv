@@ -1,18 +1,17 @@
-/* eslint-disable require-await */
-/* eslint-disable no-case-declarations */
 /* eslint-disable no-throw-literal */
+/* eslint-disable require-await */
 import dayjs from 'dayjs'
-import escapeStringRegexp from 'escape-string-regexp'
 import { FastifyPluginAsync } from 'fastify'
 import swagger from 'fastify-swagger'
 import S from 'jsonschema-definer'
 
-import { EntryModel, ITheme, SEPARATOR, UserModel, sTheme } from '../db/mongo'
+import { ITheme, SEPARATOR, sTheme } from '../db'
+import { db } from '../db/sqlite'
 import { ISplitOpToken, splitOp } from '../db/tokenize'
 
 const apiRouter: FastifyPluginAsync = async (f) => {
   if (process.env.NODE_ENV === 'development') {
-    f.register((await import('fastify-cors')).default)
+    f.register(require('fastify-cors'))
   }
 
   f.register(swagger, {
@@ -41,12 +40,18 @@ const apiRouter: FastifyPluginAsync = async (f) => {
       },
     },
     async (): Promise<ITheme> => {
-      const u = await UserModel.findOne()
+      const u = db
+        .prepare(
+          /* sql */ `
+      SELECT theme FROM user
+      `
+        )
+        .get()
       if (!u) {
         throw new Error('UserModel is empty')
       }
 
-      return u.theme
+      return JSON.parse(u.theme)
     }
   )
 
@@ -64,13 +69,22 @@ const apiRouter: FastifyPluginAsync = async (f) => {
         },
       },
       async (): Promise<typeof sResponse.type> => {
-        const entries = await EntryModel.find().select({
-          _id: 0,
-          tag: 1,
-        })
+        db.prepare(
+          /* sql */ `
+        SELECT tag FROM "entry"
+        `
+        ).all()
+
+        const entries = db
+          .prepare(
+            /* sql */ `
+        SELECT tag FROM "entry"
+        `
+          )
+          .all()
 
         return entries
-          .flatMap(({ tag = [] }) => tag)
+          .flatMap(({ tag = '' }) => tag.split(/ /g).filter((el: string) => el))
           .reduce(
             (prev, c) => ({
               ...prev,
@@ -109,34 +123,31 @@ const apiRouter: FastifyPluginAsync = async (f) => {
           },
         },
       },
-      async (req) => {
+      async (req): Promise<typeof sResponse.type> => {
         const { path } = req.query
 
-        const [entry] = await EntryModel.aggregate([
-          {
-            $match: { path },
-          },
-          { $limit: 1 },
-          {
-            $project: {
-              _id: 0,
-              title: 1,
-              date: 1,
-              image: 1,
-              tag: 1,
-              text: {
-                $arrayElemAt: [{ $split: ['$text', SEPARATOR] }, 0],
-              },
-              html: 1,
-            },
-          },
-        ])
+        const entry = db
+          .prepare(
+            /* sql */ `
+        SELECT title, "date", "image", tag, "text", html
+        FROM "entry"
+        WHERE "path" = @path
+        `
+          )
+          .get({ path })
 
         if (!entry) {
           throw { statusCode: 404 }
         }
 
-        return entry
+        return {
+          title: entry.title,
+          date: entry.date ? new Date(entry.date).toISOString() : undefined,
+          image: entry.image || undefined,
+          tag: entry.tag.split(/ /g).filter((el: string) => el),
+          text: entry.text.split(SEPARATOR)[0],
+          html: entry.html,
+        }
       }
     )
   }
@@ -180,50 +191,41 @@ const apiRouter: FastifyPluginAsync = async (f) => {
         let { q = '' } = req.query
         q = q.trim()
 
-        let cond: any = null
-        const aggPipelines: any[] = [
-          { $match: { date: { $exists: true } } },
-          {
-            $facet: {
-              result: [
-                { $sort: { date: -1 } },
-                { $skip: (page - 1) * limit },
-                { $limit: limit },
-                {
-                  $project: {
-                    _id: 0,
-                    path: 1,
-                    title: 1,
-                    date: 1,
-                    image: 1,
-                    tag: 1,
-                    html: {
-                      $arrayElemAt: [{ $split: ['$html', SEPARATOR] }, 0],
-                    },
-                  },
-                },
-              ],
-              count: [{ $count: 'count' }],
-            },
+        let cond = ''
+
+        const params = {
+          map: new Map<number, string | number>(),
+          set(v: string | number) {
+            this.map.set(this.map.size, v)
+            return '$' + (this.map.size - 1)
           },
-        ]
+        }
 
         if (q) {
-          const $and: any[] = []
-          const $or: any[] = []
-          const $nor: any[] = []
+          const $and: string[] = []
+          const $or: string[] = []
+          const $nor: string[] = []
 
-          const segParse = (t: ISplitOpToken) => {
+          const segParse = (t: ISplitOpToken): string => {
             switch (t.k) {
               case 'tag':
-                return { tag: t.v }
+                return /* sql */ `"entry" MATCH ${params.set(
+                  `tag:"${t.v.replace(/"/g, '""')}"`
+                )}`
               case 'title':
-                return { title: { $regex: escapeStringRegexp(t.v) } }
+                return `"entry" MATCH ${params.set(
+                  `title:"${t.v.replace(/"/g, '""')}"`
+                )}`
               case 'path':
-                return { path: { $regex: escapeStringRegexp(t.v) } }
+                return `"entry" MATCH ${params.set(
+                  `path:"${t.v.replace(/"/g, '""')}"`
+                )}`
               case 'content':
-                return { $text: { $search: t.v } }
+                return `"entry" MATCH ${params.set(
+                  `text:"${t.v.replace(/"/g, '""')}"`
+                )}`
               case 'date':
+                // eslint-disable-next-line no-case-declarations
                 let date: Date | null = null
 
                 if (/^\d+(\.\d+)?$/.test(t.v) || /^\.\d+/.test(t.v)) {
@@ -249,20 +251,25 @@ const apiRouter: FastifyPluginAsync = async (f) => {
                 }
 
                 if (!date) {
-                  return { [Math.random()]: 1 }
+                  return /* sql */ `FALSE`
                 }
 
                 switch (t.op) {
                   case '>':
-                    return { date: { $gt: date } }
+                    return /* sql */ `"date" > ${params.set(+date)}`
                   case '<':
-                    return { date: { $lt: date } }
+                    return /* sql */ `"date" < ${params.set(+date)}`
                 }
 
-                return { date: { $gt: date } }
+                return /* sql */ `"date" > ${params.set(+date)}`
             }
 
-            return { $or: [{ tag: t.v }, { $text: { $search: t.v } }] }
+            return `"entry" MATCH ${params.set(
+              `(tag:"${t.v.replace(/"/g, '""')}" OR text:"${t.v.replace(
+                /"/g,
+                '""'
+              )}" OR title:"${t.v.replace(/"/g, '""')}")`
+            )}`
           }
 
           // eslint-disable-next-line array-callback-return
@@ -280,28 +287,60 @@ const apiRouter: FastifyPluginAsync = async (f) => {
           })
 
           if ($or.length) {
-            $and.push({ $or })
+            $and.push(`(${$or.join(' OR ')})`)
           }
 
           if ($nor.length) {
-            $and.push({ $nor })
+            $and.push(`NOT (${$or.join(' AND ')})`)
           }
 
-          cond = $and.length ? { $and } : {}
-          aggPipelines.unshift({ $match: cond })
+          cond = $and.length ? $and.join(' AND ') : 'FALSE'
+          cond = '"date" IS NOT NULL AND ' + cond
         }
 
-        const [r] = await EntryModel.aggregate(aggPipelines)
-        if (!r) {
+        if (!cond) {
+          cond = '"date" IS NOT NULL'
+        }
+
+        const rCount = db
+          .prepare(
+            /* sql */ `
+        SELECT COUNT("path") AS count
+        FROM "entry"
+        WHERE ${cond}
+        `
+          )
+          .get({ ...params.map })
+
+        if (!rCount) {
           return {
             result: [],
             count: 0,
           }
         }
 
+        const rResult = db
+          .prepare(
+            /* sql */ `
+        SELECT "path", title, "date", "image", tag, html
+        FROM "entry"
+        WHERE ${cond}
+        ORDER BY "date" DESC
+        LIMIT ${limit} OFFSET ${(page - 1) * limit}
+        `
+          )
+          .all({ ...params.map })
+
         return {
-          result: r.result,
-          count: r.count[0] ? r.count[0].count : 0,
+          result: rResult.map((entry) => ({
+            path: entry.path,
+            title: entry.title,
+            date: entry.date ? new Date(entry.date).toISOString() : undefined,
+            image: entry.image || undefined,
+            tag: entry.tag.split(/ /g).filter((el: string) => el),
+            html: entry.html.split(SEPARATOR)[0],
+          })),
+          count: rCount.count,
         }
       }
     )
