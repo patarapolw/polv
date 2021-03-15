@@ -301,7 +301,7 @@ const apiRouter: FastifyPluginAsync = async (f) => {
 
         return {
           result: r.result,
-          count: r.count[0].count,
+          count: r.count[0] ? r.count[0].count : 0,
         }
       }
     )

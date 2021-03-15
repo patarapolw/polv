@@ -38,9 +38,10 @@ import { api, initAPI } from '~/assets/api'
     await initAPI()
     await this.updatePosts()
   },
+  watchQuery: ['q'],
 })
 export default class PostQuery extends Vue {
-  @Prop({ default: '' }) cond!: string
+  @Prop() cond?: string
   @Prop() tag?: string
 
   count = 0
@@ -50,20 +51,24 @@ export default class PostQuery extends Vue {
     return Math.ceil(this.count / 5)
   }
 
-  get q() {
-    return this.cond + (normalizeArray(this.$route.query.q) || '')
-  }
-
   get page() {
     return parseInt(normalizeArray(this.$route.query.page) || '1')
   }
 
+  get q() {
+    return normalizeArray(this.$route.query.q) || ''
+  }
+
   @Watch('page')
+  @Watch('cond')
   @Watch('tag')
   async updatePosts() {
     let q = this.q
+    if (this.cond) {
+      q += ' ' + this.cond
+    }
     if (this.tag) {
-      q += ` tag:${this.tag}`
+      q += ' tag:' + this.tag
     }
 
     const r = await api.getEntryList({
@@ -77,15 +82,13 @@ export default class PostQuery extends Vue {
   }
 
   @Watch('q')
-  onQChanged() {
-    const { q } = this.$route.query
-
-    this.$router.push({
+  async onQChanged() {
+    await this.$router.push({
       path: '/blog',
-      query: { q },
+      query: { q: this.q },
     })
 
-    this.updatePosts()
+    await this.updatePosts()
   }
 }
 </script>
