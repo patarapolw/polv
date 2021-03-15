@@ -140,6 +140,7 @@ export default async (): Promise<NuxtConfig> => {
       BASE_URL: process.env.BASE_URL || '',
     },
     server: {
+      host: process.env.NODE_ENV === 'development' ? undefined : '0.0.0.0',
       port: process.env.PORT,
     },
   }
