@@ -4,7 +4,7 @@
   "private": true,
   "scripts": {
     "dev": "concurrently 'wait-on tcp:$SERVER_PORT && yarn dev:www' 'yarn dev:server'",
-    "build": "concurrently 'wait-on tcp:$SERVER_PORT && yarn build:www && kill-port $SERVER_PORT || :' 'yarn dev:server || :'",
+    "build": "export SERVER_PORT=17338 && concurrently 'wait-on tcp:$SERVER_PORT && yarn build:www && kill-port $SERVER_PORT || :' 'yarn dev:server || :'",
     "start": "concurrently 'wait-on tcp:$SERVER_PORT && yarn start:www' 'yarn start:server'",
     "dev:www": "nuxt",
     "build:www": "nuxt generate",
