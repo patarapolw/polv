@@ -1,11 +1,22 @@
 import { NuxtConfig } from '@nuxt/types'
+import axios from 'axios'
 
-import { api, initAPI } from './assets/api'
+import { RAW, THEME } from './server/db/raw'
 
+// eslint-disable-next-line require-await
 export default async (): Promise<NuxtConfig> => {
-  await initAPI()
-  const theme = await api.getTheme().then((r) => r.data)
-  const TAG = await api.getTag().then((r) => r.data)
+  const theme = THEME.get()
+  const raw = RAW.get()
+  const tag = Object.values(raw)
+    .flatMap(({ tag = [] }) => tag)
+    .reduce(
+      (prev, c) => ({
+        ...prev,
+        [c]: (prev[c] || 0) + 1,
+      }),
+      {} as Record<string, number>
+    )
+  const apiURL = `http://localhost:${process.env.SERVER_PORT}`
 
   return {
     // Target: https://go.nuxtjs.dev/config-target
@@ -117,21 +128,19 @@ export default async (): Promise<NuxtConfig> => {
           },
         },
       ],
-      '@nuxtjs/proxy',
     ],
-    proxy: {
-      '/.netlify': {
-        target: 'http://localhost:9000',
-      },
-    },
 
     // Build Configuration: https://go.nuxtjs.dev/config-build
     build: {},
+    generate: {
+      routes() {
+        return Object.keys(raw).map((p) => `/post/${p}`)
+      },
+    },
     env: {
       THEME: JSON.stringify(theme),
-      SERVER_PORT: process.env.SERVER_PORT || '',
-      BASE_URL: process.env.BASE_URL || '',
-      TAG: JSON.stringify(TAG),
+      API_URL: apiURL,
+      TAG: JSON.stringify(tag),
     },
     server: {
       port: process.env.PORT,
@@ -139,7 +148,9 @@ export default async (): Promise<NuxtConfig> => {
     hooks: {
       generate: {
         done() {
-          api.delete('/')
+          axios.delete('/', {
+            baseURL: apiURL,
+          })
         },
       },
     },

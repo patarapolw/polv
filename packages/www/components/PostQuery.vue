@@ -1,10 +1,6 @@
 <template>
-  <section>
-    <header v-if="tag" class="mx-4 mb-4">
-      <h1 class="title is-2">Tag: {{ tag }}</h1>
-    </header>
-
-    <article v-if="!isReady || posts.length > 0">
+  <section v-if="isReady">
+    <article v-if="posts.length > 0">
       <div v-for="p in posts" :key="p.path" class="mb-4">
         <PostTeaser :post="p" />
       </div>
@@ -17,13 +13,14 @@
 
 <script lang="ts">
 import { Component, Prop, Vue, Watch } from 'nuxt-property-decorator'
-import axios from 'axios'
 
 import { normalizeArray } from '@/assets/util'
 
 import Empty from './Empty.vue'
 import Pagination from './Pagination.vue'
 import PostTeaser from './PostTeaser.vue'
+import type { ISearch } from '~/server/db/lunr'
+import { SEARCH } from '~/assets/search'
 
 // eslint-disable-next-line no-use-before-define
 @Component<PostQuery>({
@@ -32,18 +29,15 @@ import PostTeaser from './PostTeaser.vue'
     Empty,
     Pagination,
   },
-  async created() {
-    await this.updatePosts()
+  mounted() {
+    this.updatePosts()
   },
 })
 export default class PostQuery extends Vue {
-  @Prop({ required: true }) defaults!: {
-    count: number
-    posts: any[]
-  }
+  @Prop() cond?: string
 
   count = 0
-  posts: any[] = []
+  posts: ISearch[] = []
 
   isReady = false
 
@@ -52,41 +46,21 @@ export default class PostQuery extends Vue {
   }
 
   get q() {
-    try {
-      return normalizeArray(this.$route.query.q) || ''
-    } catch (_) {}
-
-    return ''
-  }
-
-  get tag() {
-    return this.$route.params.tag
+    return normalizeArray(this.$route.query.q) || ''
   }
 
   get page() {
-    return parseInt(this.$route.params.page || '1')
+    return parseInt(normalizeArray(this.$route.query.page) || '1')
   }
 
   @Watch('page')
   @Watch('tag')
-  async updatePosts() {
-    if (process.browser && this.q && !this.tag) {
-      const ps = await axios
-        .post('/.netlify/functions/search', undefined, {
-          params: {
-            q: this.q,
-            page: this.page,
-            limit: 5,
-          },
-        })
-        .then((r) => r.data)
+  updatePosts() {
+    const q = this.q || this.cond
 
-      this.count = ps.count
-      this.$set(this, 'posts', ps.result)
-    } else {
-      this.count = this.defaults.count
-      this.$set(this, 'posts', this.defaults.posts)
-    }
+    const rs = SEARCH.search(q)
+    this.count = rs.length
+    this.posts = rs.slice((this.page - 1) * 5, this.page * 5)
 
     this.isReady = true
   }
