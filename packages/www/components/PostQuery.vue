@@ -17,14 +17,13 @@
 
 <script lang="ts">
 import { Component, Prop, Vue, Watch } from 'nuxt-property-decorator'
-import hljs from 'highlight.js'
+import axios from 'axios'
 
 import { normalizeArray } from '@/assets/util'
 
 import Empty from './Empty.vue'
 import Pagination from './Pagination.vue'
 import PostTeaser from './PostTeaser.vue'
-import { SEARCH } from '~/assets/search'
 
 // eslint-disable-next-line no-use-before-define
 @Component<PostQuery>({
@@ -72,26 +71,24 @@ export default class PostQuery extends Vue {
   @Watch('tag')
   async updatePosts() {
     if (this.q && !this.tag) {
-      const ps = await SEARCH.search(this.q)
+      const ps = await axios
+        .post('/.netlify/functions/search', undefined, {
+          params: {
+            q: this.q,
+            page: this.page,
+            limit: 5,
+          },
+        })
+        .then((r) => r.data)
 
-      this.count = ps.length
-      this.$set(this, 'posts', ps.slice((this.page - 1) * 5, this.page * 5))
+      this.count = ps.count
+      this.$set(this, 'posts', ps.result)
     } else {
       this.count = this.defaults.count
       this.$set(this, 'posts', this.defaults.posts)
     }
 
     this.isReady = true
-
-    this.$nextTick(() => {
-      if (!this.$el) {
-        return
-      }
-
-      this.$el.querySelectorAll('pre code:not(.hljs)').forEach((el) => {
-        hljs.highlightBlock(el as HTMLElement)
-      })
-    })
   }
 
   @Watch('q')
