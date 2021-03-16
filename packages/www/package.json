@@ -3,8 +3,8 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "concurrently 'yarn dev:lambda' 'wait-on tcp:$SERVER_PORT && yarn dev:www' 'yarn dev:server'",
-    "build": "export SERVER_PORT=17338 && concurrently 'wait-on tcp:$SERVER_PORT && yarn build:www' 'yarn dev:server'",
+    "dev": "concurrently 'wait-on tcp:$SERVER_PORT && yarn dev:www' 'yarn dev:server' 'yarn dev:lambda'",
+    "build": "export SERVER_PORT=17338 && concurrently 'wait-on tcp:$SERVER_PORT && yarn build:www' 'yarn dev:server' 'yarn build:lambda'",
     "dev:www": "nuxt",
     "build:www": "nuxt generate",
     "lint:www": "eslint --ext '.ts,.js,.vue' --ignore-path .gitignore .",

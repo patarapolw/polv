@@ -32,7 +32,7 @@ import PostTeaser from './PostTeaser.vue'
     Empty,
     Pagination,
   },
-  async mounted() {
+  async created() {
     await this.updatePosts()
   },
 })
@@ -70,7 +70,7 @@ export default class PostQuery extends Vue {
   @Watch('page')
   @Watch('tag')
   async updatePosts() {
-    if (this.q && !this.tag) {
+    if (process.browser && this.q && !this.tag) {
       const ps = await axios
         .post('/.netlify/functions/search', undefined, {
           params: {
