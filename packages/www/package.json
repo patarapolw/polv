@@ -4,7 +4,7 @@
   "private": true,
   "scripts": {
     "dev": "concurrently 'wait-on tcp:$SERVER_PORT && yarn dev:www' 'yarn dev:server'",
-    "build": "concurrently 'wait-on tcp:$SERVER_PORT && yarn build:www && kill-port $SERVER_PORT || :' 'yarn start:server || :'",
+    "build": "concurrently 'wait-on tcp:$SERVER_PORT && yarn build:www && kill-port $SERVER_PORT || :' 'yarn dev:server || :'",
     "start": "concurrently 'wait-on tcp:$SERVER_PORT && yarn start:www' 'yarn start:server'",
     "dev:www": "nuxt",
     "build:www": "nuxt generate",
@@ -12,7 +12,6 @@
     "lint:www": "eslint --ext '.ts,.js,.vue' --ignore-path .gitignore .",
     "openapi": "wget http://127.0.0.1:$SERVER_PORT/api/doc/json -O ./assets/openapi.json && typegen ./assets/openapi.json > ./types/openapi.d.ts",
     "dev:server": "NODE_ENV=development ts-node-dev -P server/tsconfig.json -r tsconfig-paths/register server/index.ts",
-    "start:server": "node -r tsconfig-paths/register server-dist/index.js",
     "ts": "ts-node -P server/tsconfig.json -r tsconfig-paths/register",
     "prebuild": "yarn ts scripts/upload.ts"
   },
