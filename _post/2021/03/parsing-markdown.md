@@ -19,6 +19,15 @@ My favorite implementation is [Markdown Preview Enhanced](https://github.com/shd
   description: 'Powerful markdown tool. Contribute to shd101wyy/mume development by creating an account on GitHub.'
 }) %>
 
+Another one that I love, is [Discourse's (forum)](https://www.discourse.org/).
+
+<%- xCard({
+  href: 'https://www.discourse.org/',
+  image: 'https://discourse.org/a/img/favicon.png',
+  title: 'Discourse - Civilized Discussion',
+  description: 'Discourse is modern forum software for your community. Use it as a mailing list, discussion forum, long-form chat room, and more!'
+}) %>
+
 <!-- excerpt -->
 
 ## Not only HTML, but also CSS (preprocessor) and JS enabled
