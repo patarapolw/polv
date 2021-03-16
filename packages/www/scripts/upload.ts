@@ -20,14 +20,18 @@ async function main() {
   })
 
   const makeHtml = new MakeHtml()
-
   RAW.data = {}
+  const now = new Date()
 
   for (const f of files) {
     const header = yaml.load(
       fs.readFileSync(srcPath(f), 'utf-8').split(/\n---\n/)[0]!
     ) as Record<string, any> & {
       date?: Date
+    }
+
+    if (header.draft || (header.date && header.date > now)) {
+      continue
     }
 
     const { html, text } = await makeHtml.renderFile(srcPath(f))
