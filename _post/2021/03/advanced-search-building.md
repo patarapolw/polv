@@ -1,5 +1,5 @@
 ---
-title: Search engine building tutorial, that supports advanced search syntaxes.
+title: Search engine building tutorial, that supports advanced search syntaxes
 date: 2021-03-17T00:00:00+07:00
 tag:
   - search
@@ -94,6 +94,4 @@ Furthermore, PostgreSQL also has [pgroonga](https://pgroonga.github.io/), that d
   description: 'Make PostgreSQL fast full text search platform for all languages!'
 }) %>
 
-Now comes the algorithm for the syntax. I made it for PostgreSQL in another project.
-
-<https://github.com/patarapolw/cjclub/blob/9f9c47260e7471d64e3def0c86cc3fea0ac36669/packages/server/src/util/token.ts#L16>
+Now comes the algorithm for the syntax. [I made it for PostgreSQL in another project.](https://github.com/patarapolw/cjclub/blob/9f9c47260e7471d64e3def0c86cc3fea0ac36669/packages/server/src/util/token.ts#L16)
