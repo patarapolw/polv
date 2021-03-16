@@ -2,8 +2,7 @@ import OpenAPIClientAxios from 'openapi-client-axios'
 
 import { Client } from '../types/openapi'
 
-export const apiURL =
-  process.env.BASE_URL || `http://localhost:${process.env.SERVER_PORT}`
+export const apiURL = process.env.API_URL
 
 export const apiClient = new OpenAPIClientAxios({
   definition: require('./openapi.json'),

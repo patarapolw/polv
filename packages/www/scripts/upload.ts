@@ -21,7 +21,6 @@ async function main() {
 
   const makeHtml = new MakeHtml()
   RAW.data = {}
-  const now = new Date()
 
   for (const f of files) {
     const header = yaml.load(
@@ -30,7 +29,7 @@ async function main() {
       date?: Date
     }
 
-    if (header.draft || (header.date && header.date > now)) {
+    if (header.draft) {
       continue
     }
 

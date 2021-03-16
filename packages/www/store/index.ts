@@ -1,12 +1,10 @@
-import { Paths } from '~/types/openapi'
+import type { ITheme } from '~/server/db/raw'
 import {
   actionTree,
   getAccessorType,
   getterTree,
   mutationTree,
 } from 'typed-vuex'
-
-type ITheme = Paths.GetTheme.Responses.$200
 
 export const state = () => ({
   theme: JSON.parse(process.env.THEME!) as ITheme,
