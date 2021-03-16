@@ -1,0 +1,40 @@
+<template>
+  <PostQuery :defaults="defaults" />
+</template>
+
+<script lang="ts">
+import { Component, Vue } from 'nuxt-property-decorator'
+
+import PostQuery from '@/components/PostQuery.vue'
+import { api, initAPI } from '~/assets/api'
+
+// eslint-disable-next-line no-use-before-define
+@Component<TagPagePaged>({
+  components: {
+    PostQuery,
+  },
+  async asyncData({ params }) {
+    await initAPI()
+    const ps = await api
+      .getEntryList({
+        q: 'tag:' + params.tag,
+        page: parseInt(params.page),
+        limit: 5,
+      })
+      .then((r) => r.data)
+
+    return {
+      defaults: {
+        count: ps.count,
+        posts: ps.result,
+      },
+    }
+  },
+  head() {
+    return {
+      title: `Tag:${this.$route.params.tag} - ${this.$accessor.theme.title}`,
+    }
+  },
+})
+export default class TagPagePaged extends Vue {}
+</script>

@@ -89,6 +89,5 @@ sw.*
 # Vim swap files
 *.swp
 
-.env.*
-!.env.local
 /*-dist/
+data.db

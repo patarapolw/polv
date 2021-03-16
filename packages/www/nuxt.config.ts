@@ -5,8 +5,12 @@ import { api, initAPI } from './assets/api'
 export default async (): Promise<NuxtConfig> => {
   await initAPI()
   const theme = await api.getTheme().then((r) => r.data)
+  const TAG = await api.getTag().then((r) => r.data)
 
   return {
+    // Target: https://go.nuxtjs.dev/config-target
+    target: 'static',
+
     // Global page headers: https://go.nuxtjs.dev/config-head
     head: {
       htmlAttrs: {
@@ -113,35 +117,25 @@ export default async (): Promise<NuxtConfig> => {
           },
         },
       ],
-      // https://go.nuxtjs.dev/pwa
-      '@nuxtjs/pwa',
     ],
 
-    // PWA module configuration: https://go.nuxtjs.dev/pwa
-    pwa: {
-      manifest: {
-        lang: 'en',
-      },
-    },
-
     // Build Configuration: https://go.nuxtjs.dev/config-build
-    build: {
-      postcss: {
-        preset: {
-          features: {
-            customProperties: false,
-          },
-        },
-      },
-    },
+    build: {},
     env: {
       THEME: JSON.stringify(theme),
       SERVER_PORT: process.env.SERVER_PORT || '',
       BASE_URL: process.env.BASE_URL || '',
+      TAG: JSON.stringify(TAG),
     },
     server: {
-      host: process.env.NODE_ENV === 'development' ? undefined : '0.0.0.0',
       port: process.env.PORT,
+    },
+    hooks: {
+      generate: {
+        done() {
+          api.delete('/')
+        },
+      },
     },
   }
 }

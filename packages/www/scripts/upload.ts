@@ -4,30 +4,15 @@ import path from 'path'
 import fg from 'fast-glob'
 import yaml from 'js-yaml'
 
-import {
-  EntryModel,
-  ITheme,
-  SEPARATOR,
-  UserModel,
-  mongooseConnect,
-} from '../server/db/mongo'
+import { SEARCH } from '../server/db/lunr'
+import { ITheme, RAW, SEPARATOR, THEME } from '../server/db/raw'
 import { MakeHtml } from './make-html'
 
 async function main() {
-  const client = await mongooseConnect()
-
   const srcPath = (...f: string[]) => path.resolve('../../_post', ...f)
 
-  await UserModel.updateOne(
-    {},
-    {
-      $set: {
-        theme: yaml.load(
-          fs.readFileSync(srcPath('../theme.yml'), 'utf-8')
-        ) as ITheme,
-      },
-    },
-    { upsert: true }
+  THEME.set(
+    yaml.load(fs.readFileSync(srcPath('../theme.yml'), 'utf-8')) as ITheme
   )
 
   const files = await fg('**/*.md', {
@@ -36,36 +21,30 @@ async function main() {
 
   const makeHtml = new MakeHtml()
 
-  await EntryModel.bulkWrite(
-    await Promise.all(
-      files.map(async (f) => {
-        const header = yaml.load(
-          fs.readFileSync(srcPath(f), 'utf-8').split(/\n---\n/)[0]!
-        ) as Record<string, any> & {
-          date?: Date
-        }
+  RAW.data = {}
 
-        const { html, text } = await makeHtml.renderFile(srcPath(f))
+  for (const f of files) {
+    const header = yaml.load(
+      fs.readFileSync(srcPath(f), 'utf-8').split(/\n---\n/)[0]!
+    ) as Record<string, any> & {
+      date?: Date
+    }
 
-        const p = {
-          ...header,
-          path: f.replace(/\.mdx?$/, ''),
-          html: html.join(SEPARATOR) + SEPARATOR,
-          text: text.join(SEPARATOR) + SEPARATOR,
-        }
+    const { html, text } = await makeHtml.renderFile(srcPath(f))
 
-        return {
-          updateOne: {
-            filter: { path: p.path },
-            update: { $set: p },
-            upsert: true,
-          },
-        }
-      })
-    )
-  )
+    RAW.data[f.replace(/\.mdx?$/, '')] = {
+      category: header.category || [],
+      title: header.title,
+      html: html.join(SEPARATOR) + SEPARATOR,
+      text: text.join(SEPARATOR) + SEPARATOR,
+      image: header.image,
+      date: header.date ? header.date.toISOString() : undefined,
+      tag: header.tag || [],
+    }
+  }
 
-  await client.disconnect()
+  RAW.set(RAW.data)
+  SEARCH.set(RAW.data)
 }
 
 if (require.main === module) {

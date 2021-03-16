@@ -132,3 +132,4 @@ temp/
 
 /lib/
 /app.yaml
+/data.db

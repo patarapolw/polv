@@ -1,4 +1,3 @@
-/* eslint-disable no-useless-escape */
 import crypto from 'crypto'
 
 import scopeCss from '@patarapolw/scope-css'
@@ -78,6 +77,7 @@ export class MakeHtml {
             ...[, match = '', left = '', right]: string[]
           ) => {
             match = require('html-encoder-decoder').decode(match)
+            // eslint-disable-next-line no-useless-escape
             const lang = (left.match(/class=\"([^ \"]+)/) || [])[1]
 
             if (left.includes(classAttr)) {

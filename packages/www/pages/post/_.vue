@@ -5,7 +5,7 @@
 <script lang="ts">
 import { Component, Vue } from 'nuxt-property-decorator'
 import PostFull from '@/components/PostFull.vue'
-import { api, initAPI } from '~/assets/api'
+import { api } from '~/assets/api'
 import { Paths } from '~/types/openapi'
 
 @Component({
@@ -13,7 +13,6 @@ import { Paths } from '~/types/openapi'
     PostFull,
   },
   async asyncData({ params, error }) {
-    await initAPI()
     try {
       const { title, image, tag, text, html, date } = await api
         .getEntryOne({

@@ -4,28 +4,27 @@
       <h1 class="title is-2">Tag: {{ tag }}</h1>
     </header>
 
-    <div v-show="!$fetchState.pending">
-      <article v-if="posts.length > 0">
-        <div v-for="p in posts" :key="p.path" class="mb-4">
-          <PostTeaser :post="p" />
-        </div>
+    <article v-if="!isReady || posts.length > 0">
+      <div v-for="p in posts" :key="p.path" class="mb-4">
+        <PostTeaser :post="p" />
+      </div>
 
-        <Pagination v-if="pageTotal > 1" :total="pageTotal" />
-      </article>
-      <Empty v-else />
-    </div>
+      <Pagination v-if="pageTotal > 1" :total="pageTotal" />
+    </article>
+    <Empty v-else />
   </section>
 </template>
 
 <script lang="ts">
 import { Component, Prop, Vue, Watch } from 'nuxt-property-decorator'
+import hljs from 'highlight.js'
 
 import { normalizeArray } from '@/assets/util'
 
 import Empty from './Empty.vue'
 import Pagination from './Pagination.vue'
 import PostTeaser from './PostTeaser.vue'
-import { api, initAPI } from '~/assets/api'
+import { SEARCH } from '~/assets/search'
 
 // eslint-disable-next-line no-use-before-define
 @Component<PostQuery>({
@@ -34,61 +33,77 @@ import { api, initAPI } from '~/assets/api'
     Empty,
     Pagination,
   },
-  async fetch() {
-    await initAPI()
+  async mounted() {
     await this.updatePosts()
   },
-  watchQuery: ['q'],
 })
 export default class PostQuery extends Vue {
-  @Prop() cond?: string
-  @Prop() tag?: string
+  @Prop({ required: true }) defaults!: {
+    count: number
+    posts: any[]
+  }
 
   count = 0
   posts: any[] = []
+
+  isReady = false
 
   get pageTotal() {
     return Math.ceil(this.count / 5)
   }
 
-  get page() {
-    return parseInt(normalizeArray(this.$route.query.page) || '1')
+  get q() {
+    try {
+      return normalizeArray(this.$route.query.q) || ''
+    } catch (_) {}
+
+    return ''
   }
 
-  get q() {
-    return normalizeArray(this.$route.query.q) || ''
+  get tag() {
+    return this.$route.params.tag
+  }
+
+  get page() {
+    return parseInt(this.$route.params.page || '1')
   }
 
   @Watch('page')
-  @Watch('cond')
   @Watch('tag')
   async updatePosts() {
-    let q = this.q
-    if (this.cond) {
-      q += ' ' + this.cond
-    }
-    if (this.tag) {
-      q += ' tag:' + this.tag
+    if (this.q && !this.tag) {
+      const ps = await SEARCH.search(this.q)
+
+      this.count = ps.length
+      this.$set(this, 'posts', ps.slice((this.page - 1) * 5, this.page * 5))
+    } else {
+      this.count = this.defaults.count
+      this.$set(this, 'posts', this.defaults.posts)
     }
 
-    const r = await api.getEntryList({
-      q,
-      page: this.page,
-      limit: 5,
+    this.isReady = true
+
+    this.$nextTick(() => {
+      if (!this.$el) {
+        return
+      }
+
+      this.$el.querySelectorAll('pre code:not(.hljs)').forEach((el) => {
+        hljs.highlightBlock(el as HTMLElement)
+      })
     })
-
-    this.count = r.data.count
-    this.posts = r.data.result
   }
 
   @Watch('q')
-  async onQChanged() {
-    await this.$router.push({
+  onQChanged() {
+    const { q } = this.$route.query
+
+    this.$router.push({
       path: '/blog',
-      query: { q: this.q },
+      query: { q },
     })
 
-    await this.updatePosts()
+    this.updatePosts()
   }
 }
 </script>

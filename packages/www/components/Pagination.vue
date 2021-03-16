@@ -95,14 +95,13 @@
 
 <script lang="ts">
 import { Component, Prop, Vue } from 'nuxt-property-decorator'
-import { normalizeArray } from '~/assets/util'
 
 @Component
 export default class Pagination extends Vue {
   @Prop({ required: true }) total!: string
 
   get page() {
-    return parseInt(normalizeArray(this.$route.query.page) || '1')
+    return parseInt(this.$route.params.page || '1')
   }
 
   makePageUrl(p: number) {
@@ -111,16 +110,14 @@ export default class Pagination extends Vue {
       path = '/blog'
     }
 
-    // eslint-disable-next-line @typescript-eslint/no-unused-vars
-    const { page: _, ...query } = this.$route.query
-
-    if (p !== 1) {
-      query.page = p.toString()
+    path = path.replace(/\d+$/, '').replace(/\/$/, '')
+    if (p > 1) {
+      path = path + '/' + p
     }
 
     return this.$router.resolve({
       path,
-      query,
+      query: this.$route.query,
     }).href
   }
 }

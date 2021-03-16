@@ -8,31 +8,26 @@
   "scripts": {
     "dev": "yarn ts-dev src/index.ts",
     "build": "tsc -P src/tsconfig.json",
-    "start": "node -r tsconfig-paths/register lib/index.js",
-    "ts": "ts-node -P src/tsconfig.json -r tsconfig-paths/register",
-    "ts-dev": "NODE_ENV=development ts-node-dev -P src/tsconfig.json -r tsconfig-paths/register"
+    "start": "node lib/index.js",
+    "ts": "ts-node -P src/tsconfig.json",
+    "ts-dev": "NODE_ENV=development ts-node-dev -P src/tsconfig.json"
   },
   "dependencies": {
-    "@typegoose/typegoose": "^7.6.0",
+    "better-sqlite3": "^7.1.2",
     "dayjs": "^1.10.4",
-    "escape-string-regexp": "^4.0.0",
     "fastify": "^3.14.0",
     "fastify-swagger": "^4.4.1",
-    "jsonschema-definer": "^1.3.2",
-    "mongoose": "5.10.18",
-    "tsconfig-paths": "^3.9.0"
+    "jsonschema-definer": "^1.3.2"
   },
   "devDependencies": {
     "@patarapolw/scope-css": "^1.3.0",
+    "@types/better-sqlite3": "^5.4.1",
     "@types/cheerio": "^0.22.27",
-    "@types/dotenv-flow": "^3.1.0",
     "@types/ejs": "^3.0.6",
     "@types/js-yaml": "^4.0.0",
-    "@types/mongoose": "^5.10.3",
     "@types/pino": "^6.3.6",
     "@types/showdown": "^1.9.3",
     "cheerio": "^1.0.0-rc.5",
-    "dotenv-flow": "^3.2.0",
     "ejs": "^3.1.6",
     "fast-glob": "^3.2.5",
     "fastify-cors": "^5.2.0",

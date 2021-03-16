@@ -1,18 +1,15 @@
-/* eslint-disable require-await */
-/* eslint-disable no-case-declarations */
 /* eslint-disable no-throw-literal */
-import dayjs from 'dayjs'
-import escapeStringRegexp from 'escape-string-regexp'
+/* eslint-disable require-await */
 import { FastifyPluginAsync } from 'fastify'
 import swagger from 'fastify-swagger'
 import S from 'jsonschema-definer'
 
-import { EntryModel, ITheme, SEPARATOR, UserModel, sTheme } from '../db/mongo'
-import { ISplitOpToken, splitOp } from '../db/tokenize'
+import { SEARCH } from '../db/lunr'
+import { ITheme, RAW, SEPARATOR, THEME, sTheme } from '../db/raw'
 
 const apiRouter: FastifyPluginAsync = async (f) => {
   if (process.env.NODE_ENV === 'development') {
-    f.register((await import('fastify-cors')).default)
+    f.register(require('fastify-cors'))
   }
 
   f.register(swagger, {
@@ -41,12 +38,7 @@ const apiRouter: FastifyPluginAsync = async (f) => {
       },
     },
     async (): Promise<ITheme> => {
-      const u = await UserModel.findOne()
-      if (!u) {
-        throw new Error('UserModel is empty')
-      }
-
-      return u.theme
+      return THEME.get()
     }
   )
 
@@ -64,10 +56,7 @@ const apiRouter: FastifyPluginAsync = async (f) => {
         },
       },
       async (): Promise<typeof sResponse.type> => {
-        const entries = await EntryModel.find().select({
-          _id: 0,
-          tag: 1,
-        })
+        const entries = Object.values(RAW.get())
 
         return entries
           .flatMap(({ tag = [] }) => tag)
@@ -109,34 +98,23 @@ const apiRouter: FastifyPluginAsync = async (f) => {
           },
         },
       },
-      async (req) => {
+      async (req): Promise<typeof sResponse.type> => {
         const { path } = req.query
 
-        const [entry] = await EntryModel.aggregate([
-          {
-            $match: { path },
-          },
-          { $limit: 1 },
-          {
-            $project: {
-              _id: 0,
-              title: 1,
-              date: 1,
-              image: 1,
-              tag: 1,
-              text: {
-                $arrayElemAt: [{ $split: ['$text', SEPARATOR] }, 0],
-              },
-              html: 1,
-            },
-          },
-        ])
+        const entry = RAW.get()[path]
 
         if (!entry) {
           throw { statusCode: 404 }
         }
 
-        return entry
+        return {
+          title: entry.title,
+          date: entry.date ? new Date(entry.date).toISOString() : undefined,
+          image: entry.image || undefined,
+          tag: entry.tag,
+          text: entry.text.split(SEPARATOR)[0],
+          html: entry.html,
+        }
       }
     )
   }
@@ -176,132 +154,12 @@ const apiRouter: FastifyPluginAsync = async (f) => {
         },
       },
       async (req): Promise<typeof sResponse.type> => {
-        const { page, limit } = req.query
-        let { q = '' } = req.query
-        q = q.trim()
-
-        let cond: any = null
-        const aggPipelines: any[] = [
-          { $match: { date: { $exists: true } } },
-          {
-            $facet: {
-              result: [
-                { $sort: { date: -1 } },
-                { $skip: (page - 1) * limit },
-                { $limit: limit },
-                {
-                  $project: {
-                    _id: 0,
-                    path: 1,
-                    title: 1,
-                    date: 1,
-                    image: 1,
-                    tag: 1,
-                    html: {
-                      $arrayElemAt: [{ $split: ['$html', SEPARATOR] }, 0],
-                    },
-                  },
-                },
-              ],
-              count: [{ $count: 'count' }],
-            },
-          },
-        ]
-
-        if (q) {
-          const $and: any[] = []
-          const $or: any[] = []
-          const $nor: any[] = []
-
-          const segParse = (t: ISplitOpToken) => {
-            switch (t.k) {
-              case 'tag':
-                return { tag: t.v }
-              case 'title':
-                return { title: { $regex: escapeStringRegexp(t.v) } }
-              case 'path':
-                return { path: { $regex: escapeStringRegexp(t.v) } }
-              case 'content':
-                return { $text: { $search: t.v } }
-              case 'date':
-                let date: Date | null = null
-
-                if (/^\d+(\.\d+)?$/.test(t.v) || /^\.\d+/.test(t.v)) {
-                  date = dayjs()
-                    .subtract(Math.abs(parseFloat(t.v)), 'days')
-                    .toDate()
-                } else {
-                  let d: dayjs.Dayjs
-
-                  const m = /^(\d+(?:\.\d+)?)?([A-Z]{1,8})$/.exec(t.v)
-                  if (m) {
-                    d = dayjs().subtract(
-                      parseFloat(m[1]!),
-                      m[2] as dayjs.OpUnitType
-                    )
-                  } else {
-                    d = dayjs(t.v)
-                  }
-
-                  if (d.isValid()) {
-                    date = d.toDate()
-                  }
-                }
-
-                if (!date) {
-                  return { [Math.random()]: 1 }
-                }
-
-                switch (t.op) {
-                  case '>':
-                    return { date: { $gt: date } }
-                  case '<':
-                    return { date: { $lt: date } }
-                }
-
-                return { date: { $gt: date } }
-            }
-
-            return { $or: [{ tag: t.v }, { $text: { $search: t.v } }] }
-          }
-
-          // eslint-disable-next-line array-callback-return
-          splitOp(q).map((t) => {
-            switch (t.prefix) {
-              case '-':
-                $nor.push(segParse(t))
-                break
-              case '?':
-                $or.push(segParse(t))
-                break
-              default:
-                $and.push(segParse(t))
-            }
-          })
-
-          if ($or.length) {
-            $and.push({ $or })
-          }
-
-          if ($nor.length) {
-            $and.push({ $nor })
-          }
-
-          cond = $and.length ? { $and } : {}
-          aggPipelines.unshift({ $match: cond })
-        }
-
-        const [r] = await EntryModel.aggregate(aggPipelines)
-        if (!r) {
-          return {
-            result: [],
-            count: 0,
-          }
-        }
+        const { page, limit, q = '' } = req.query
+        const result = SEARCH.search(q)
 
         return {
-          result: r.result,
-          count: r.count[0] ? r.count[0].count : 0,
+          result: result.slice((page - 1) * limit, page * limit),
+          count: result.length,
         }
       }
     )
