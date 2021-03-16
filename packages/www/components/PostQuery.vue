@@ -9,18 +9,19 @@
     </article>
     <Empty v-else />
   </section>
+  <b-loading v-else></b-loading>
 </template>
 
 <script lang="ts">
 import { Component, Prop, Vue, Watch } from 'nuxt-property-decorator'
 
-import { normalizeArray } from '@/assets/util'
+import { normalizeArray } from '~/assets/util'
+import { SEARCH } from '~/assets/search'
+import type { ISearch } from '~/server/db/lunr'
 
 import Empty from './Empty.vue'
 import Pagination from './Pagination.vue'
 import PostTeaser from './PostTeaser.vue'
-import type { ISearch } from '~/server/db/lunr'
-import { SEARCH } from '~/assets/search'
 
 // eslint-disable-next-line no-use-before-define
 @Component<PostQuery>({
