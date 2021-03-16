@@ -4,30 +4,24 @@ import path from 'path'
 import fg from 'fast-glob'
 import yaml from 'js-yaml'
 
-import { ITheme, SEPARATOR } from '../server/db'
-import { db } from '../server/db/sqlite'
+import { SEARCH } from '../server/db/lunr'
+import { ITheme, RAW, SEPARATOR, THEME } from '../server/db/raw'
 import { MakeHtml } from './make-html'
 
 async function main() {
   const srcPath = (...f: string[]) => path.resolve('../../_post', ...f)
 
-  db.prepare(
-    /* sql */ `
-  INSERT INTO user (theme)
-  VALUES (@theme)
-  ON CONFLICT (id) DO UPDATE SET theme = @theme;
-  `
-  ).run({
-    theme: JSON.stringify(
-      yaml.load(fs.readFileSync(srcPath('../theme.yml'), 'utf-8')) as ITheme
-    ),
-  })
+  THEME.set(
+    yaml.load(fs.readFileSync(srcPath('../theme.yml'), 'utf-8')) as ITheme
+  )
 
   const files = await fg('**/*.md', {
     cwd: srcPath(),
   })
 
   const makeHtml = new MakeHtml()
+
+  RAW.data = {}
 
   for (const f of files) {
     const header = yaml.load(
@@ -38,44 +32,19 @@ async function main() {
 
     const { html, text } = await makeHtml.renderFile(srcPath(f))
 
-    const p = {
-      ...header,
-      path: f.replace(/\.mdx?$/, ''),
+    RAW.data[f.replace(/\.mdx?$/, '')] = {
+      category: header.category || [],
+      title: header.title,
       html: html.join(SEPARATOR) + SEPARATOR,
       text: text.join(SEPARATOR) + SEPARATOR,
-      image: header.image || null,
-      date: header.date ? +header.date : null,
-      tag: header.tag ? header.tag.join(' ') : '',
-    }
-
-    const r = db
-      .prepare(
-        /* sql */ `
-    UPDATE "entry"
-    SET
-      title = @title,
-      "image" = @image,
-      "date" = @date,
-      tag = @tag,
-      "text" = @text,
-      html = @html
-    WHERE "path" = @path;
-    `
-      )
-      .run(p)
-
-    if (!r.changes) {
-      db.prepare(
-        /* sql */ `
-      INSERT INTO "entry" ("path", title, "image", "date", tag, "text", html)
-      SELECT @path, @title, @image, @date, @tag, @text, @html
-      WHERE (SELECT changes() = 0);
-      `
-      ).run(p)
+      image: header.image,
+      date: header.date ? header.date.toISOString() : undefined,
+      tag: header.tag || [],
     }
   }
 
-  db.close()
+  RAW.set(RAW.data)
+  SEARCH.set(RAW.data)
 }
 
 if (require.main === module) {

@@ -6,7 +6,7 @@
 import { Component, Vue } from 'nuxt-property-decorator'
 
 import PostQuery from '@/components/PostQuery.vue'
-import { api } from '~/assets/api'
+import { api, initAPI } from '~/assets/api'
 
 // eslint-disable-next-line no-use-before-define
 @Component<TabPagePaged>({
@@ -14,6 +14,7 @@ import { api } from '~/assets/api'
     PostQuery,
   },
   async asyncData({ app, params }) {
+    await initAPI()
     const tab = app.$accessor.tabs[params.name]
 
     const ps = await api

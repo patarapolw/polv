@@ -4,8 +4,8 @@ import { FastifyPluginAsync } from 'fastify'
 import swagger from 'fastify-swagger'
 import S from 'jsonschema-definer'
 
-import { ITheme, SEPARATOR, parseQ, sTheme } from '../db'
-import { db } from '../db/sqlite'
+import { SEARCH } from '../db/lunr'
+import { ITheme, RAW, SEPARATOR, THEME, sTheme } from '../db/raw'
 
 const apiRouter: FastifyPluginAsync = async (f) => {
   if (process.env.NODE_ENV === 'development') {
@@ -38,18 +38,7 @@ const apiRouter: FastifyPluginAsync = async (f) => {
       },
     },
     async (): Promise<ITheme> => {
-      const u = db
-        .prepare(
-          /* sql */ `
-      SELECT theme FROM user
-      `
-        )
-        .get()
-      if (!u) {
-        throw new Error('UserModel is empty')
-      }
-
-      return JSON.parse(u.theme)
+      return THEME.get()
     }
   )
 
@@ -67,22 +56,10 @@ const apiRouter: FastifyPluginAsync = async (f) => {
         },
       },
       async (): Promise<typeof sResponse.type> => {
-        db.prepare(
-          /* sql */ `
-        SELECT tag FROM "entry"
-        `
-        ).all()
-
-        const entries = db
-          .prepare(
-            /* sql */ `
-        SELECT tag FROM "entry"
-        `
-          )
-          .all()
+        const entries = Object.values(RAW.get())
 
         return entries
-          .flatMap(({ tag = '' }) => tag.split(/ /g).filter((el: string) => el))
+          .flatMap(({ tag = [] }) => tag)
           .reduce(
             (prev, c) => ({
               ...prev,
@@ -124,15 +101,7 @@ const apiRouter: FastifyPluginAsync = async (f) => {
       async (req): Promise<typeof sResponse.type> => {
         const { path } = req.query
 
-        const entry = db
-          .prepare(
-            /* sql */ `
-        SELECT title, "date", "image", tag, "text", html
-        FROM "entry"
-        WHERE "path" = @path
-        `
-          )
-          .get({ path })
+        const entry = RAW.get()[path]
 
         if (!entry) {
           throw { statusCode: 404 }
@@ -142,7 +111,7 @@ const apiRouter: FastifyPluginAsync = async (f) => {
           title: entry.title,
           date: entry.date ? new Date(entry.date).toISOString() : undefined,
           image: entry.image || undefined,
-          tag: entry.tag.split(/ /g).filter((el: string) => el),
+          tag: entry.tag,
           text: entry.text.split(SEPARATOR)[0],
           html: entry.html,
         }
@@ -185,13 +154,13 @@ const apiRouter: FastifyPluginAsync = async (f) => {
         },
       },
       async (req): Promise<typeof sResponse.type> => {
-        const { page, limit, q } = req.query
+        const { page, limit, q = '' } = req.query
+        const result = SEARCH.search(q)
 
-        return parseQ(db, {
-          q,
-          limit,
-          page,
-        })
+        return {
+          result: result.slice((page - 1) * limit, page * limit),
+          count: result.length,
+        }
       }
     )
   }

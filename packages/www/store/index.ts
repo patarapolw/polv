@@ -1,4 +1,3 @@
-import { initAPI } from '~/assets/api'
 import { Paths } from '~/types/openapi'
 import {
   actionTree,
@@ -41,7 +40,7 @@ export const actions = actionTree(
   { state, mutations },
   {
     async nuxtServerInit() {
-      await initAPI()
+      // await initAPI()
     },
   }
 )
