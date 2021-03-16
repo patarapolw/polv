@@ -86,7 +86,7 @@ Or, some other implementations, like Python's Whoosh?
 
 It is easier if you use RDBMS and NoSQL's features. PostgreSQL, MySQL and MongoDB (but not SQLite) allows you to create an index on a TEXT column, and make a full-text index.
 
-Furthermore, PostgreSQL also has [pgroonga](https://pgroonga.github.io/), that does not only have more language support that native tsvector; but also can index anything, including `JSONB`.
+Furthermore, PostgreSQL also has [pgroonga](https://pgroonga.github.io/), that does not only have more language support than native tsvector; but also can index anything, including `JSONB`.
 
 <%- xCard({
   href: 'https://pgroonga.github.io/',
