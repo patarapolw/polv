@@ -91,3 +91,6 @@ sw.*
 
 /*-dist/
 data.db
+
+# Local Netlify folder
+.netlify
