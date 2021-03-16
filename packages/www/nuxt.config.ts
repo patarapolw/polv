@@ -117,7 +117,13 @@ export default async (): Promise<NuxtConfig> => {
           },
         },
       ],
+      '@nuxtjs/proxy',
     ],
+    proxy: {
+      '/.netlify': {
+        target: 'http://localhost:9000',
+      },
+    },
 
     // Build Configuration: https://go.nuxtjs.dev/config-build
     build: {},
