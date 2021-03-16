@@ -16,7 +16,6 @@
 import { Component, Prop, Vue, Watch } from 'nuxt-property-decorator'
 
 import { normalizeArray } from '~/assets/util'
-import { SEARCH } from '~/assets/search'
 import type { ISearch } from '~/server/db/lunr'
 
 import Empty from './Empty.vue'
@@ -56,9 +55,10 @@ export default class PostQuery extends Vue {
 
   @Watch('page')
   @Watch('tag')
-  updatePosts() {
+  async updatePosts() {
     const q = this.q || this.cond
 
+    const { SEARCH } = await import('~/assets/search')
     const rs = SEARCH.search(q)
     this.count = rs.length
     this.posts = rs.slice((this.page - 1) * 5, this.page * 5)
