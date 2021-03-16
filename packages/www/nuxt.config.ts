@@ -130,5 +130,12 @@ export default async (): Promise<NuxtConfig> => {
     server: {
       port: process.env.PORT,
     },
+    hooks: {
+      generate: {
+        done() {
+          api.delete('/')
+        },
+      },
+    },
   }
 }

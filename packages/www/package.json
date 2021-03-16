@@ -4,7 +4,7 @@
   "private": true,
   "scripts": {
     "dev": "concurrently 'wait-on tcp:$SERVER_PORT && yarn dev:www' 'yarn dev:server'",
-    "build": "export SERVER_PORT=17338 && concurrently 'wait-on tcp:$SERVER_PORT && yarn build:www && kill-port $SERVER_PORT || :' 'yarn dev:server || :'",
+    "build": "export SERVER_PORT=17338 && concurrently 'wait-on tcp:$SERVER_PORT && yarn build:www' 'yarn dev:server'",
     "start": "concurrently 'wait-on tcp:$SERVER_PORT && yarn start:www' 'yarn start:server'",
     "dev:www": "nuxt",
     "build:www": "nuxt generate",
@@ -68,7 +68,6 @@
     "html-encoder-decoder": "^1.3.9",
     "import-sort-parser-typescript": "^6.0.0",
     "js-yaml": "^4.0.0",
-    "kill-port": "^1.6.1",
     "nuxt-typed-vuex": "^0.1.22",
     "openapi-client-axios-typegen": "^3.13.1",
     "pino-pretty": "^4.7.1",

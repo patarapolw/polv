@@ -9,6 +9,11 @@ function main() {
 
   app.register(apiRouter, { prefix: '/api' })
 
+  // eslint-disable-next-line require-await
+  app.delete('/', async () => {
+    process.exit(0)
+  })
+
   app.listen(port, (err) => {
     if (err) {
       throw err
