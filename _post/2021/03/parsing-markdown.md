@@ -10,7 +10,7 @@ tag:
   - pdf
 ---
 
-My favorite implementation is [Markdown Preview Enhanced](https://github.com/shd101wyy/markdown-preview-enhanced), but to be exact, [@shd101wyy/mume](https://github.com/shd101wyy/mume), but I want a little more features...
+My favorite implementation is [Markdown Preview Enhanced](https://github.com/shd101wyy/markdown-preview-enhanced), to be exact, [@shd101wyy/mume](https://github.com/shd101wyy/mume), but I want a little more features...
 
 <%- xCard({
   href: 'https://github.com/shd101wyy/mume',
@@ -41,7 +41,9 @@ alert('hello')
 
 ## Isolated CSS styling, and reusable components
 
-With the power of Shadow DOM, CSS is not penetrated to the outside. (But JavaScript still do.)
+With the power of [Shadow DOM](https://developer.mozilla.org/en-US/docs/Web/Web_Components/Using_shadow_DOM), CSS is not penetrated to the outside. (But JavaScript still do.)
+
+It is used in [WebComponents, and I made one too](https://github.com/patarapolw/make-html/blob/master/packages/x-card/index.js).
 
 ## Web enabled, with server-side enhancements
 
