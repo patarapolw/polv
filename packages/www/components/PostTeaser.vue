@@ -29,13 +29,8 @@
 
 <script lang="ts">
 import { Component, Prop, Vue } from 'nuxt-property-decorator'
-import PostHeader from './PostHeader.vue'
 
-@Component({
-  components: {
-    PostHeader,
-  },
-})
+@Component
 export default class PostTeaser extends Vue {
   @Prop({ required: true }) post!: any
 

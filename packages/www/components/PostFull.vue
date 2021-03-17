@@ -44,14 +44,9 @@
 
 <script lang="ts">
 import { Component, Prop, Vue, Watch } from 'nuxt-property-decorator'
-import PostHeader from './PostHeader.vue'
 import '~/assets/remark42'
 
-@Component({
-  components: {
-    PostHeader,
-  },
-})
+@Component
 export default class PostFull extends Vue {
   @Prop({ required: true }) post!: any
 

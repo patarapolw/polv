@@ -18,17 +18,8 @@ import { Component, Prop, Vue, Watch } from 'nuxt-property-decorator'
 import { normalizeArray } from '~/assets/util'
 import type { ISearch } from '~/server/db/lunr'
 
-import Empty from './Empty.vue'
-import Pagination from './Pagination.vue'
-import PostTeaser from './PostTeaser.vue'
-
 // eslint-disable-next-line no-use-before-define
 @Component<PostQuery>({
-  components: {
-    PostTeaser,
-    Empty,
-    Pagination,
-  },
   mounted() {
     this.updatePosts()
   },

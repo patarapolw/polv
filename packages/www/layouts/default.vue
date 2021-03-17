@@ -144,13 +144,9 @@
 import { Component, Vue } from 'nuxt-property-decorator'
 
 import { normalizeArray } from '@/assets/util'
-import PageSocial from '@/components/PageSocial.vue'
 
 // eslint-disable-next-line no-use-before-define
 @Component<BlogLayout>({
-  components: {
-    PageSocial,
-  },
   created() {
     const tagCloudData = JSON.parse(process.env.TAG!)
 

@@ -11,13 +11,8 @@
 <script lang="ts">
 import { Component, Vue } from 'nuxt-property-decorator'
 
-import PostQuery from '@/components/PostQuery.vue'
-
 // eslint-disable-next-line no-use-before-define
 @Component<TabPage>({
-  components: {
-    PostQuery,
-  },
   head() {
     return {
       title: `${this.entry.name} - ${this.$accessor.theme.title}`,

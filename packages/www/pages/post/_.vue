@@ -4,14 +4,10 @@
 
 <script lang="ts">
 import { Component, Vue } from 'nuxt-property-decorator'
-import PostFull from '@/components/PostFull.vue'
 import { api, initAPI } from '~/assets/api'
-import { Paths } from '~/types/openapi'
+import type { Paths } from '~/types/openapi'
 
 @Component({
-  components: {
-    PostFull,
-  },
   async asyncData({ params, error }) {
     try {
       await initAPI()
