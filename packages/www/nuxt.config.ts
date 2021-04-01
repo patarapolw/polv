@@ -73,11 +73,7 @@ export default async (): Promise<NuxtConfig> => {
     ],
 
     // Plugins to run before rendering page: https://go.nuxtjs.dev/config-plugins
-    plugins: [
-      '~/plugins/format.ts',
-      '~/plugins/remark42.client.ts',
-      '~/plugins/webcomponents.client.js',
-    ],
+    plugins: ['~/plugins/format.ts', '~/plugins/webcomponents.client.js'],
 
     // Auto import components: https://go.nuxtjs.dev/config-components
     components: true,
@@ -128,13 +124,22 @@ export default async (): Promise<NuxtConfig> => {
           },
         },
       ],
+      '@nuxtjs/proxy',
     ],
+    proxy: {
+      '/.netlify': {
+        target: 'http://localhost:9000',
+      },
+    },
 
     // Build Configuration: https://go.nuxtjs.dev/config-build
     build: {},
     generate: {
       routes() {
-        return Object.keys(raw).map((p) => `/post/${p}`)
+        return [
+          ...Object.keys(raw).map((p) => `/post/${p}`),
+          ...Object.keys(tag).map((p) => `/tag/${p}`),
+        ]
       },
     },
     env: {

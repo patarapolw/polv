@@ -34,65 +34,32 @@
       </div>
     </article>
 
-    <footer v-if="remark42Config" class="card my-4">
-      <div class="card-content">
-        <div ref="remark42" />
-      </div>
+    <footer class="card my-4 p-2">
+      <div ref="comment" />
     </footer>
   </section>
 </template>
 
 <script lang="ts">
-import { Component, Prop, Vue, Watch } from 'nuxt-property-decorator'
-import '~/assets/remark42'
+import { Component, Prop, Vue } from 'nuxt-property-decorator'
 
 @Component
 export default class PostFull extends Vue {
   @Prop({ required: true }) post!: any
 
-  remark42Config = this.$accessor.theme.comment?.remark42 || null
-  remark42Instance: any = null
-
   mounted() {
-    if (window.REMARK42) {
-      this.initRemark42()
-    } else {
-      window.addEventListener('REMARK42::ready', () => {
-        this.initRemark42()
-      })
-    }
-  }
+    const commentEl = this.$refs.comment as HTMLDivElement
+    commentEl.textContent = ''
 
-  beforeDestroy() {
-    if (this.remark42Instance) {
-      this.remark42Instance.destroy()
-    }
-  }
+    const src = document.createElement('script')
+    src.src = 'https://utteranc.es/client.js'
+    src.setAttribute('repo', 'patarapolw/polv')
+    src.setAttribute('issue-term', `/post/${this.$route.params.pathMatch}`)
+    src.setAttribute('theme', 'github-light')
+    src.crossOrigin = 'anonymous'
+    src.async = true
 
-  beforeRouteLeave() {
-    if (this.remark42Instance) {
-      this.remark42Instance.destroy()
-    }
-  }
-
-  @Watch('$route.path')
-  onRouteChange() {
-    this.initRemark42()
-  }
-
-  initRemark42() {
-    if (process.client && this.remark42Config && window.REMARK42) {
-      if (this.remark42Instance) {
-        this.remark42Instance.destroy()
-      }
-
-      this.remark42Instance = window.REMARK42.createInstance({
-        ...this.remark42Config,
-        node: this.$refs.remark42 as HTMLElement,
-        host: this.remark42Config.host,
-        site_id: this.remark42Config.siteId,
-      })
-    }
+    commentEl.append(src)
   }
 }
 </script>
