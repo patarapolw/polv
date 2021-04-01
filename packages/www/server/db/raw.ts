@@ -37,13 +37,6 @@ export const sTheme = S.shape({
   analytics: S.shape({
     plausible: S.string().optional(),
   }).optional(),
-  comment: S.shape({
-    remark42: S.shape({
-      host: S.string(),
-      siteId: S.string(),
-      locale: S.string().optional(),
-    }).optional(),
-  }).optional(),
 }).additionalProperties(true)
 
 export type ITheme = typeof sTheme.type

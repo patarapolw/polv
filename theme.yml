@@ -43,8 +43,3 @@ sidebar:
   twitter: patarapolw
 analytics:
   plausible: polv.cc
-comment:
-  remark42:
-    host: https://remark42.polv.cc
-    siteId: polv
-    locale: en

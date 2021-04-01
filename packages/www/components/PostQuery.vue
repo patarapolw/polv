@@ -14,21 +14,13 @@
 
 <script lang="ts">
 import { Component, Prop, Vue, Watch } from 'nuxt-property-decorator'
+import axios from 'axios'
 
 import { normalizeArray } from '~/assets/util'
 import type { ISearch } from '~/server/db/lunr'
 
-import Empty from './Empty.vue'
-import Pagination from './Pagination.vue'
-import PostTeaser from './PostTeaser.vue'
-
 // eslint-disable-next-line no-use-before-define
 @Component<PostQuery>({
-  components: {
-    PostTeaser,
-    Empty,
-    Pagination,
-  },
   mounted() {
     this.updatePosts()
   },
@@ -58,10 +50,18 @@ export default class PostQuery extends Vue {
   async updatePosts() {
     const q = this.q || this.cond
 
-    const { SEARCH } = await import('~/assets/search')
-    const rs = SEARCH.search(q)
-    this.count = rs.length
-    this.posts = rs.slice((this.page - 1) * 5, this.page * 5)
+    const ps = await axios
+      .post('/.netlify/functions/search', undefined, {
+        params: {
+          q,
+          page: this.page,
+          limit: 5,
+        },
+      })
+      .then((r) => r.data)
+
+    this.count = ps.count
+    this.posts = ps.result
 
     this.isReady = true
   }
