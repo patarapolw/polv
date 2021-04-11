@@ -3,6 +3,7 @@
 import { FastifyPluginAsync } from 'fastify'
 import swagger from 'fastify-swagger'
 import S from 'jsonschema-definer'
+import { SEARCH } from '../db/lunr'
 
 import { RAW, SEPARATOR } from '../db/raw'
 
@@ -60,6 +61,27 @@ const apiRouter: FastifyPluginAsync = async (f) => {
           tag: entry.tag,
           text: entry.text.split(SEPARATOR)[0],
           html: entry.html,
+        }
+      }
+    )
+  }
+
+  {
+    f.get(
+      '/q',
+      {
+        schema: {
+          operationId: 'getEntryList',
+        },
+      },
+      async () => {
+        const rs = SEARCH.search('', () => true)
+        const page = 1
+        const limit = 5
+
+        return {
+          result: rs.slice((page - 1) * limit, page * limit),
+          count: rs.length,
         }
       }
     )

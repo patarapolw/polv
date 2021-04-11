@@ -26,6 +26,11 @@ import type { ISearch } from '~/server/db/lunr'
   },
 })
 export default class PostQuery extends Vue {
+  @Prop() defaults?: {
+    count: number
+    posts: ISearch[]
+  }
+
   @Prop() cond?: string
 
   count = 0
@@ -50,18 +55,23 @@ export default class PostQuery extends Vue {
   async updatePosts() {
     const q = this.q || this.cond
 
-    const ps = await axios
-      .post('/.netlify/functions/search', undefined, {
-        params: {
-          q,
-          page: this.page,
-          limit: 5,
-        },
-      })
-      .then((r) => r.data)
+    if (q || !this.defaults) {
+      const ps = await axios
+        .post('/.netlify/functions/search', undefined, {
+          params: {
+            q,
+            page: this.page,
+            limit: 5,
+          },
+        })
+        .then((r) => r.data)
 
-    this.count = ps.count
-    this.posts = ps.result
+      this.count = ps.count
+      this.posts = ps.result
+    } else {
+      this.count = this.defaults.count
+      this.posts = this.defaults.posts
+    }
 
     this.isReady = true
   }

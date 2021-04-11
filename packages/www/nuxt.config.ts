@@ -16,7 +16,7 @@ export default async (): Promise<NuxtConfig> => {
       }),
       {} as Record<string, number>
     )
-  const apiURL = `http://localhost:${process.env.SERVER_PORT}`
+  const apiURL = `http://localhost:${process.env.npm_package_config_serverPort}`
 
   return {
     // Target: https://go.nuxtjs.dev/config-target

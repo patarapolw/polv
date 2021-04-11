@@ -5,7 +5,7 @@ import { logger } from './logger'
 
 function main() {
   const app = fastify({ logger })
-  const port = parseInt(process.env.SERVER_PORT || '5000')
+  const port = parseInt(process.env.npm_package_config_serverPort || '5000')
 
   app.register(apiRouter, { prefix: '/api' })
 
