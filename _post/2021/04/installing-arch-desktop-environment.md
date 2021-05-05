@@ -6,6 +6,7 @@ tag:
   - archlinux
   - kde
   - xfce
+category: linux
 ---
 
 So, I happened to [vanilla installed Arch Linux](https://wiki.archlinux.org/index.php/Installation_guide) + incomplete KDE and several eye candies.
