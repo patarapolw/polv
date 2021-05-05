@@ -46,7 +46,7 @@ find /usr/share/icons -iname '*.png'
 
 - Change Mail application to
 
-```toml
+```conf
 [Desktop Entry]
 Comment[en_US]=
 Comment=
