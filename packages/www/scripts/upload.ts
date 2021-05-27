@@ -51,5 +51,8 @@ async function main() {
 }
 
 if (require.main === module) {
-  main()
+  main().catch((e) => {
+    console.error(e)
+    throw e
+  })
 }
