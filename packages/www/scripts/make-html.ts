@@ -88,7 +88,9 @@ export class MakeHtml {
             }
 
             if (lang && hljs.getLanguage(lang)) {
-              return left + hljs.highlight(lang, match).value + right
+              return (
+                left + hljs.highlight(match, { language: lang }).value + right
+              )
             } else {
               return left + hljs.highlightAuto(match).value + right
             }
