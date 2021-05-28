@@ -25,6 +25,8 @@ Currently, I make audio with MIDI sequencer / WAV on Ubuntu with `ubuntu-studio-
 - Rosegarden can edit WAV with Audacity, for WAV transformation.
   - Oddly, I can't find a way for Rosegarden to render MIDI, but the can easily be fixed with Cadence Render.
 - Hydrogen drumkits, to generate MIDI for drums.
+- Frescobaldi, to generate MIDI for piano.
+  - Can be simpler to use than Rosegarden's built-in score editor.
 - Both Rosegarden and Hydrogen have lots of examples and demos.
 - `pavucontrol` or PulseAudio Volume Control, if you need to tweak the loudness.
 
