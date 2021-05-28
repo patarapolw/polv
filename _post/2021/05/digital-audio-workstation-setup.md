@@ -23,6 +23,7 @@ Currently, I make audio with MIDI sequencer / WAV on Ubuntu with `ubuntu-studio-
 - QSynth, with installed SoundFonts for MIDI.
 - Instead of Ardour, I use Rosegarden for audio mixing.
 - Rosegarden can edit WAV with Audacity, for WAV transformation.
+  - Oddly, I can't find a way for Rosegarden to render MIDI, but the can easily be fixed with Cadence Render.
 - Hydrogen drumkits, to generate MIDI for drums.
 - Both Rosegarden and Hydrogen have lots of examples and demos.
 - `pavucontrol` or PulseAudio Volume Control, if you need to tweak the loudness.
