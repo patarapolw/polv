@@ -11,7 +11,7 @@ category:
   - linux
 ---
 
-*Updated 2020-12-01*
+*Updated 2021-05-28*
 
 Most major things here have to be [rEFInd](http://www.rodsbooks.com/refind/installing.html), [conky](http://ubuntuhandbook.org/index.php/2020/07/install-conky-manager-ubuntu-20-04-lts/) and [libinput-gestures](https://github.com/bulletmark/libinput-gestures)
 
@@ -66,7 +66,7 @@ ${font sans-serif:bold:size=10}SYSTEM ${hr 2}
 ${font sans-serif:normal:size=8}$sysname $kernel $alignr $machine
 Host:$alignr$nodename
 Uptime:$alignr$uptime
-${execi 1000 acpi -b | awk "{print $1}" | sed 's/,.*//'}${alignr}${battery_percent BAT0}% ${battery_bar 8,70 BAT0}
+Battery: ${execi 1000 cat /sys/class/power_supply/BAT0/status}${alignr}${battery_percent BAT0}% ${battery_bar 8,70 BAT0}
 
 ${font sans-serif:bold:size=10}CPU ${hr 2}
 ${font sans-serif:normal:size=8}${execi 1000 grep model /proc/cpuinfo | cut -d : -f2 | tail -1 | sed 's/\s//'}
@@ -113,6 +113,12 @@ ${top name 9} $alignr ${top pid 9} ${top cpu 9}% ${top mem 9}%
 ${top name 10} $alignr ${top pid 10} ${top cpu 10}% ${top mem 10}%
 ]];
 ```
+
+<center data-markdown>
+
+![conky-screenshot](https://res.cloudinary.com/patarapolw/image/upload/v1622172960/polv/2021-05-28_10-35_mchgls.png)
+
+</center>
 
 ## libinput-gestures
 
