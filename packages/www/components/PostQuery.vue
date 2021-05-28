@@ -55,7 +55,7 @@ export default class PostQuery extends Vue {
   async updatePosts() {
     const q = this.q || this.cond
 
-    if (q || !this.defaults) {
+    if (q || this.page !== 1 || !this.defaults) {
       const ps = await axios
         .post('/.netlify/functions/search', undefined, {
           params: {
