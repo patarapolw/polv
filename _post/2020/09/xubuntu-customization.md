@@ -11,7 +11,7 @@ category:
   - linux
 ---
 
-*Updated 2021-05-28*
+*Updated 2021-05-30*
 
 Most major things here have to be [rEFInd](http://www.rodsbooks.com/refind/installing.html), [conky](http://ubuntuhandbook.org/index.php/2020/07/install-conky-manager-ubuntu-20-04-lts/) and [libinput-gestures](https://github.com/bulletmark/libinput-gestures)
 
@@ -23,39 +23,40 @@ Most major things here have to be [rEFInd](http://www.rodsbooks.com/refind/insta
 
 ```lua
 conky.config = {
-	update_interval = 1,
-	cpu_avg_samples = 2,
-	net_avg_samples = 2,
-	out_to_console = false,
-	override_utf8_locale = true,
-	double_buffer = true,
-	no_buffers = true,
-	text_buffer_size = 32768,
-	imlib_cache_size = 0,
-	own_window = true,
-	own_window_type = 'normal',
-	own_window_argb_visual = true,
-	-- own_window_argb_value = 50,
-	own_window_transparent = true,
-	own_window_hints = 'undecorated,below,sticky,skip_taskbar,skip_pager',
-	border_inner_margin = 5,
-	border_outer_margin = 0,
-	xinerama_head = 1,
-	alignment = 'bottom_right',
-	gap_x = 20,
-	gap_y = 20,
-	draw_shades = false,
-	draw_outline = false,
-	draw_borders = false,
-	draw_graph_borders = true,
-	use_xft = true,
-	font = 'Ubuntu Mono:size=12',
-	xftalpha = 0.8,
-	uppercase = false,
-	default_color = 'white',
-	own_window_colour = '#000000',
-	minimum_width = 300, minimum_height = 0,
-	alignment = 'top_right'
+    update_interval = 1,
+    cpu_avg_samples = 2,
+    net_avg_samples = 2,
+    out_to_console = false,
+    override_utf8_locale = true,
+    double_buffer = true,
+    no_buffers = true,
+    text_buffer_size = 32768,
+    imlib_cache_size = 0,
+    own_window = true,
+    own_window_type = 'normal',
+    own_window_class = 'conky',
+    own_window_argb_visual = true,
+    own_window_argb_value = 50,
+    own_window_transparent = true,
+    own_window_hints = 'undecorated,below,sticky,skip_taskbar,skip_pager',
+    border_inner_margin = 5,
+    border_outer_margin = 0,
+    xinerama_head = 1,
+    alignment = 'bottom_right',
+    gap_x = 20,
+    gap_y = 50,
+    draw_shades = false,
+    draw_outline = false,
+    draw_borders = false,
+    draw_graph_borders = true,
+    use_xft = true,
+    font = 'Ubuntu Mono:size=12',
+    xftalpha = 0.8,
+    uppercase = false,
+    default_color = 'white',
+    own_window_colour = '#000000',
+    minimum_width = 300, minimum_height = 0,
+    alignment = 'top_right'
 };
 conky.text = [[
 ${alignr}${time %H:%M:%S}
@@ -66,21 +67,21 @@ ${font sans-serif:bold:size=10}SYSTEM ${hr 2}
 ${font sans-serif:normal:size=8}$sysname $kernel $alignr $machine
 Host:$alignr$nodename
 Uptime:$alignr$uptime
-Battery: ${execi 1000 cat /sys/class/power_supply/BAT0/status}${alignr}${battery_percent BAT0}% ${battery_bar 8,70 BAT0}
+Battery: ${execi 1 upower -i $(upower -e | grep 'BAT') | grep 'state:' | awk '{print $2}'}${alignr}${battery_percent BAT0}% ${battery_bar 8,70 BAT0}
 
 ${font sans-serif:bold:size=10}CPU ${hr 2}
 ${font sans-serif:normal:size=8}${execi 1000 grep model /proc/cpuinfo | cut -d : -f2 | tail -1 | sed 's/\s//'}
 
 ${alignr} Total CPU: ${cpu cpu0}%
-${cpugraph cpu0 50,300 -t}
-CPU1: ${cpu cpu1}% ${alignr}${cpubar cpu1 6,240}
-CPU2: ${cpu cpu2}% ${alignr}${cpubar cpu2 6,240}
-CPU3: ${cpu cpu3}% ${alignr}${cpubar cpu3 6,240}
-CPU4: ${cpu cpu4}% ${alignr}${cpubar cpu4 6,240}
-CPU5: ${cpu cpu5}% ${alignr}${cpubar cpu5 6,240}
-CPU6: ${cpu cpu6}% ${alignr}${cpubar cpu6 6,240}
-CPU7: ${cpu cpu7}% ${alignr}${cpubar cpu7 6,240}
-CPU8: ${cpu cpu8}% ${alignr}${cpubar cpu8 6,240}
+${cpugraph cpu0 30,300 -t}
+CPU1: ${cpu cpu1}% ${alignr}${cpubar cpu1 6,230}
+CPU2: ${cpu cpu2}% ${alignr}${cpubar cpu2 6,230}
+CPU3: ${cpu cpu3}% ${alignr}${cpubar cpu3 6,230}
+CPU4: ${cpu cpu4}% ${alignr}${cpubar cpu4 6,230}
+CPU5: ${cpu cpu5}% ${alignr}${cpubar cpu5 6,230}
+CPU6: ${cpu cpu6}% ${alignr}${cpubar cpu6 6,230}
+CPU7: ${cpu cpu7}% ${alignr}${cpubar cpu7 6,230}
+CPU8: ${cpu cpu8}% ${alignr}${cpubar cpu8 6,230}
 
 ${font sans-serif:bold:size=10}MEMORY ${hr 2}
 ${font sans-serif:normal:size=8}RAM $alignc $mem / $memmax $alignr $memperc%
@@ -88,16 +89,20 @@ $membar
 SWAP $alignc ${swap} / ${swapmax} $alignr ${swapperc}%
 ${swapbar}
 
-${memgraph 50,300 -t}
+${memgraph 30,300 -t}
 
 ${font sans-serif:bold:size=10}DISK USAGE ${hr 2}
 ${font sans-serif:normal:size=8}/ $alignc ${fs_used /} / ${fs_size /} $alignr ${fs_used_perc /}%
 ${fs_bar /}
 
+Read: ${diskio_read}${alignr}Write: ${diskio_write}
+${diskiograph 30,300}
+
 ${font Ubuntu:bold:size=10}NETWORK ${hr 2}
 ${font sans-serif:normal:size=8}Local IPs:${alignr}External IP:
-${execi 1000 ip a | grep inet | grep -vw lo | grep -v inet6 | cut -d \/ -f1 | sed 's/[^0-9\.]*//g'}  ${alignr}${execi 60000  wget -q -O- http://ipecho.net/plain; echo}
-${font sans-serif:normal:size=8}Down: ${downspeed wlp2s0}  ${alignr}Up: ${upspeed wlp1s0} 
+${execi 1 ip a | grep inet | grep -vw lo | grep -v inet6 | cut -d \/ -f1 | sed 's/[^0-9\.]*//g'}  ${alignr}${execi 3600 wget -q -O- http://ipecho.net/plain; echo}
+
+${font sans-serif:normal:size=8}Down: ${downspeed wlp2s0}  ${alignr}Up: ${upspeed wlp1s0}
 ${color lightgray}${downspeedgraph wlp2s0 30,145} ${alignr}${upspeedgraph wlp1s0 30,145}$color
 ${font sans-serif:bold:size=10}TOP PROCESSES ${hr 2}
 ${font sans-serif:normal:size=8}Name $alignr PID   CPU%   MEM%${font sans-serif:normal:size=8}
@@ -116,7 +121,7 @@ ${top name 10} $alignr ${top pid 10} ${top cpu 10}% ${top mem 10}%
 
 <center data-markdown>
 
-![conky-screenshot](https://res.cloudinary.com/patarapolw/image/upload/v1622172960/polv/2021-05-28_10-35_mchgls.png)
+![conky-screenshot](https://res.cloudinary.com/patarapolw/image/upload/v1622355709/polv/conky_sb1qrx.png)
 
 </center>
 
