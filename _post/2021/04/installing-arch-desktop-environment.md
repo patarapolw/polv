@@ -10,6 +10,8 @@ category:
   - linux
 ---
 
+*Updated 2021-07-26*
+
 So, I happened to [vanilla installed Arch Linux](https://wiki.archlinux.org/index.php/Installation_guide) + incomplete KDE and several eye candies.
 
 ## Caveat to installing
@@ -19,7 +21,7 @@ So, I happened to [vanilla installed Arch Linux](https://wiki.archlinux.org/inde
   - If you don't have Wifi driver, you might need an Android device, with USB cable
   - `rfkill unblock wifi` is required in my case, even if there is Wifi driver bundled with the kernel
   - You might need `git` to clone AUR repo to [install Wifi drivers](https://wiki.archlinux.org/title/Network_configuration/Wireless).
-- Install [btrfs](https://wiki.archlinux.org/index.php/Btrfs), i.e. "better fs"
+<!-- - Install [btrfs](https://wiki.archlinux.org/index.php/Btrfs), i.e. "better fs" -->
 - Install `networkmanager`. No, there won't be [iwctl](https://wiki.archlinux.org/index.php/Iwd#iwctl) or `networkmanager`, if you don't install it.
   - KDE will need `networkmanager`
   - Xfce will need `networkmanager` and `network-manager-applet` (yes, with hyphen between `network` and `manager`)
@@ -78,3 +80,14 @@ Doesn't have to be Arch. Might be i3wm or Openbox or something else. Care to sha
 ![Arch desktop](https://dev-to-uploads.s3.amazonaws.com/uploads/articles/1u2h4rstna7d5owat9zh.png)
 
 ![Arch icons](https://dev-to-uploads.s3.amazonaws.com/uploads/articles/fs0wad3kmrvvz6frqnsd.png)
+
+*Updated 2021-07-26*
+
+Recently, I got hooked into installing BTRFS properly in Arch. I wrote instruction scripts here (and tested).
+
+<%- xCard({
+  href: 'https://github.com/patarapolw/arch-btrfs',
+  image: 'https://opengraph.githubassets.com/1ef719403fcf03f1ee70d9f3edc275dbf3deae100bd3d78e48d39a4849390589/patarapolw/arch-btrfs',
+  title: 'GitHub - patarapolw/arch-btrfs',
+  description: 'Script for boostrapping Arch Linux with BTRFS and snapshots'
+}) %>
