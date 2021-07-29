@@ -3,6 +3,14 @@
 
   > code {
     padding: 1em;
+
+    &.hljs {
+      display: block;
+    }
+
+    * {
+      padding: initial;
+    }
   }
 }
 
