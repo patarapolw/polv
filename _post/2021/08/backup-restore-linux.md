@@ -9,7 +9,7 @@ category:
   - linux
 ---
 
-If you want to fully backup home folder (or folder specified by `$HOME` environment variable or `~`), it's as simple as fully backuping everything in that folder, including hidden files and folders. (`cp -r $HOME/* $HOME/.* $TARGET/`); or better yet, creating a dedicated HOME partition.
+If you want to fully backup home folder (or folder specified by `$HOME` environment variable, or `~`), it's as simple as fully backuping everything in that folder, including hidden files and folders. (`cp -r $HOME/* $HOME/.* $TARGET/`); or better yet, creating a dedicated HOME partition.
 
 However, you won't get a clean reinstall. Also, on changing desktop environments (DE), there may be some (undesirable) changes carried over from the old desktop environment. Not to mention that, there are some cached files and unimportant carried over to the backup, in case of external backup as well.
 
@@ -30,9 +30,10 @@ In case of HOME partition, you might consider deleting some files and folders in
 Of course, you can just use `cp -r` or `rsync`, or even just mounting HOME partition correctly in `/etc/fstab`, but you can also be more specific and choose what to restore. So, which files and folders are amongst the most important?
 
 ```sh
+~/.ssh/  # SSH keys (private and public) and known_hosts
 ~/.local/share/<APPNAME>  # This also includes several of DE's settings.
 ~/.config/<APPNAME>  # This also includes several of DE's settings.
-~/snap/
+~/snap/  # Canonical Snap Store
 ```
 
 However, should list and hidden files and folders first, for example, with `ls -a ~`; because some user configuration aren't in the above mentioned folders, and may be hidden. These includes,
