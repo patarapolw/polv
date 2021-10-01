@@ -1,5 +1,5 @@
 ---
-title: `docker compose` (v2) vs `docker-compose` (v1) vs `podman-compose` - which one to choose?
+title: '"docker compose" (v2) vs "docker-compose" (v1) vs "podman-compose" - which one to choose?'
 date: 2021-09-30T12:00:00+07:00
 tag:
   - docker
