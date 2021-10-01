@@ -10,6 +10,7 @@
   "settings": {
     "files.associations": {
       ".env.*": "dotenv"
-    }
+    },
+    "sort-imports.on-save": true
   }
 }
