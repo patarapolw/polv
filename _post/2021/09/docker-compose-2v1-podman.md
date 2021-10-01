@@ -17,6 +17,8 @@ For some reasons, it had to rebuild my Dockerfile image again, even though I hav
 
 I saw that there that are releases for Windows and macOS (darwin, including arm64) as well; [and it is already installed by default on Windows and macOS](https://docs.docker.com/compose/cli-command/#install-on-mac-and-windows).
 
+<!-- excerpt -->
+
 ## Legacy Docker Compose (v1)
 
 <https://docs.docker.com/compose/install/>
