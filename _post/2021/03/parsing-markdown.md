@@ -14,7 +14,7 @@ My favorite implementation is [Markdown Preview Enhanced](https://github.com/shd
 
 <%- xCard({
   href: 'https://github.com/shd101wyy/mume',
-  image: 'https://avatars.githubusercontent.com/u/1908863?s=400&amp;v=4',
+  image: 'https://avatars.githubusercontent.com/u/1908863?s=400&v=4',
   title: 'shd101wyy/mume',
   description: 'Powerful markdown tool. Contribute to shd101wyy/mume development by creating an account on GitHub.'
 }) %>
