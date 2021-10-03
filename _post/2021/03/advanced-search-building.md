@@ -41,7 +41,7 @@ You can see my experiment and [playground](https://q2search.herokuapp.com) here.
 
 <%- xCard({
   href: 'https://github.com/patarapolw/qsearch',
-  image: 'https://avatars.githubusercontent.com/u/21255931?s=400&amp;v=4',
+  image: 'https://avatars.githubusercontent.com/u/21255931?s=400&v=4',
   title: 'patarapolw/qsearch',
   description: 'Search a database with a string. Designed for end-users. - patarapolw/qsearch'
 }) %>
