@@ -27,7 +27,8 @@ npm i
 
 npx gulp generic
 cp -r build/generic ../pdf.js-dist
-npx http-server dist -o /web/viewer.html
+cd -
+npx http-server pdf.js-dist -o /web/viewer.html
 ```
 
 ## I already built it for you
