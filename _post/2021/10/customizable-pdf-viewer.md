@@ -27,6 +27,7 @@ npm i
 
 npx gulp generic
 cp -r build/generic ../pdf.js-dist
+npx http-server dist -o /web/viewer.html
 ```
 
 ## I already built it for you
@@ -39,3 +40,7 @@ This is here. Just copy the [`/dist`](https://github.com/patarapolw/pdf.js-viewe
   title: 'GitHub - patarapolw/pdf.js-viewer',
   description: "Example of how to build example viewer of Mozilla's PDF.js"
 }) %>
+
+## My example project
+
+[This online Lilypond compiler / playground](https://ly.polv.cc) is made using this, using the endpoint `/pdf.js/web/viewer.html?file=<FILEPATH>#pagemode=none`. It's a quick project of mine to compile MIDI and WAV files, and share it.
