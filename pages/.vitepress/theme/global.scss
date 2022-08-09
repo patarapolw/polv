@@ -1,0 +1,30 @@
+:root {
+  --vp-c-brand: #646cff;
+  --vp-c-brand-light: #747bff;
+}
+
+.content pre {
+  padding: 0;
+
+  > code {
+    padding: 1em;
+
+    &.hljs {
+      display: block;
+    }
+
+    * {
+      padding: initial;
+    }
+  }
+}
+
+.card-content {
+  overflow: scroll;
+  scrollbar-width: none;
+}
+
+.responsive-iframe {
+  width: 100%;
+  margin: 0 !important;
+}
