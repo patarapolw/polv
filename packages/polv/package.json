@@ -1,0 +1,15 @@
+{
+  "name": "@polv/nuxt",
+  "private": true,
+  "scripts": {
+    "build": "nuxt build",
+    "dev": "nuxt dev",
+    "generate": "nuxt generate",
+    "preview": "nuxt preview",
+    "postinstall": "nuxt prepare"
+  },
+  "devDependencies": {
+    "@types/node": "^16",
+    "nuxt": "^3.4.3"
+  }
+}
